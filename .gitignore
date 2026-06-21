@@ -1,0 +1,13 @@
+# 데이터셋 이미지 (용량 큼)
+real_test/rgb/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db

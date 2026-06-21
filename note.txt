@@ -1,0 +1,196 @@
+================================================================================
+ optimalpath 프로젝트 노트
+ 작성일: 2026-06-20
+================================================================================
+
+이 프로젝트는 AirSim 시뮬레이터 환경에서 드론이 타겟 오브젝트를 효율적으로
+촬영할 수 있는 최적 비행 경로를 생성하는 것을 목표로 한다.
+생성된 경로는 cfs-telemetry-app → uplink_app → FC로 전달된다.
+
+
+────────────────────────────────────────────────────────────────────────────────
+[1] 실험 데이터 (real_test/)  ← 이 데이터를 기준으로 진행
+────────────────────────────────────────────────────────────────────────────────
+
+출처: Downloads/real_test.zip 압축 해제본
+
+구조:
+  real_test/
+  ├── manifest.json          # 비행 설정 정보
+  ├── rgb/000000.png ~ 000033.png   # AirSim 촬영 이미지 34장 (1920x1080 FHD)
+  └── meta/000000.json ~ 000033.json  # 프레임별 센서 데이터
+
+manifest.json 주요 내용:
+  - mode: orbit_then_orbit  (원형 궤도 2단계)
+  - target: x=-33.67, y=-50.83, z=0.18  (AirSim NED 좌표, m)
+  - recommended_altitude_m: 8.0m
+  - 카메라: FOV 89.9°, 해상도 1920x1080
+
+meta/*.json 포함 데이터 (프레임마다):
+  - camera.pose : 카메라 위치(x,y,z) + 자세(quaternion)
+  - vehicle_pose: 드론 본체 위치 + 자세
+  - multirotor_kinematics: 위치, 속도, 가속도, 각속도
+  - gps: 위경도, 고도, 속도 (fix_type=3, valid)
+  - imu: 자세, 각속도, 선가속도
+  - airsim_timestamps: 각 센서별 타임스탬프 (ns)
+
+촬영 시작 위치: x=-27.3, y=-51.1, z=-4.29 (고도 약 4.3m)
+타겟 오브젝트: 빨간 박스 (잔디 위, ∪자형 구조물)
+
+
+────────────────────────────────────────────────────────────────────────────────
+[2] 비교 대상 - 시뮬레이션 경로 데이터 (바탕화면 Desktop)
+────────────────────────────────────────────────────────────────────────────────
+
+Desktop/path/ 폴더에 두 가지 경로로 비행한 AirSim 촬영 결과가 있음.
+(real_test와 동일한 타겟 오브젝트, 동일 환경)
+
+  path/optimal/rgb/        - 000000~000067.png  (68장)
+    → car.py로 생성된 최적 경로(orbit_then_recommended)로 비행한 결과
+
+  path/ciecle_tworound/rgb/ - 000000~000067.png  (68장)
+    → 단순 원형 2바퀴(orbit_then_orbit) 경로로 비행한 결과
+
+※ real_test는 orbit_then_orbit 모드, 34장 → 더 짧은 경로 or 다른 파라미터
+
+
+────────────────────────────────────────────────────────────────────────────────
+[3] 스크립트 목록 (전체 10개, 이 레포에 모두 포함)
+────────────────────────────────────────────────────────────────────────────────
+
+■ AirSim 비행 실행
+
+  car.py
+    - AirSim 드론 비행 메인 스크립트
+    - 모드: orbit / orbit_then_recommended / orbit_then_orbit 등
+    - 비행 중 RGB 이미지 + meta(GPS, IMU, 카메라포즈) 저장
+    - generate_optimal_path.py가 만든 JSON을 --recommended-json으로 받아 실행
+    - 예) python car.py --mode orbit_then_recommended
+                        --recommended-json blue1_optimal_path.json
+                        --target-x -34.5 --target-y -47.9 --target-z 1.42
+
+  airsim_orbit_two_altitudes.py
+    - 두 고도에서 원형 궤도를 비행하는 전용 스크립트
+    - car.py의 orbit 모드와 유사하나 고도·반경 2단계 파라미터 특화
+    - path/ciecle_tworound/ 데이터가 이 스크립트로 생성됨
+
+  simple.py
+    - AirSim 연결 테스트 / 단순 비행 스크립트
+    - 특정 경로 JSON을 읽어 기본 비행 수행 (프로토타입용)
+
+■ 경로 생성
+
+  generate_optimal_path.py
+    - 입력: blue_1.mp4 (AirSim 주차장 영상, 파란 차량 타겟)
+    - 방법: HSV 파란색 blob 탐지 → 픽셀→3D 역투영 → 나선형/원형 경로 생성
+    - 순서 최적화: TSP Nearest-Neighbor
+    - 출력: blue1_optimal_path.json (WP 16개, spiral 모드)
+    - 관련 이미지: blue1_result_visual.png
+
+  pbnbv_path.py  ← 메인 알고리즘
+    - 입력: MASt3R SfM 결과 (pointcloud.ply + poses.npy + focals.npy)
+    - 방법:
+        1) 기존 카메라 포즈로 coverage 추정 (관측 횟수 < 3 = 미관측)
+        2) 타겟 주변 150개 후보 시점 생성
+        3) PB-NBV(2): 1-step 정보이득 + 0.5×lookahead 최대 정보이득
+        4) Greedy Nearest-Neighbor로 방문 순서 결정
+    - 출력: pbnbv_path.json (WP 10개)
+    - 관련 이미지: pbnbv_result.png
+    - 기존 카메라 수: 125개, 미관측 비율: 0.84%
+
+■ 데이터 변환
+
+  meta_to_rgb_poses.py
+    - AirSim 비행 결과의 meta/*.json → rgb_poses.json 변환
+    - camera.pose (position + quaternion) 를 4×4 변환행렬로 변환하여 저장
+    - real_test/meta/ 를 pbnbv_path.py 입력 형태로 만들 때 사용
+    - 예) python meta_to_rgb_poses.py --meta-dir real_test/meta
+
+■ 시각화
+
+  visualize_optimal_path.py
+    - generate_optimal_path.py 결과를 기존 경로와 비교 시각화
+    - 출력: blue1_result_visual.png (탐지 타임라인 + 2D/3D 경로 비교)
+
+  view_trajectory.py
+    - 포인트클라우드(PLY) + 카메라 궤적을 Open3D로 시각화
+    - SfM 결과의 카메라 포즈 분포 확인용
+
+  view_clean.py
+    - 포인트클라우드 클리닝 후 시각화
+    - 노이즈 제거 파라미터 조정 가능
+
+  compare_camera_pose.py
+    - 두 카메라 포즈 세트를 비교하는 유틸리티
+    - 경로 실행 전후 포즈 일치 여부 검증용
+
+
+────────────────────────────────────────────────────────────────────────────────
+[4] 생성된 시각화 이미지 (바탕화면 Desktop)
+────────────────────────────────────────────────────────────────────────────────
+
+blue1_result_visual.png
+  - 파란 차량 HSV 탐지 결과 + 신규 경로 vs 기존 경로 2D/3D 비교
+  - 패널: 최고탐지프레임 | HSV마스크 | 면적타임라인 | 2D평면도 | 3D경로
+
+pbnbv_result.png
+  - PB-NBV(2) 전체 분석 결과
+  - 패널: coverage히스토그램 | 2D coverage | 미관측영역+후보 3D
+           | 스코어 바차트 | Greedy경로 2D | Greedy경로 3D
+
+path_compare.png  (= orbit_ply_visual.png 로 추정)
+  - orbit 경로 단독 시각화: WP 17개, 고도 6m, 반경 7m 원형
+
+orbit_ply_visual.png
+  - blue1 orbit 경로 + 포인트클라우드(rgb.ply) 중첩
+  - Top-Down / 3D 4각도 뷰
+
+
+────────────────────────────────────────────────────────────────────────────────
+[5] JSON 경로 파일
+────────────────────────────────────────────────────────────────────────────────
+
+blue1_optimal_path.json
+  - 생성: generate_optimal_path.py
+  - WP 16개, spiral(2-ring), 고도 6m/9.6m, 반경 7m/9.8m
+  - 타겟: x=-34.5, y=-47.9, z=1.42  (AirSim NED, m)
+  - 탐지 샘플: 152프레임에서 파란 차량 검출
+
+blue1_orbit_path.json
+  - 단순 원형 궤도 경로
+
+pbnbv_path.json
+  - 생성: pbnbv_path.py
+  - WP 10개, PB-NBV(2) + Greedy
+  - 좌표계: MASt3R reconstruction space
+  - 추정 타겟: x=-1.27, y=-3.84, z=3.88
+
+
+────────────────────────────────────────────────────────────────────────────────
+[6] 좌표계 주의사항
+────────────────────────────────────────────────────────────────────────────────
+
+AirSim NED 좌표계
+  - X: 북(전방), Y: 동(우), Z: 하방 (음수 = 위)
+  - 예) z=-4.3 → 지면에서 4.3m 상공
+
+MASt3R reconstruction space
+  - pbnbv_path.py 출력은 MASt3R 재건 공간 좌표
+  - AirSim으로 직접 사용하려면 좌표 변환 필요
+
+real_test meta 좌표
+  - AirSim NED 기준
+  - 카메라 z ≈ -4.3 → 고도 약 4.3m
+  - GPS: 위도 47.641°, 경도 -122.141° (AirSim 기본 Seattle 지역)
+
+
+────────────────────────────────────────────────────────────────────────────────
+[7] 다음 진행 방향
+────────────────────────────────────────────────────────────────────────────────
+
+real_test/ 데이터를 입력으로:
+  1) meta/*.json의 카메라 포즈를 poses.npy 형태로 변환
+  2) pbnbv_path.py에 투입하여 PB-NBV(2) 경로 생성
+  3) 기존 orbit_then_orbit 경로(real_test) vs PB-NBV 경로 비교
+
+================================================================================

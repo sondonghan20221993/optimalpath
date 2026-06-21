@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "name": "realtest_pbnbv_path",
+  "algorithm": "PB-NBV(2) + Greedy Path Planning",
+  "coordinate_system": "AirSim NED (Z<0=above ground)",
+  "parameters": {
+    "lookahead": 2,
+    "n_candidates": 144,
+    "n_select": 10,
+    "orbit_altitudes_m": [
+      4.0,
+      5.5,
+      7.0
+    ],
+    "orbit_radii_m": [
+      5.0,
+      6.5,
+      8.0
+    ],
+    "max_dist_m": 13.0,
+    "min_dist_m": 4.0,
+    "underobs_thresh": 2
+  },
+  "n_existing_cameras": 34,
+  "n_pts": 2438,
+  "underobserved_ratio": 1.0,
+  "target_position": [
+    -33.67,
+    -50.83,
+    0.18
+  ],
+  "total_path_distance_m": 22.678293573155734,
+  "path_step_count": 10,
+  "waypoints": [
+    {
+      "index": 1,
+      "position": [
+        -28.67,
+        -50.83,
+        -3.82
+      ],
+      "relative_to_target": [
+        5.0,
+        0.0,
+        -4.0
+      ],
+      "altitude_m": 3.82,
+      "radius_m": 5.0,
+      "azimuth_deg": 0.0,
+      "pbnbv_score": 834.1463417813058
+    },
+    {
+      "index": 2,
+      "position": [
+        -29.05060233744357,
+        -52.74341716182545,
+        -3.82
+      ],
+      "relative_to_target": [
+        4.61939766255643,
+        -1.9134171618254499,
+        -4.0
+      ],
+      "altitude_m": 3.82,
+      "radius_m": 4.999999999999997,
+      "azimuth_deg": -22.500000000000025,
+      "pbnbv_score": 842.5365856869427
+    },
+    {
+      "index": 3,
+      "position": [
+        -30.134466094067264,
+        -54.365533905932736,
+        -3.82
+      ],
+      "relative_to_target": [
+        3.5355339059327378,
+        -3.5355339059327378,
+        -4.0
+      ],
+      "altitude_m": 3.82,
+      "radius_m": 5.0,
+      "azimuth_deg": -45.0,
+      "pbnbv_score": 853.4634149593992
+    },
+    {
+      "index": 4,
+      "position": [
+        -31.756582838174552,
+        -55.44939766255643,
+        -3.82
+      ],
+      "relative_to_target": [
+        1.9134171618254499,
+        -4.61939766255643,
+        -4.0
+      ],
+      "altitude_m": 3.82,
+      "radius_m": 4.999999999999997,
+      "azimuth_deg": -67.49999999999997,
+      "pbnbv_score": 855.2195125210444
+    },
+    {
+      "index": 5,
+      "position": [
+        -33.67,
+        -55.83,
+        -3.82
+      ],
+      "relative_to_target": [
+        0.0,
+        -5.0,
+        -4.0
+      ],
+      "altitude_m": 3.82,
+      "radius_m": 5.0,
+      "azimuth_deg": -90.0,
+      "pbnbv_score": 887.6097564358269
+    },
+    {
+      "index": 6,
+      "position": [
+        -35.58341716182545,
+        -55.44939766255643,
+        -3.82
+      ],
+      "relative_to_target": [
+        -1.9134171618254499,
+        -4.61939766255643,
+        -4.0
+      ],
+      "altitude_m": 3.82,
+      "radius_m": 4.999999999999997,
+      "azimuth_deg": -112.50000000000003,
+      "pbnbv_score": 870.2439027706727
+    },
+    {
+      "index": 7,
+      "position": [
+        -37.20553390593274,
+        -54.365533905932736,
+        -3.82
+      ],
+      "relative_to_target": [
+        -3.5355339059327378,
+        -3.5355339059327378,
+        -4.0
+      ],
+      "altitude_m": 3.82,
+      "radius_m": 5.0,
+      "azimuth_deg": -135.0,
+      "pbnbv_score": 864.1951222805621
+    },
+    {
+      "index": 8,
+      "position": [
+        -38.28939766255644,
+        -52.74341716182545,
+        -3.82
+      ],
+      "relative_to_target": [
+        -4.6193976625564375,
+        -1.9134171618254499,
+        -4.0
+      ],
+      "altitude_m": 3.82,
+      "radius_m": 5.0000000000000036,
+      "azimuth_deg": -157.5,
+      "pbnbv_score": 866.536585696088
+    },
+    {
+      "index": 9,
+      "position": [
+        -38.67,
+        -50.83,
+        -3.82
+      ],
+      "relative_to_target": [
+        -5.0,
+        0.0,
+        -4.0
+      ],
+      "altitude_m": 3.82,
+      "radius_m": 5.0,
+      "azimuth_deg": 180.0,
+      "pbnbv_score": 852.2926832516359
+    },
+    {
+      "index": 10,
+      "position": [
+        -33.67,
+        -45.83,
+        -3.82
+      ],
+      "relative_to_target": [
+        0.0,
+        5.0,
+        -4.0
+      ],
+      "altitude_m": 3.82,
+      "radius_m": 5.0,
+      "azimuth_deg": 90.0,
+      "pbnbv_score": 830.82926860931
+    }
+  ]
+}
