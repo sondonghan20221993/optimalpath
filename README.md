@@ -206,6 +206,44 @@ python visualize_optimal_path.py
 | TSP Nearest-Neighbor | `generate_optimal_path.py` | 웨이포인트 순서 최적화 |
 | 픽셀→3D 역투영 | `generate_optimal_path.py` | 탐지 픽셀 좌표를 AirSim 월드 좌표로 변환 |
 
+---
+
+## 논문 충실 구현: `pbnbv_paper.py`
+
+> ⚠️ 기존 `pbnbv_path.py` / `realtest_pbnbv_path.py`는 **논문 PB-NBV가 아니다.**
+> "frustum 안 미관측 점 × 거리가중치"라는 단순 NBV이며, 논문의 핵심 3요소가 없다.
+> `pbnbv_paper.py`가 논문(arXiv:2501.10663)을 충실히 구현한 버전이다.
+
+논문 PB-NBV의 핵심 3요소:
+
+1. **Voxel 분류** — 관측된 표면 = Occupied, 그 경계의 미관측 표면 = Frontier
+2. **GMM → Ellipsoid** — voxel 클러스터를 타원체로 피팅 (BIC로 개수 자동)
+3. **Projection 평가** — ellipsoid를 이미지 평면에 closed-form 투영,
+   depth rank 가중치 `W=0.5^r`, 점수 `F = Σ(frontier 투영) − Σ(occupied 투영)`
+
+NBV 반복 루프: 매 스텝 최고 F 후보 선택 → 관측 갱신 → frontier 재계산 → 반복 (**온라인 적응형**).
+
+```bash
+python pbnbv_paper.py          # 경로 생성 (results/pbnbv_paper/)
+python eval_compare.py         # 단순 NBV vs 논문 PB-NBV 비교
+python compare_two_methods.py  # 온라인 NBV vs 배치선택+greedy 비교
+python visualize_pbnbv_paper.py / visualize_pbnbv_coverage.py / visualize_all_altitudes.py
+```
+
+### real_test 분석 결론 (데이터 기준, 짜맞춤 없음)
+
+| 항목 | 결과 |
+|---|---|
+| 후보 생성 방식 | 논문도 우리도 반구/구 **격자**(인위적) — NBV의 표준 |
+| 저고도(1~2m) 단독 커버 | 99% (윗면 2 voxel 못 봄) |
+| 고고도(4~7m) 단독 커버 | **100%**, 마주보는 **2장**으로 완전커버 |
+| "원형 2바퀴" 필요성 | **불필요** — 이 물체는 평평해 1바퀴(또는 고고도 2장)로 충분 |
+| 속도 (ray-casting vs ellipsoid) | N 클수록 ellipsoid 압승 (2.4M점에서 **1,600배**), real_test(2,438점)는 교차점 |
+| 온라인 NBV vs 배치선택 | 온라인이 정석·coverage 효율 우수(viewpoint 분산), 배치는 한쪽 몰림·중복 |
+
+> 한계: 현재 평가함수 F는 **투영면적 편향**이라 저고도로 쏠린다(실제 최적은 고고도).
+> coverage 기준으로 평가함수를 고치면 고고도를 선택할 것.
+
 ## 의존성
 
 ```
@@ -213,4 +251,7 @@ opencv-python
 numpy
 open3d          # pbnbv_path.py
 matplotlib
+scipy           # pbnbv_paper.py
+scikit-learn    # pbnbv_paper.py (GMM)
+plotly          # 인터랙티브 HTML 시각화
 ```

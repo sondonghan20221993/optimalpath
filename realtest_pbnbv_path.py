@@ -51,7 +51,7 @@ N_SELECT        = 10       # 최종 선택 웨이포인트 수
 LOOKAHEAD       = 2        # PB-NBV lookahead 단계
 
 # 후보 시점 구면 격자 파라미터
-ORBIT_ALTITUDES = [4.0, 5.5, 7.0]   # 타겟 기준 상승 고도 (m)
+ORBIT_ALTITUDES = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]  # 1m~7m, 1m 간격 (7개)
 ORBIT_RADII     = [5.0, 6.5, 8.0]   # 수평 반경 (m)
 
 # 합성 박스 파라미터 (--use-real-pts 미지정 시)
@@ -460,9 +460,8 @@ def visualize_html(pts_vis_npz, selected_pts, selected_scores, path_order,
         marker=dict(
             size=10, color=ranks, colorscale="Plasma_r",
             showscale=True, cmin=1, cmax=len(ranks),
-            colorbar=dict(title="방문순서", thickness=12,
-                          tickfont=dict(color="white"),
-                          titlefont=dict(color="white")),
+            colorbar=dict(title=dict(text="방문순서", font=dict(color="white")), thickness=12,
+                          tickfont=dict(color="white")),
             line=dict(color="white", width=0.8)),
         name=f"PB-NBV 선택 ({len(path_pts)}개)",
         customdata=sc_ord,
@@ -507,15 +506,15 @@ def visualize_html(pts_vis_npz, selected_pts, selected_scores, path_order,
                   "<sup>drag to rotate · scroll to zoom · double-click to reset</sup>"),
             font=dict(color="white", size=15), x=0.5),
         scene=dict(
-            xaxis=dict(title="X (m)", backgroundcolor="#0d0d1e",
+            xaxis=dict(title=dict(text="X (m)", font=dict(color="white")), backgroundcolor="#0d0d1e",
                        gridcolor="#333", zerolinecolor="#555",
-                       tickfont=dict(color="white"), titlefont=dict(color="white")),
-            yaxis=dict(title="Y (m)", backgroundcolor="#0d0d1e",
+                       tickfont=dict(color="white")),
+            yaxis=dict(title=dict(text="Y (m)", font=dict(color="white")), backgroundcolor="#0d0d1e",
                        gridcolor="#333", zerolinecolor="#555",
-                       tickfont=dict(color="white"), titlefont=dict(color="white")),
-            zaxis=dict(title="Altitude (m)", backgroundcolor="#0d0d1e",
+                       tickfont=dict(color="white")),
+            zaxis=dict(title=dict(text="Altitude (m)", font=dict(color="white")), backgroundcolor="#0d0d1e",
                        gridcolor="#333", zerolinecolor="#555",
-                       tickfont=dict(color="white"), titlefont=dict(color="white")),
+                       tickfont=dict(color="white")),
             bgcolor="#0d0d1e",
             camera=dict(eye=dict(x=1.4, y=1.4, z=0.9)),
             aspectmode="data"),
