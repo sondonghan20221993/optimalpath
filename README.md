@@ -21,9 +21,14 @@
 
 ## 스크립트
 
-### 1. `pbnbv_path.py` — PB-NBV(2) + Greedy Path Planning (메인 알고리즘)
+> **메인 알고리즘은 `pbnbv_paper.py`(논문 충실 구현)이다.** 아래 `pbnbv_path.py`는
+> 단순 NBV(frustum 카운트×거리가중치)로, 논문 PB-NBV가 아니다 — 자세한 차이는
+> 하단 "[논문 충실 구현](#논문-충실-구현-pbnbv_paperpy)" 참조.
+
+### 1. `pbnbv_path.py` — 단순 NBV + Greedy Path Planning (구버전, 논문 아님)
 
 MASt3R SfM 결과(포인트클라우드 + 카메라 포즈)를 입력받아 미관측 영역을 탐색하고 최적 시점을 선정한다.
+점수는 "frustum 안 미관측 점 수 × 거리가중치"이며, 논문의 voxel/ellipsoid/frontier를 쓰지 않는다.
 
 **파이프라인**
 
@@ -65,7 +70,7 @@ pbnbv_path.json + pbnbv_result.png
 **입력 경로 (스크립트 상단에서 수정)**
 
 ```python
-BASE_DIR    = r"C:\...\blue_1_fhd_sfm(pp팍스 mast3r결과)"
+BASE_DIR    = r"C:\...\<mast3r_결과_폴더>"
 PLY_PATH    = BASE_DIR + r"\pointcloud.ply"
 POSES_PATH  = BASE_DIR + r"\poses.npy"
 FOCALS_PATH = BASE_DIR + r"\focals.npy"
@@ -81,100 +86,13 @@ python pbnbv_path.py
 
 ---
 
-### 2. `generate_optimal_path.py` — 영상 기반 경로 생성
-
-AirSim 녹화 영상에서 파란 차량을 HSV 탐지하여 타겟 좌표를 추정하고,
-나선형(다중 고도) 또는 원형 궤도 경로를 생성한다.
-
-**파이프라인**
-
-```
-blue_1.mp4
-    │
-    ▼
-HSV 탐지 (파란색 blob)    → 프레임별 무게중심·면적 계산
-    │
-    ▼
-픽셀 → 3D 역투영 (선택)   → --auto-detect-target 옵션 사용 시
-    │
-    ▼
-경로 생성
-  orbit  : 단순 원형 웨이포인트
-  spiral : 2-ring 다중 고도 나선형 (기본)
-  custom : orbit과 동일
-    │
-    ▼
-TSP Nearest-Neighbor 순서 최적화
-    │
-    ▼
-blue1_optimal_path.json
-```
-
-**실행 예시**
-
-```bash
-# 기본 (영상 자동 탐지, 기본 타겟 좌표 사용)
-python generate_optimal_path.py
-
-# 타겟 좌표 직접 지정
-python generate_optimal_path.py --target-x -34.5 --target-y -47.9 --target-z 1.42
-
-# 영상에서 타겟 자동 추정
-python generate_optimal_path.py --auto-detect-target
-
-# car.py 연계 실행
-python car.py \
-    --mode orbit_then_recommended \
-    --recommended-json blue1_optimal_path.json \
-    --output-dir path/blue1_result \
-    --target-x -34.5 --target-y -47.9 --target-z 1.42
-```
-
-**주요 옵션**
-
-| 옵션 | 기본값 | 설명 |
-|---|---|---|
-| `--video` | `blue_1.mp4` | 입력 영상 |
-| `--mode` | `spiral` | `orbit` / `spiral` / `custom` |
-| `--orbit-radius` | 7.0 m | 궤도 반경 |
-| `--orbit-altitude` | 6.0 m | 비행 고도 |
-| `--orbit-n` | 17 | 웨이포인트 수 |
-| `--auto-detect-target` | off | 영상에서 타겟 좌표 자동 추정 |
-| `--sample-every` | 15 | N프레임마다 탐지 샘플링 |
-
----
-
-### 3. `visualize_optimal_path.py` — 결과 시각화
-
-`generate_optimal_path.py`의 출력 JSON과 기존 경로 manifest를 비교 시각화한다.
-
-**출력 패널 구성 (`blue1_result_visual.png`)**
-
-| 패널 | 내용 |
-|---|---|
-| 최고 탐지 프레임 | 파란 차량 탐지 면적이 가장 큰 프레임 |
-| HSV 마스크 | 파란색 필터링 결과 |
-| 탐지 면적 타임라인 | 프레임별 탐지 면적 추이 |
-| 2D 평면도 | 기존 경로 vs 신규 경로 Top-Down 비교 |
-| 3D 경로 | 기존 경로 vs 신규 경로 3D 비교 |
-
-**실행**
-
-```bash
-python visualize_optimal_path.py
-```
-
----
-
 ## 출력 파일
 
 | 파일 | 생성 스크립트 | 설명 |
 |---|---|---|
-| `blue1_optimal_path.json` | `generate_optimal_path.py` | 영상 탐지 기반 경로 (16 WP, spiral) |
-| `blue1_orbit_path.json` | `generate_optimal_path.py` | 단순 원형 궤도 경로 |
-| `pbnbv_path.json` | `pbnbv_path.py` | PB-NBV(2) 경로 (10 WP) |
-| `blue1_result_visual.png` | `visualize_optimal_path.py` | 경로 비교 시각화 |
-| `pbnbv_result.png` | `pbnbv_path.py` | PB-NBV 분석 결과 시각화 |
+| `pbnbv_path.json` | `pbnbv_path.py` | 단순 NBV 경로 (10 WP) |
+| `pbnbv_result.png` | `pbnbv_path.py` | 단순 NBV 분석 결과 시각화 |
+| `results/pbnbv_paper/` | `pbnbv_paper.py` | 논문 PB-NBV 경로·시각화 (메인) |
 
 ## JSON 스키마 (공통)
 
@@ -200,11 +118,8 @@ python visualize_optimal_path.py
 
 | 알고리즘 | 사용처 | 역할 |
 |---|---|---|
-| PB-NBV(2) | `pbnbv_path.py` | 2-step lookahead로 정보 이득 최대 시점 선정 |
-| Greedy (Nearest-Neighbor) | `pbnbv_path.py` | 선정된 시점의 방문 순서 최적화 |
-| HSV Blob Detection | `generate_optimal_path.py` | 영상에서 파란 차량 위치 탐지 |
-| TSP Nearest-Neighbor | `generate_optimal_path.py` | 웨이포인트 순서 최적화 |
-| 픽셀→3D 역투영 | `generate_optimal_path.py` | 탐지 픽셀 좌표를 AirSim 월드 좌표로 변환 |
+| 단순 NBV + Greedy | `pbnbv_path.py` | frustum 카운트×거리가중치로 시점 선정, NN 방문순서 (논문 아님) |
+| **PB-NBV (논문)** | `pbnbv_paper.py` | voxel→ellipsoid 투영, frontier−occupied 점수, 온라인 NBV (메인) |
 
 ---
 
