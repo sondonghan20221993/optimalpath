@@ -1,39 +1,125 @@
-# results/ — 실행 결과 모음
+# results/ — 실험 결과 디렉토리
 
-실행한 스크립트·모드별로 JSON/PNG 출력을 폴더로 정리한다.
+연구 단계별로 정리. 번호순이 실험 진행 순서.
 
-### 단순 NBV 계열 (기존)
+---
 
-| 폴더 | 생성 스크립트 / 명령 | 내용 |
-|---|---|---|
-| `realtest_optimal_path/` | `python realtest_optimal_path.py` | PB-NBV(2) + Greedy 최종 경로 (12 WP). `realtest_optimal.json` + 6패널 시각화 `realtest_result.png` |
-| `realtest_pbnbv_path/` | `python realtest_pbnbv_path.py` | 단순 NBV 경로 (10 WP) + PNG + HTML |
-| `realtest_pbnbv_ring/` | `python realtest_pbnbv_only.py --candidate-mode ring` | 지점 생성만 (경로 연결 없음). 후보를 **동심원** 위에 생성 → 선택 결과가 원형 링 |
-| `realtest_pbnbv_uniform/` | `python realtest_pbnbv_only.py --candidate-mode uniform ...` | 지점 생성만. 후보를 **공간 균일 무작위**로 생성 → 선택 결과가 공(ball) 모양 |
+## 📁 디렉토리 구조
 
-### 논문 충실 PB-NBV (`pbnbv_paper.py`)
+| 폴더 | 내용 |
+|---|---|
+| `docs/` | 설계 문서 / 분석 요약 (MD) |
+| `01_initial_paths/` | 초기 Orbit 경로 생성 및 시각화 |
+| `02_pbnbv_baseline/` | PB-NBV 기반 baseline 경로 실험 |
+| `03_step2_comparison/` | Step2: Orbit vs Greedy 강건성 비교 |
+| `04_hybrid_design/` | Hybrid 경로 설계 + 방위각 분석 |
+| `05_controlled_phases/` | Phase 1-3: 통제 변수 비교 실험 |
+| `06_building_sim/` | 건축물 모형 복원 시뮬레이션 |
+
+---
+
+## 📄 docs/ — 핵심 문서
 
 | 파일 | 내용 |
 |---|---|
-| `pbnbv_paper/pbnbv_paper.json` | 논문 PB-NBV 경로 (voxel+ellipsoid 투영, 온라인 NBV) |
-| `pbnbv_paper/alt_1m.json ~ alt_7m.json` | 고도 1~7m **단일고도별** PB-NBV 경로 |
-| `pbnbv_paper/pbnbv_paper_path.html` | 경로 3D (coverage 색) |
-| `pbnbv_paper/pbnbv_paper_coverage.html` | viewpoint별 **복원 범위** 색 매칭 |
-| `pbnbv_paper/all_altitudes.html` | 고도 1~7m 경로 토글 비교 |
-| `pbnbv_paper/all_altitudes_two_methods.html` | 고도별 × (온라인 A vs 배치 B) 비교 |
-| `pbnbv_paper/altitude_comparison.png` | 고도별 커버상한·스텝 수 |
+| `HYBRID_PATH_DESIGN.md` | Hybrid 2단계 경로 설계 문서 |
+| `FINAL_ATE_ANALYSIS.md` | 방위각 균등성 → SfM 복원 최종 분석 |
+| `EXPERIMENT_SUMMARY.txt` | 전체 실험 요약 (한눈에 보기) |
+
+---
+
+## 01 — 초기 경로 탐색
+
+Orbit 경로 초기 생성 및 시각화.
+
+| 파일 | 내용 |
+|---|---|
+| `initial_orbit.json` | Orbit 기본 경로 좌표 |
+| `initial_orbit.html` | 3D 시각화 |
+| `initial_paths_comparison.html` | 초기 경로 비교 |
+
+---
+
+## 02 — PB-NBV Baseline
+
+논문 PB-NBV 알고리즘 기반 기준선 실험.
+
+| 폴더 | 내용 |
+|---|---|
+| `pbnbv_paper/` | 논문 충실 PB-NBV (고도 1~7m) |
+| `realtest_optimal_path/` | PB-NBV + Greedy 최종 경로 (12 WP) |
+| `realtest_pbnbv_path/` | 단순 NBV 경로 (10 WP) |
+| `realtest_pbnbv_ring/` | 후보 ring 모드 |
+| `realtest_pbnbv_uniform/` | 후보 uniform 모드 |
+| `camera_range/` | 카메라 거리 범위 실험 |
+
+---
+
+## 03 — Step2: Orbit vs Greedy 비교
+
+180회 비교 실험 (6 물체 × 2 해상도 × 3 경로 × 5N).
+
+| 파일/폴더 | 내용 |
+|---|---|
+| `step2_comparison/` | 1차 비교 결과 |
+| `step2_v2/` | 2차 비교 결과 |
+| `step2_v3/` | 3차 비교 결과 (최종, 분석 포함) |
 | `eval_compare.png` | 단순 NBV vs 논문 PB-NBV |
-| `compare_two_methods.png` | 온라인 NBV vs 배치선택+greedy |
-| `speed_scaling.png` | ray-casting O(N) vs ellipsoid O(1) 속도 |
+| `compare_two_methods.png` | 온라인 NBV vs 배치+Greedy |
+| `speed_scaling.png` | ray-casting vs ellipsoid 속도 |
 
-## 핵심 관찰
+**핵심 결과**: Orbit std 14.4% vs Greedy std 16.1% → Orbit이 더 강건
 
-**기존 단순 NBV 계열:**
-- ring 모드는 원형, uniform 모드는 공 모양 — "원형" 결과는 알고리즘 결론이 아니라 **후보 생성 방식(cos/sin 원)** 이 반영된 것.
-- 상위 점수가 만점에 포화되어 우열이 안 갈림 (occlusion 미적용 한계).
+---
 
-**논문 PB-NBV (`pbnbv_paper.py`):**
-- occlusion(법선/가시성) + frontier + occupied 페널티 적용 → 점수가 제대로 갈림.
-- **이 물체(real_test)는 평평해서 1바퀴(또는 고고도 2장)로 충분.** "원형 2바퀴"는 데이터상 불필요.
-- 고고도(4~7m)가 저고도보다 효율적(100% 커버, 2장). 단 현재 평가함수 F는 투영면적 편향이라 저고도를 선호하는 한계가 있음.
-- 속도: 점/voxel 수가 클수록 ellipsoid 투영이 압승(2.4M점 1,600배). real_test는 교차점 규모.
+## 04 — Hybrid 경로 설계
+
+Orbit-8 (Stage 1) + Greedy-8 (Stage 2) 2단계 전략.
+
+| 파일/폴더 | 내용 |
+|---|---|
+| `hybrid_orbit_then_greedy.json` | Hybrid 경로 좌표 (16 WP) |
+| `hybrid_azimuth_visualization.png` | 극좌표 방위각 분포 (Stage 1/2/Combined) |
+| `hybrid_gap_comparison.png` | 간격 비교 막대그래프 |
+| `path_comparison_3d.html` | Orbit/Greedy/Hybrid 3D 비교 |
+| `real_test_greedy_analysis/` | Greedy 방위각 분석 |
+| `mast3r_pathcomparison/` | MASt3R 기반 경로 비교 |
+
+---
+
+## 05 — 통제 변수 비교 (Phase 1-3)
+
+고도·N 통제 후 방위각 균등성만 비교.
+
+| 파일 | 내용 |
+|---|---|
+| `phase1_controlled_comparison.json` | N=8, 고도=-2m 고정 비교 |
+| `phase2_n_effect.json` | 고도=-2m 고정, N=[4,6,8,12,16] |
+| `phase3_altitude_effect.json` | N=8 고정, 고도=[1~5m] |
+
+**결론**:
+- Orbit: 45° 균등 (N에 비례)
+- Greedy: 160° 고정 불균등 (N 무관)
+- 방위각은 고도와 독립적
+
+---
+
+## 06 — 건축물 모형 시뮬레이션
+
+3개 경로(Orbit/Greedy/Hybrid)의 건축물 복원 품질 비교.
+
+| 파일/폴더 | 내용 |
+|---|---|
+| `building_reconstruction/` | 시각화 + 경로 JSON + 요약 |
+| `unknown_object_simulation.json` | 미지 물체 시뮬레이션 |
+
+**결과**:
+- Orbit-16, Hybrid-16: Max gap 22.5° (균등성 1.00) ✅
+- Greedy-16: Max gap 101.2° (균등성 0.03) ❌
+
+---
+
+## 🎯 최종 권장 경로
+
+**Hybrid-16** (Stage 1: Orbit-8 + Stage 2: Greedy-8)  
+→ 균등성 + 정보성 모두 달성

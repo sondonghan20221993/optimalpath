@@ -1,0 +1,119 @@
+{
+  "optimal_known_shape": {
+    "name": "\ucd5c\uc801 (\ud615\uc0c1 \uc54c\uace0 \uc788\uc74c: \uace0\ub3c44m, 3\uc2dc\uc810)",
+    "altitude": 4,
+    "radius": 7.0,
+    "n_waypoints": 3,
+    "depression_angle_deg": 29.7,
+    "waypoints": [
+      {
+        "index": 1,
+        "position": [
+          -26.67,
+          -50.83,
+          -3.82
+        ],
+        "azimuth_deg": 0.0
+      },
+      {
+        "index": 2,
+        "position": [
+          -37.17,
+          -44.767822173508925,
+          -3.82
+        ],
+        "azimuth_deg": 120.0
+      },
+      {
+        "index": 3,
+        "position": [
+          -37.17,
+          -56.892177826491064,
+          -3.82
+        ],
+        "azimuth_deg": 240.0
+      }
+    ]
+  },
+  "generic_initial_path": {
+    "name": "\ucd08\uae30\uacbd\ub85c (\ud615\uc0c1 \ubbf8\ud655\uc778: \uace0\ub3c44m, 1\ubc14\ud034 8\uc2dc\uc810)",
+    "altitude": 4,
+    "radius": 7.0,
+    "n_waypoints": 8,
+    "depression_angle_deg": 29.7,
+    "waypoints": [
+      {
+        "index": 1,
+        "position": [
+          -26.67,
+          -50.83,
+          -3.82
+        ],
+        "azimuth_deg": 0.0
+      },
+      {
+        "index": 2,
+        "position": [
+          -28.720252531694168,
+          -45.88025253169417,
+          -3.82
+        ],
+        "azimuth_deg": 45.0
+      },
+      {
+        "index": 3,
+        "position": [
+          -33.67,
+          -43.83,
+          -3.82
+        ],
+        "azimuth_deg": 90.0
+      },
+      {
+        "index": 4,
+        "position": [
+          -38.61974746830583,
+          -45.88025253169417,
+          -3.82
+        ],
+        "azimuth_deg": 135.0
+      },
+      {
+        "index": 5,
+        "position": [
+          -40.67,
+          -50.83,
+          -3.82
+        ],
+        "azimuth_deg": 180.0
+      },
+      {
+        "index": 6,
+        "position": [
+          -38.61974746830583,
+          -55.77974746830583,
+          -3.82
+        ],
+        "azimuth_deg": 225.0
+      },
+      {
+        "index": 7,
+        "position": [
+          -33.67,
+          -57.83,
+          -3.82
+        ],
+        "azimuth_deg": 270.0
+      },
+      {
+        "index": 8,
+        "position": [
+          -28.72025253169417,
+          -55.77974746830583,
+          -3.82
+        ],
+        "azimuth_deg": 315.0
+      }
+    ]
+  }
+}

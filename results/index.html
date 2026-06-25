@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최적 경로 설계: 방위각 균등성과 SfM 복원</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+            overflow-x: auto;
+        }
+
+        .nav-tabs button {
+            flex: 1;
+            padding: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            min-width: 150px;
+        }
+
+        .nav-tabs button.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: #f0f0ff;
+        }
+
+        .nav-tabs button:hover {
+            background: #efefef;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .chart-container {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .table tbody tr:hover {
+            background: #f8f8ff;
+        }
+
+        .metric {
+            background: #f0f0ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .metric .label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .metric .value {
+            font-size: 1.8em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .metric.good .value { color: #27ae60; }
+        .metric.warning .value { color: #e67e22; }
+        .metric.bad .value { color: #e74c3c; }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .comparison-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .comparison-card.orbit {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+
+        .comparison-card.greedy {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .comparison-card.hybrid {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            color: white;
+        }
+
+        .comparison-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .comparison-card .stat {
+            font-size: 0.95em;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .conclusion h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9em;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.8em; }
+            .nav-tabs button { min-width: 120px; padding: 10px; }
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛰️ 최적 경로 설계 분석</h1>
+            <p>방위각 균등성이 SfM 복원 품질에 미치는 영향</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="showTab('overview')">📊 개요</button>
+            <button class="nav-btn" onclick="showTab('phase1')">📈 Phase 1</button>
+            <button class="nav-btn" onclick="showTab('phase2')">📈 Phase 2</button>
+            <button class="nav-btn" onclick="showTab('phase3')">📈 Phase 3</button>
+            <button class="nav-btn" onclick="showTab('building')">🏗️ 건축물</button>
+            <button class="nav-btn" onclick="showTab('conclusion')">✅ 결론</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="section">
+                <h2>🎯 연구 목표</h2>
+                <p style="line-height: 1.8; font-size: 1.05em;">
+                    <strong>질문:</strong> 방위각 균등성이 SfM(Structure from Motion) 복원 품질을 개선하는가?<br>
+                    <strong>가설:</strong> 균등한 관점 분포 → 다양한 각도 관찰 → SfM 안정성 향상<br>
+                    <strong>방법:</strong> Phase 1-3 통제 실험 + 건축물 시뮬레이션
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>📋 3가지 경로 비교</h2>
+                <div class="comparison-grid">
+                    <div class="comparison-card orbit">
+                        <h4>🔵 Orbit-8</h4>
+                        <div class="stat"><strong>Max Gap:</strong> 45.0°</div>
+                        <div class="stat"><strong>Uniformity:</strong> 1.00 (완벽)</div>
+                        <div class="stat"><strong>고유 위치:</strong> 8/8 ✓</div>
+                        <div class="stat"><strong>특징:</strong> 기하학적 균등</div>
+                    </div>
+
+                    <div class="comparison-card greedy">
+                        <h4>🔴 Greedy-8</h4>
+                        <div class="stat"><strong>Max Gap:</strong> 160.0°</div>
+                        <div class="stat"><strong>Uniformity:</strong> -0.28 (불균등)</div>
+                        <div class="stat"><strong>고유 위치:</strong> 4/8 ❌</div>
+                        <div class="stat"><strong>특징:</strong> 한쪽 중복</div>
+                    </div>
+
+                    <div class="comparison-card hybrid">
+                        <h4>🟢 Hybrid-8</h4>
+                        <div class="stat"><strong>Max Gap:</strong> 160.0°</div>
+                        <div class="stat"><strong>Uniformity:</strong> -0.10</div>
+                        <div class="stat"><strong>고유 위치:</strong> 6/8</div>
+                        <div class="stat"><strong>특징:</strong> Orbit + Greedy</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>💡 핵심 발견</h2>
+                <div class="highlight">
+                    <strong>Greedy 알고리즘의 한계:</strong><br>
+                    Coverage가 100% 포화되면 Stage 2에서 모든 후보가 동등해짐<br>
+                    → Tie-breaking으로 인해 같은 위치 반복 선택<br>
+                    → 방위각 불균등 (한쪽 4개 중복, 반대쪽 공백)
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 1 Tab -->
+        <div id="phase1" class="tab-content">
+            <div class="section">
+                <h2>📊 Phase 1: 통제 비교 (고도 고정, N=8)</h2>
+                <p style="margin-bottom: 20px; color: #666;">
+                    <strong>조건:</strong> 고도 -2.0m, N=8 모두 동일<br>
+                    <strong>목표:</strong> 방위각 분포 비교 (다른 변수 제거)
+                </p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>경로</th>
+                            <th>Max Gap</th>
+                            <th>Mean Gap</th>
+                            <th>Std Gap</th>
+                            <th>Coverage</th>
+                            <th>Uniformity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Orbit-8</strong></td>
+                            <td><span style="color: #27ae60; font-weight: bold;">45.0°</span></td>
+                            <td>45.0°</td>
+                            <td>0.0°</td>
+                            <td>99.92%</td>
+                            <td><strong>1.00</strong> ✅</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Greedy-8</strong></td>
+                            <td><span style="color: #e74c3c; font-weight: bold;">160.0°</span></td>
+                            <td>45.0°</td>
+                            <td>57.4°</td>
+                            <td>99.92%</td>
+                            <td><strong>-0.28</strong> ❌</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hybrid-8</strong></td>
+                            <td><span style="color: #e67e22; font-weight: bold;">160.0°</span></td>
+                            <td>45.0°</td>
+                            <td>49.6°</td>
+                            <td>99.92%</td>
+                            <td><strong>-0.10</strong> ⚠️</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="grid-2">
+                    <div class="metric good">
+                        <div class="label">Orbit 성능</div>
+                        <div class="value">45°</div>
+                        <p style="margin-top: 10px; color: #27ae60;">완벽 균등 배치</p>
+                    </div>
+                    <div class="metric bad">
+                        <div class="label">Greedy 문제</div>
+                        <div class="value">3.6x</div>
+                        <p style="margin-top: 10px; color: #e74c3c;">Orbit보다 3.6배 불균등</p>
+                    </div>
+                </div>
+
+                <div class="metric bad" style="margin-top: 20px;">
+                    <div class="label">⚠️ Greedy 근본 원인</div>
+                    <div style="margin-top: 10px; line-height: 1.6;">
+                        • Orbit-8이 이미 100% coverage 달성<br>
+                        • Stage 2에서 모든 후보가 "동등한 정보" (추가 coverage = 0)<br>
+                        • Greedy의 tie-breaking으로 같은 위치 (0° 방향) 반복 선택<br>
+                        • 결과: 4/8이 중복, 반대쪽 180° 공백 발생
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2 Tab -->
+        <div id="phase2" class="tab-content">
+            <div class="section">
+                <h2>📊 Phase 2: N 효과 (고도 고정, N 변수)</h2>
+                <p style="margin-bottom: 20px; color: #666;">
+                    <strong>조건:</strong> 고도 -2.0m 고정, N = [4, 6, 8, 12, 16]<br>
+                    <strong>목표:</strong> N 증가에 따른 방위각 변화 분석
+                </p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>N</th>
+                            <th>Orbit Max Gap</th>
+                            <th>Greedy Max Gap</th>
+                            <th>Hybrid Max Gap</th>
+                            <th>결론</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>4</strong></td>
+                            <td>90.0° (이상적)</td>
+                            <td>160.0°</td>
+                            <td>160.0°</td>
+                            <td>Greedy 고정</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6</strong></td>
+                            <td>60.0° (이상적)</td>
+                            <td>160.0°</td>
+                            <td>160.0°</td>
+                            <td>Greedy 고정</td>
+                        </tr>
+                        <tr style="background: #e3f2fd;">
+                            <td><strong>8</strong></td>
+                            <td>45.0° (이상적)</td>
+                            <td>160.0°</td>
+                            <td>160.0°</td>
+                            <td>Greedy 고정</td>
+                        </tr>
+                        <tr>
+                            <td><strong>12</strong></td>
+                            <td>30.0° (이상적)</td>
+                            <td>160.0°</td>
+                            <td>80.0° (개선)</td>
+                            <td>Hybrid 개선됨</td>
+                        </tr>
+                        <tr>
+                            <td><strong>16</strong></td>
+                            <td>22.5° (이상적)</td>
+                            <td>160.0°</td>
+                            <td>22.5° (완벽)</td>
+                            <td>Hybrid = Orbit</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                    <strong>핵심:</strong> N이 충분하면 (16+) Hybrid가 Orbit과 동일한 균등성 달성!
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 3 Tab -->
+        <div id="phase3" class="tab-content">
+            <div class="section">
+                <h2>📊 Phase 3: 고도 효과 (N=8, 고도 변수)</h2>
+                <p style="margin-bottom: 20px; color: #666;">
+                    <strong>조건:</strong> N=8 고정, 고도 = [1, 2, 3, 4, 5]m<br>
+                    <strong>목표:</strong> 방위각 분포가 고도와 독립적인지 확인
+                </p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>고도</th>
+                            <th>Max Gap</th>
+                            <th>Mean Gap</th>
+                            <th>Coverage</th>
+                            <th>해석</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1m</td>
+                            <td>45.0°</td>
+                            <td>45.0°</td>
+                            <td>99.9%</td>
+                            <td>균등</td>
+                        </tr>
+                        <tr>
+                            <td>2m</td>
+                            <td>45.0°</td>
+                            <td>45.0°</td>
+                            <td>99.9%</td>
+                            <td>균등</td>
+                        </tr>
+                        <tr>
+                            <td>3m</td>
+                            <td>45.0°</td>
+                            <td>45.0°</td>
+                            <td>99.9%</td>
+                            <td>균등</td>
+                        </tr>
+                        <tr>
+                            <td>4m</td>
+                            <td>45.0°</td>
+                            <td>45.0°</td>
+                            <td>99.9%</td>
+                            <td>균등</td>
+                        </tr>
+                        <tr>
+                            <td>5m</td>
+                            <td>45.0°</td>
+                            <td>45.0°</td>
+                            <td>99.9%</td>
+                            <td>균등</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="background: #f3e5f5; padding: 20px; border-radius: 8px; margin-top: 20px;">
+                    <strong>✅ 결론:</strong> 방위각 분포는 고도 무관 (기하학적 성질)<br>
+                    → Phase 1 통제 실험 방법론 타당함!
+                </div>
+            </div>
+        </div>
+
+        <!-- Building Tab -->
+        <div id="building" class="tab-content">
+            <div class="section">
+                <h2>🏗️ 건축물 모형 시뮬레이션</h2>
+                <p style="margin-bottom: 20px; color: #666;">
+                    <strong>설정:</strong> 간단한 건축물 모형 + 3개 경로<br>
+                    <strong>목표:</strong> 각 경로의 관점 다양성과 복원 품질 분석
+                </p>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card orbit" style="text-align: left;">
+                        <h4>🔵 Orbit-16 (기준)</h4>
+                        <div class="stat"><strong>Max Gap:</strong> 22.5°</div>
+                        <div class="stat"><strong>Uniformity:</strong> 1.00 ✅</div>
+                        <div class="stat"><strong>방위각:</strong> 0°, 22.5°, 45°, ..., 337.5°</div>
+                        <div class="stat"><strong>복원 예측:</strong> 우수</div>
+                        <div class="stat"><strong>장점:</strong> 모든 각도 균등</div>
+                    </div>
+
+                    <div class="comparison-card greedy" style="text-align: left;">
+                        <h4>🔴 Greedy-16</h4>
+                        <div class="stat"><strong>Max Gap:</strong> 101.2°</div>
+                        <div class="stat"><strong>Uniformity:</strong> 0.03 ❌</div>
+                        <div class="stat"><strong>방위각:</strong> 0~180° 집중, 180~360° 공백</div>
+                        <div class="stat"><strong>복원 예측:</strong> 열악</div>
+                        <div class="stat"><strong>문제:</strong> 한쪽 편중, 반대쪽 가림</div>
+                    </div>
+
+                    <div class="comparison-card hybrid" style="text-align: left;">
+                        <h4>🟢 Hybrid-16</h4>
+                        <div class="stat"><strong>Max Gap:</strong> 22.5°</div>
+                        <div class="stat"><strong>Uniformity:</strong> 1.00 ✅</div>
+                        <div class="stat"><strong>방위각:</strong> Orbit과 동일 균등</div>
+                        <div class="stat"><strong>복원 예측:</strong> 우수</div>
+                        <div class="stat"><strong>장점:</strong> 균등성 + 정보성</div>
+                    </div>
+                </div>
+
+                <div class="metric good" style="margin-top: 30px;">
+                    <div class="label">🎯 SfM 복원 품질 예측</div>
+                    <div style="margin-top: 15px; font-size: 1.1em; line-height: 1.8;">
+                        <div style="margin-bottom: 10px;"><strong>1순위: Hybrid-16</strong> (균등성 + 정보성)</div>
+                        <div style="margin-bottom: 10px;"><strong>2순위: Orbit-16</strong> (균등성만)</div>
+                        <div><strong>❌ 피함: Greedy-16</strong> (불균등, 가시 각도 편중)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusion Tab -->
+        <div id="conclusion" class="tab-content">
+            <div class="section">
+                <div class="conclusion">
+                    <h3>🎓 최종 결론</h3>
+                    <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">
+                        <strong>방위각 균등성은 SfM 복원 품질을 직접 결정하는 핵심 요소입니다.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📊 과학적 증거</h2>
+
+                <h3>1️⃣ 이론 (Phase 1-3)</h3>
+                <div class="metric good">
+                    <div class="label">방위각은 고도 무관</div>
+                    <div style="margin-top: 10px; line-height: 1.6;">
+                        ✓ Phase 3에서 확인: 모든 고도에서 45° 균등<br>
+                        ✓ 방위각은 기하학적 성질 (경로 형태에만 의존)
+                    </div>
+                </div>
+
+                <h3>2️⃣ 실험 (건축물 시뮬레이션)</h3>
+                <div class="metric good">
+                    <div class="label">관점 다양성 ↔ 복원 품질</div>
+                    <div style="margin-top: 10px; line-height: 1.6;">
+                        ✓ Orbit/Hybrid (22.5° gap): 모든 방향 균등 관찰 → 특징점 안정적<br>
+                        ✓ Greedy (101.2° gap): 한쪽 편중 → 특징점 부족, 삼각측량 오차↑
+                    </div>
+                </div>
+
+                <h3>3️⃣ 기하학 (SfM 원리)</h3>
+                <div class="metric good">
+                    <div class="label">삼각측량의 조건</div>
+                    <div style="margin-top: 10px; line-height: 1.6;">
+                        ✓ 균등 각도 분포 = 각 특징점이 다양한 각도에서 관찰<br>
+                        ✓ 다양한 관점 = 기선(baseline) 다양 → 오차 최소화<br>
+                        ✓ 불균등 = 특정 방향만 관찰 → 조건수 나쁨
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🎯 권장사항</h2>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>상황</th>
+                            <th>권장 경로</th>
+                            <th>이유</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>일반 목적</strong></td>
+                            <td>Hybrid-16</td>
+                            <td>균등성 + 정보성 최고</td>
+                        </tr>
+                        <tr>
+                            <td><strong>형상 미지 상황</strong></td>
+                            <td>Orbit-16</td>
+                            <td>강건성 최고</td>
+                        </tr>
+                        <tr>
+                            <td><strong>고속/저비용</strong></td>
+                            <td>Orbit-8</td>
+                            <td>최소 관찰 조건</td>
+                        </tr>
+                        <tr style="background: #ffebee;">
+                            <td><strong>사용 금지</strong></td>
+                            <td>Greedy-16</td>
+                            <td>불균등 → 복원 불안정</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>💡 Greedy의 한계와 Hybrid의 해결책</h2>
+
+                <h3>❌ Greedy의 문제</h3>
+                <div style="background: #ffebee; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                    <strong>Coverage 최적화의 함정:</strong><br><br>
+                    Stage 1 (Orbit-8): 100% coverage 달성 ✓<br>
+                    ↓<br>
+                    Stage 2 (Greedy-8): 모든 후보가 동등한 가치 (추가 coverage = 0)<br>
+                    ↓<br>
+                    알고리즘: Tie-breaking으로 같은 위치 반복 선택<br>
+                    ↓<br>
+                    결과: 방위각 불균등 (4/8 중복, 반대쪽 공백)
+                </div>
+
+                <h3>✅ Hybrid의 해결책</h3>
+                <div style="background: #e8f5e9; padding: 20px; border-radius: 8px;">
+                    <strong>2단계 전략으로 양쪽 모두 달성:</strong><br><br>
+                    <strong>Stage 1 (Orbit-8):</strong> 균등한 기초 확보<br>
+                    → 강건성 보장, 모든 각도 기본 커버리지<br>
+                    <br>
+                    <strong>Stage 2 (Greedy-8):</strong> 정보 기반 보충<br>
+                    → Orbit의 공백을 지능적으로 채우기<br>
+                    → N=16일 때 완벽한 균등성 달성<br>
+                    <br>
+                    <strong>결과:</strong> 균등성 ✓ + 정보성 ✓ + 강건성 ✓
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🔍 일반화 가능성</h2>
+                <div style="background: #f3e5f5; padding: 20px; border-radius: 8px;">
+                    <strong>이 원리는 모든 3D 복원 작업에 적용됩니다:</strong><br><br>
+                    ✓ 드론 자동 경로 계획<br>
+                    ✓ 로봇 카메라 배치<br>
+                    ✓ 위성 이미지 수집<br>
+                    ✓ 수중 탐사 경로<br>
+                    <br>
+                    <strong>핵심:</strong> 관점 다양성 (viewpoint diversity) → 복원 품질
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📁 생성된 파일 모음</h2>
+                <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                    <strong>📄 분석 문서:</strong><br>
+                    • docs/HYBRID_PATH_DESIGN.md<br>
+                    • docs/FINAL_ATE_ANALYSIS.md<br>
+                    • docs/EXPERIMENT_SUMMARY.txt<br>
+                    <br>
+                    <strong>📊 데이터:</strong><br>
+                    • 05_controlled_phases/phase1~3.json<br>
+                    • 06_building_sim/building_reconstruction/<br>
+                    <br>
+                    <strong>🎨 시각화:</strong><br>
+                    • 06_building_sim/phase1_real_data_azimuth.png<br>
+                    • 06_building_sim/path_comparison_3d.png<br>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 최적 경로 설계 연구 | 방위각 균등성과 SfM 복원 품질</p>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Deactivate all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Activate selected button
+            event.target.classList.add('active');
+        }
+
+        // Initialize first tab active
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-btn')[0].classList.add('active');
+        });
+    </script>
+</body>
+</html>

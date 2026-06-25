@@ -1,0 +1,32 @@
+[
+  {
+    "n_budget": 4,
+    "orbit_coverage": 1.0,
+    "greedy_coverage": 1.0,
+    "random_coverage": 1.0
+  },
+  {
+    "n_budget": 6,
+    "orbit_coverage": 1.0,
+    "greedy_coverage": 1.0,
+    "random_coverage": 1.0
+  },
+  {
+    "n_budget": 8,
+    "orbit_coverage": 1.0,
+    "greedy_coverage": 1.0,
+    "random_coverage": 1.0
+  },
+  {
+    "n_budget": 12,
+    "orbit_coverage": 1.0,
+    "greedy_coverage": 1.0,
+    "random_coverage": 1.0
+  },
+  {
+    "n_budget": 16,
+    "orbit_coverage": 1.0,
+    "greedy_coverage": 1.0,
+    "random_coverage": 1.0
+  }
+]

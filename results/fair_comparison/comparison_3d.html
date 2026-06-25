@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Orbit-16 vs PB-NBV-16 3D</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d0d1a;
+            font-family: 'Segoe UI', sans-serif;
+            color: #eee;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 14px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+        header h1 { font-size: 1.2em; color: white; }
+        .badges { display: flex; gap: 12px; align-items: center; }
+        .badge {
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+        }
+        .badge.orbit { background: #4fc3f7; color: #000; }
+        .badge.pbnbv { background: #f48fb1; color: #000; }
+        .condition {
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.7);
+            margin-left: 6px;
+        }
+
+        .plots {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            flex: 1;
+            gap: 2px;
+            background: #222;
+            min-height: 0;
+        }
+        .plot-wrap {
+            background: #12122a;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+        .plot-title {
+            padding: 8px 18px 2px;
+            font-size: 0.95em;
+            font-weight: 600;
+            flex-shrink: 0;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+        .plot-title.orbit { color: #4fc3f7; }
+        .plot-title.pbnbv { color: #f48fb1; }
+        .plot-title .sub { font-size: 0.78em; color: #666; font-weight: 400; }
+        .plot-div { flex: 1; min-height: 0; }
+
+        footer {
+            background: #0d0d1a;
+            border-top: 1px solid #222;
+            padding: 6px 20px;
+            font-size: 0.75em;
+            color: #555;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🛰️ Orbit-16 vs PB-NBV-16 — 3D 경로 비교</h1>
+    <div class="badges">
+        <span class="condition">고도 2m 고정 · N=16 · 동일 물체</span>
+        <span class="badge orbit">Max Gap 22.5° ✓</span>
+        <span class="badge pbnbv">Max Gap 87.6° ✗</span>
+    </div>
+</header>
+
+<div class="plots">
+    <div class="plot-wrap">
+        <div class="plot-title orbit">
+            🔵 Orbit-16
+            <span class="sub">균등 배치 · Std 0.0° · 99.0% coverage</span>
+        </div>
+        <div class="plot-div" id="orbitPlot"></div>
+    </div>
+    <div class="plot-wrap">
+        <div class="plot-title pbnbv">
+            🔴 PB-NBV-16
+            <span class="sub">Coverage 기반 · Std 23.7° · 99.0% coverage</span>
+        </div>
+        <div class="plot-div" id="pbnbvPlot"></div>
+    </div>
+</div>
+
+<footer>
+    ● 점 크기 = 획득 voxel (클수록 정보량↑) &nbsp;|&nbsp;
+    점 색: <span style="color:#ff4444">■ 많음</span>
+           <span style="color:#ffcc00">■ 중간</span>
+           <span style="color:#444466">■ 없음</span> &nbsp;|&nbsp;
+    두 플롯 동일 축 범위 · 동일 고도 2m 조건
+</footer>
+
+<script>
+const TARGET = [-33.67, -50.83, 0.18];
+const ALT_Z  = TARGET[2] - 2.0;   // -1.82
+
+// Orbit-16: 균등 배치
+const orbitAz     = [0,22.5,45,67.5,90,112.5,135,157.5,180,202.5,225,247.5,270,292.5,315,337.5];
+const orbitGained = [141,10,4,7,18,10,3,5,2,0,0,0,0,0,0,0];
+const orbitPts = orbitAz.map(az => {
+    const a = az * Math.PI / 180;
+    return [TARGET[0]+6.0*Math.cos(a), TARGET[1]+6.0*Math.sin(a), ALT_Z];
+});
+
+// PB-NBV-16: 고도 2m 고정 독립 실행 결과
+const pbnbvAz     = [100,0,184.9,160,0,350.3,9.7,29.2,340.5,19.5,116.8,38.9,126.5,330.8,136.2,243.2];
+const pbnbvGained = [112,71,15,2,0,0,0,0,0,0,0,0,0,0,0,0];
+// 실제 좌표 (반경은 후보 그리드에서 선택된 것)
+const pbnbvPts = [
+    [-34.45,-46.40,ALT_Z],[-29.17,-50.83,ALT_Z],[-39.30,-51.67,ALT_Z],
+    [-37.90,-49.29,ALT_Z],[-29.17,-50.83,ALT_Z],[-29.90,-51.67,ALT_Z],
+    [-29.66,-49.82,ALT_Z],[-30.52,-48.20,ALT_Z],[-29.80,-52.63,ALT_Z],
+    [-29.93,-47.88,ALT_Z],[-35.76,-45.03,ALT_Z],[-31.63,-47.19,ALT_Z],
+    [-36.45,-44.83,ALT_Z],[-30.12,-52.97,ALT_Z],[-37.16,-45.38,ALT_Z],
+    [-36.00,-56.37,ALT_Z],
+];
+
+// 동일 축 범위
+const XR = [-43, -22];
+const YR = [-60, -42];
+const ZR = [-3.5, 2.5];
+
+function building() {
+    const [cx,cy,cz] = TARGET;
+    const hw=2.5, hl=2.5, h=3;
+    return {
+        type:'mesh3d',
+        x:[cx-hw,cx+hw,cx+hw,cx-hw,cx-hw,cx+hw,cx+hw,cx-hw],
+        y:[cy-hl,cy-hl,cy+hl,cy+hl,cy-hl,cy-hl,cy+hl,cy+hl],
+        z:[cz,cz,cz,cz,cz+h,cz+h,cz+h,cz+h],
+        i:[0,0,4,5,0,1,2,3,1,2,5,6],
+        j:[1,3,5,7,1,2,3,0,5,6,6,7],
+        k:[2,7,6,3,4,6,7,4,2,5,2,3],
+        color:'#9999bb', opacity:0.35,
+        showlegend:false, hoverinfo:'skip'
+    };
+}
+
+function lineTrace(pts, color) {
+    const loop = [...pts, pts[0]];
+    return {
+        type:'scatter3d',
+        x:loop.map(p=>p[0]), y:loop.map(p=>p[1]), z:loop.map(p=>p[2]),
+        mode:'lines',
+        line:{ color:color+'55', width:2 },
+        showlegend:false, hoverinfo:'skip'
+    };
+}
+
+function markers(pts, azimuths, gained, name) {
+    const col = gained.map(g =>
+        g>100?'#ff3333': g>60?'#ff8800': g>10?'#ffcc00': g>0?'#88ff88':'#333355'
+    );
+    const sz = gained.map(g => g>0 ? Math.max(8, Math.min(26, 7+g/7)) : 6);
+    return {
+        type:'scatter3d',
+        x:pts.map(p=>p[0]), y:pts.map(p=>p[1]), z:pts.map(p=>p[2]),
+        mode:'markers+text',
+        marker:{ size:sz, color:col, line:{color:'#ffffff44', width:1} },
+        text:azimuths.map((_,i)=>`${i+1}`),
+        textfont:{ size:8, color:'#ddd' },
+        textposition:'top center',
+        name,
+        customdata:azimuths.map((a,i)=>[i+1, a.toFixed(1), gained[i]]),
+        hovertemplate:'<b>%{customdata[0]}번</b><br>방위각: %{customdata[1]}°<br>Gained: %{customdata[2]} voxel<extra></extra>'
+    };
+}
+
+const scene = {
+    xaxis:{ range:XR, title:'X', backgroundcolor:'#12122a', gridcolor:'#1e1e3a', showbackground:true, titlefont:{color:'#666'}, tickfont:{color:'#555'} },
+    yaxis:{ range:YR, title:'Y', backgroundcolor:'#12122a', gridcolor:'#1e1e3a', showbackground:true, titlefont:{color:'#666'}, tickfont:{color:'#555'} },
+    zaxis:{ range:ZR, title:'고도', backgroundcolor:'#12122a', gridcolor:'#1e1e3a', showbackground:true, titlefont:{color:'#666'}, tickfont:{color:'#555'} },
+    camera:{ eye:{x:1.4, y:1.4, z:0.7} },
+    aspectmode:'manual',
+    aspectratio:{ x:1.05, y:0.9, z:0.35 }
+};
+
+const layout = {
+    paper_bgcolor:'#12122a',
+    font:{ color:'#ccc' },
+    margin:{ l:0, r:0, t:0, b:0 },
+    showlegend:false,
+    scene
+};
+
+Plotly.newPlot('orbitPlot',
+    [building(), lineTrace(orbitPts,'#4fc3f7'), markers(orbitPts, orbitAz, orbitGained,'Orbit-16')],
+    layout, {responsive:true}
+);
+Plotly.newPlot('pbnbvPlot',
+    [building(), lineTrace(pbnbvPts,'#f48fb1'), markers(pbnbvPts, pbnbvAz, pbnbvGained,'PB-NBV-16')],
+    layout, {responsive:true}
+);
+</script>
+</body>
+</html>

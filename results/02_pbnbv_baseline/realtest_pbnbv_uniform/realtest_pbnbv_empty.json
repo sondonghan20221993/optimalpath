@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "name": "realtest_pbnbv_points_only",
+  "algorithm": "PB-NBV(2) viewpoint selection (no path ordering)",
+  "source_data": "real_test",
+  "target_position_airsim_ned": [
+    -33.67,
+    -50.83,
+    0.18
+  ],
+  "n_candidates": 500,
+  "n_unique_scores": 2,
+  "score_min": 316.0622988245284,
+  "score_max": 1021.5297938079432,
+  "selected_count": 2,
+  "selected_points": [
+    {
+      "rank": 1,
+      "position": [
+        -31.06576716521108,
+        -47.48955342457139,
+        -0.8256604916057866
+      ],
+      "altitude_m": 0.8256604916057866,
+      "radius_m": 4.2356359594617485,
+      "azimuth_deg": 52.0598003587696,
+      "pbnbv_score": 1021.5297938079432
+    },
+    {
+      "rank": 2,
+      "position": [
+        -28.430829558022854,
+        -50.773479672482964,
+        -1.3741631686682712
+      ],
+      "altitude_m": 1.3741631686682712,
+      "radius_m": 5.239475304599655,
+      "azimuth_deg": 0.6180846068922122,
+      "pbnbv_score": 316.0622988245284
+    }
+  ]
+}

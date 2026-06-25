@@ -1,0 +1,1082 @@
+[
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 83.30284971168248,
+    "n_waypoints": 6
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 58.06121831125286,
+    "n_waypoints": 4
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 108.74428226974455,
+    "n_waypoints": 8
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 188.27238587309782,
+    "n_waypoints": 16
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 141.2060869894825,
+    "n_waypoints": 12
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 58.06121831125286,
+    "n_waypoints": 4
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 83.30284971168248,
+    "n_waypoints": 6
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 85.84029416522338,
+    "n_waypoints": 8
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 141.2060869894825,
+    "n_waypoints": 12
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 34.83622576965825,
+    "n_waypoints": 4
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "flat-simple",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 188.27238587309782,
+    "n_waypoints": 16
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 56.168303190357165,
+    "n_waypoints": 6
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 85.84029416522338,
+    "n_waypoints": 8
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 141.2060869894825,
+    "n_waypoints": 12
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 34.83622576965825,
+    "n_waypoints": 4
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 155.74134033325348,
+    "n_waypoints": 16
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 56.168303190357165,
+    "n_waypoints": 6
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 71.9663667243823,
+    "n_waypoints": 8
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 117.46332669316705,
+    "n_waypoints": 12
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "flat-complex",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 155.74134033325348,
+    "n_waypoints": 16
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 47.01683458532416,
+    "n_waypoints": 4
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 56.168303190357165,
+    "n_waypoints": 6
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 86.02876239448906,
+    "n_waypoints": 8
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 106.23015350818957,
+    "n_waypoints": 12
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 46.18704003043875,
+    "n_waypoints": 4
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 155.74134033325348,
+    "n_waypoints": 16
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 64.12957804674905,
+    "n_waypoints": 6
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 86.02876239448906,
+    "n_waypoints": 8
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 117.46332669316705,
+    "n_waypoints": 12
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 46.18704003043875,
+    "n_waypoints": 4
+  },
+  {
+    "object": "box",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 147.5676226068422,
+    "n_waypoints": 16
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 64.12957804674905,
+    "n_waypoints": 6
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 72.16117834717554,
+    "n_waypoints": 8
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 117.37336885643472,
+    "n_waypoints": 12
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 147.5676226068422,
+    "n_waypoints": 16
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 35.02515963286908,
+    "n_waypoints": 4
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 65.56931366042917,
+    "n_waypoints": 6
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 85.84029416522338,
+    "n_waypoints": 8
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 125.79147969676455,
+    "n_waypoints": 12
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "sphere-small",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 189.87480902861472,
+    "n_waypoints": 16
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 34.83622576965825,
+    "n_waypoints": 4
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 69.36762243022118,
+    "n_waypoints": 6
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 86.02876239448906,
+    "n_waypoints": 8
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 117.46332669316705,
+    "n_waypoints": 12
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 46.18704003043875,
+    "n_waypoints": 4
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 145.26022776264668,
+    "n_waypoints": 16
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 64.12957804674905,
+    "n_waypoints": 6
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 72.16117834717554,
+    "n_waypoints": 8
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 112.30410454704283,
+    "n_waypoints": 12
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.15,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 35.02515963286908,
+    "n_waypoints": 4
+  },
+  {
+    "object": "sphere-large",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 147.5676226068422,
+    "n_waypoints": 16
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.15,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 61.01535132690748,
+    "n_waypoints": 6
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.15,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 86.02675682606124,
+    "n_waypoints": 8
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.15,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 108.56393478221385,
+    "n_waypoints": 12
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 32.062929776418066,
+    "n_waypoints": 4
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.075,
+    "n_budget": 4,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 49.150058474401376,
+    "n_waypoints": 4
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 37.364444966583065,
+    "n_waypoints": 6
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.15,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 160.34584091691522,
+    "n_waypoints": 16
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.075,
+    "n_budget": 6,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 61.01535132690748,
+    "n_waypoints": 6
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 39.86742133836186,
+    "n_waypoints": 8
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.075,
+    "n_budget": 8,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 72.16117834717554,
+    "n_waypoints": 8
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 42.222577912371264,
+    "n_waypoints": 12
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.075,
+    "n_budget": 12,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 117.10431077062903,
+    "n_waypoints": 12
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "orbit",
+    "coverage": 1.0,
+    "distance": 43.33341258997,
+    "n_waypoints": 16
+  },
+  {
+    "object": "occluded-chair",
+    "voxel_size": 0.075,
+    "n_budget": 16,
+    "path_type": "random",
+    "coverage": 1.0,
+    "distance": 160.34584091691522,
+    "n_waypoints": 16
+  }
+]

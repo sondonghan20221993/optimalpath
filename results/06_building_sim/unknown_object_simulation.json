@@ -1,0 +1,821 @@
+{
+  "1m \uc6d0\ud615 8\uc2dc\uc810": {
+    "name": "1m \uc6d0\ud615 8\uc2dc\uc810",
+    "initial_n_waypoints": 8,
+    "initial_coverage": 0.9901,
+    "initial_distance_m": 42.8,
+    "initial_gain": 200,
+    "total_steps": 8,
+    "final_coverage": 0.9901,
+    "total_distance_m": 42.8,
+    "total_gain": 200,
+    "path": [
+      {
+        "step": 1,
+        "phase": "initial",
+        "pos": [
+          -26.67,
+          -50.83,
+          -0.8200000000000001
+        ],
+        "alt": 1.0,
+        "azimuth": 0.0,
+        "gained": 113,
+        "coverage": 0.5594
+      },
+      {
+        "step": 2,
+        "phase": "initial",
+        "pos": [
+          -28.720252531694168,
+          -45.88025253169417,
+          -0.8200000000000001
+        ],
+        "alt": 1.0,
+        "azimuth": 45.0,
+        "gained": 22,
+        "coverage": 0.6683
+      },
+      {
+        "step": 3,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -43.83,
+          -0.8200000000000001
+        ],
+        "alt": 1.0,
+        "azimuth": 90.0,
+        "gained": 21,
+        "coverage": 0.7723
+      },
+      {
+        "step": 4,
+        "phase": "initial",
+        "pos": [
+          -38.61974746830583,
+          -45.88025253169417,
+          -0.8200000000000001
+        ],
+        "alt": 1.0,
+        "azimuth": 135.0,
+        "gained": 26,
+        "coverage": 0.901
+      },
+      {
+        "step": 5,
+        "phase": "initial",
+        "pos": [
+          -40.67,
+          -50.83,
+          -0.8200000000000001
+        ],
+        "alt": 1.0,
+        "azimuth": 180.0,
+        "gained": 15,
+        "coverage": 0.9752
+      },
+      {
+        "step": 6,
+        "phase": "initial",
+        "pos": [
+          -38.61974746830583,
+          -55.77974746830583,
+          -0.8200000000000001
+        ],
+        "alt": 1.0,
+        "azimuth": -135.0,
+        "gained": 3,
+        "coverage": 0.9901
+      },
+      {
+        "step": 7,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -57.83,
+          -0.8200000000000001
+        ],
+        "alt": 1.0,
+        "azimuth": -90.0,
+        "gained": 0,
+        "coverage": 0.9901
+      },
+      {
+        "step": 8,
+        "phase": "initial",
+        "pos": [
+          -28.72025253169417,
+          -55.77974746830583,
+          -0.8200000000000001
+        ],
+        "alt": 1.0,
+        "azimuth": -45.0,
+        "gained": 0,
+        "coverage": 0.9901
+      }
+    ]
+  },
+  "4m \uc6d0\ud615 8\uc2dc\uc810": {
+    "name": "4m \uc6d0\ud615 8\uc2dc\uc810",
+    "initial_n_waypoints": 8,
+    "initial_coverage": 1.0,
+    "initial_distance_m": 39.9,
+    "initial_gain": 202,
+    "total_steps": 8,
+    "final_coverage": 1.0,
+    "total_distance_m": 39.9,
+    "total_gain": 202,
+    "path": [
+      {
+        "step": 1,
+        "phase": "initial",
+        "pos": [
+          -26.67,
+          -50.83,
+          -3.82
+        ],
+        "alt": 4.0,
+        "azimuth": 0.0,
+        "gained": 154,
+        "coverage": 0.7624
+      },
+      {
+        "step": 2,
+        "phase": "initial",
+        "pos": [
+          -28.720252531694168,
+          -45.88025253169417,
+          -3.82
+        ],
+        "alt": 4.0,
+        "azimuth": 45.0,
+        "gained": 11,
+        "coverage": 0.8168
+      },
+      {
+        "step": 3,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -43.83,
+          -3.82
+        ],
+        "alt": 4.0,
+        "azimuth": 90.0,
+        "gained": 26,
+        "coverage": 0.9455
+      },
+      {
+        "step": 4,
+        "phase": "initial",
+        "pos": [
+          -38.61974746830583,
+          -45.88025253169417,
+          -3.82
+        ],
+        "alt": 4.0,
+        "azimuth": 135.0,
+        "gained": 7,
+        "coverage": 0.9802
+      },
+      {
+        "step": 5,
+        "phase": "initial",
+        "pos": [
+          -40.67,
+          -50.83,
+          -3.82
+        ],
+        "alt": 4.0,
+        "azimuth": 180.0,
+        "gained": 4,
+        "coverage": 1.0
+      },
+      {
+        "step": 6,
+        "phase": "initial",
+        "pos": [
+          -38.61974746830583,
+          -55.77974746830583,
+          -3.82
+        ],
+        "alt": 4.0,
+        "azimuth": -135.0,
+        "gained": 0,
+        "coverage": 1.0
+      },
+      {
+        "step": 7,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -57.83,
+          -3.82
+        ],
+        "alt": 4.0,
+        "azimuth": -90.0,
+        "gained": 0,
+        "coverage": 1.0
+      },
+      {
+        "step": 8,
+        "phase": "initial",
+        "pos": [
+          -28.72025253169417,
+          -55.77974746830583,
+          -3.82
+        ],
+        "alt": 4.0,
+        "azimuth": -45.0,
+        "gained": 0,
+        "coverage": 1.0
+      }
+    ]
+  },
+  "7m \uc6d0\ud615 8\uc2dc\uc810": {
+    "name": "7m \uc6d0\ud615 8\uc2dc\uc810",
+    "initial_n_waypoints": 8,
+    "initial_coverage": 1.0,
+    "initial_distance_m": 38.4,
+    "initial_gain": 202,
+    "total_steps": 8,
+    "final_coverage": 1.0,
+    "total_distance_m": 38.4,
+    "total_gain": 202,
+    "path": [
+      {
+        "step": 1,
+        "phase": "initial",
+        "pos": [
+          -26.67,
+          -50.83,
+          -6.82
+        ],
+        "alt": 7.0,
+        "azimuth": 0.0,
+        "gained": 167,
+        "coverage": 0.8267
+      },
+      {
+        "step": 2,
+        "phase": "initial",
+        "pos": [
+          -28.720252531694168,
+          -45.88025253169417,
+          -6.82
+        ],
+        "alt": 7.0,
+        "azimuth": 45.0,
+        "gained": 10,
+        "coverage": 0.8762
+      },
+      {
+        "step": 3,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -43.83,
+          -6.82
+        ],
+        "alt": 7.0,
+        "azimuth": 90.0,
+        "gained": 18,
+        "coverage": 0.9653
+      },
+      {
+        "step": 4,
+        "phase": "initial",
+        "pos": [
+          -38.61974746830583,
+          -45.88025253169417,
+          -6.82
+        ],
+        "alt": 7.0,
+        "azimuth": 135.0,
+        "gained": 3,
+        "coverage": 0.9802
+      },
+      {
+        "step": 5,
+        "phase": "initial",
+        "pos": [
+          -40.67,
+          -50.83,
+          -6.82
+        ],
+        "alt": 7.0,
+        "azimuth": 180.0,
+        "gained": 4,
+        "coverage": 1.0
+      },
+      {
+        "step": 6,
+        "phase": "initial",
+        "pos": [
+          -38.61974746830583,
+          -55.77974746830583,
+          -6.82
+        ],
+        "alt": 7.0,
+        "azimuth": -135.0,
+        "gained": 0,
+        "coverage": 1.0
+      },
+      {
+        "step": 7,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -57.83,
+          -6.82
+        ],
+        "alt": 7.0,
+        "azimuth": -90.0,
+        "gained": 0,
+        "coverage": 1.0
+      },
+      {
+        "step": 8,
+        "phase": "initial",
+        "pos": [
+          -28.72025253169417,
+          -55.77974746830583,
+          -6.82
+        ],
+        "alt": 7.0,
+        "azimuth": -45.0,
+        "gained": 0,
+        "coverage": 1.0
+      }
+    ]
+  },
+  "2m \uc6d0\ud615 4\uc2dc\uc810": {
+    "name": "2m \uc6d0\ud615 4\uc2dc\uc810",
+    "initial_n_waypoints": 4,
+    "initial_coverage": 0.9901,
+    "initial_distance_m": 34.0,
+    "initial_gain": 200,
+    "total_steps": 4,
+    "final_coverage": 0.9901,
+    "total_distance_m": 34.0,
+    "total_gain": 200,
+    "path": [
+      {
+        "step": 1,
+        "phase": "initial",
+        "pos": [
+          -26.67,
+          -50.83,
+          -1.82
+        ],
+        "alt": 2.0,
+        "azimuth": 0.0,
+        "gained": 141,
+        "coverage": 0.698
+      },
+      {
+        "step": 2,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -43.83,
+          -1.82
+        ],
+        "alt": 2.0,
+        "azimuth": 90.0,
+        "gained": 39,
+        "coverage": 0.8911
+      },
+      {
+        "step": 3,
+        "phase": "initial",
+        "pos": [
+          -40.67,
+          -50.83,
+          -1.82
+        ],
+        "alt": 2.0,
+        "azimuth": 180.0,
+        "gained": 20,
+        "coverage": 0.9901
+      },
+      {
+        "step": 4,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -57.83,
+          -1.82
+        ],
+        "alt": 2.0,
+        "azimuth": -90.0,
+        "gained": 0,
+        "coverage": 0.9901
+      }
+    ]
+  },
+  "\ub098\uc120\ud615 1~5m 8\uc2dc\uc810": {
+    "name": "\ub098\uc120\ud615 1~5m 8\uc2dc\uc810",
+    "initial_n_waypoints": 8,
+    "initial_coverage": 1.0,
+    "initial_distance_m": 43.0,
+    "initial_gain": 202,
+    "total_steps": 8,
+    "final_coverage": 1.0,
+    "total_distance_m": 43.0,
+    "total_gain": 202,
+    "path": [
+      {
+        "step": 1,
+        "phase": "initial",
+        "pos": [
+          -26.67,
+          -50.83,
+          -0.8200000000000001
+        ],
+        "alt": 1.0,
+        "azimuth": 0.0,
+        "gained": 113,
+        "coverage": 0.5594
+      },
+      {
+        "step": 2,
+        "phase": "initial",
+        "pos": [
+          -28.720252531694168,
+          -45.88025253169417,
+          -1.3914285714285715
+        ],
+        "alt": 1.6,
+        "azimuth": 45.0,
+        "gained": 29,
+        "coverage": 0.703
+      },
+      {
+        "step": 3,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -43.83,
+          -1.9628571428571429
+        ],
+        "alt": 2.1,
+        "azimuth": 90.0,
+        "gained": 29,
+        "coverage": 0.8465
+      },
+      {
+        "step": 4,
+        "phase": "initial",
+        "pos": [
+          -38.61974746830583,
+          -45.88025253169417,
+          -2.5342857142857143
+        ],
+        "alt": 2.7,
+        "azimuth": 135.0,
+        "gained": 12,
+        "coverage": 0.9059
+      },
+      {
+        "step": 5,
+        "phase": "initial",
+        "pos": [
+          -40.67,
+          -50.83,
+          -3.1057142857142854
+        ],
+        "alt": 3.3,
+        "azimuth": 180.0,
+        "gained": 17,
+        "coverage": 0.9901
+      },
+      {
+        "step": 6,
+        "phase": "initial",
+        "pos": [
+          -38.61974746830583,
+          -55.77974746830583,
+          -3.6771428571428566
+        ],
+        "alt": 3.9,
+        "azimuth": -135.0,
+        "gained": 0,
+        "coverage": 0.9901
+      },
+      {
+        "step": 7,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -57.83,
+          -4.248571428571429
+        ],
+        "alt": 4.4,
+        "azimuth": -90.0,
+        "gained": 0,
+        "coverage": 0.9901
+      },
+      {
+        "step": 8,
+        "phase": "initial",
+        "pos": [
+          -28.72025253169417,
+          -55.77974746830583,
+          -4.82
+        ],
+        "alt": 5.0,
+        "azimuth": -45.0,
+        "gained": 2,
+        "coverage": 1.0
+      }
+    ]
+  },
+  "\ub098\uc120\ud615 5~1m 8\uc2dc\uc810": {
+    "name": "\ub098\uc120\ud615 5~1m 8\uc2dc\uc810",
+    "initial_n_waypoints": 8,
+    "initial_coverage": 1.0,
+    "initial_distance_m": 39.1,
+    "initial_gain": 202,
+    "total_steps": 8,
+    "final_coverage": 1.0,
+    "total_distance_m": 39.1,
+    "total_gain": 202,
+    "path": [
+      {
+        "step": 1,
+        "phase": "initial",
+        "pos": [
+          -26.67,
+          -50.83,
+          -4.82
+        ],
+        "alt": 5.0,
+        "azimuth": 0.0,
+        "gained": 159,
+        "coverage": 0.7871
+      },
+      {
+        "step": 2,
+        "phase": "initial",
+        "pos": [
+          -28.720252531694168,
+          -45.88025253169417,
+          -4.248571428571429
+        ],
+        "alt": 4.4,
+        "azimuth": 45.0,
+        "gained": 10,
+        "coverage": 0.8366
+      },
+      {
+        "step": 3,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -43.83,
+          -3.677142857142857
+        ],
+        "alt": 3.9,
+        "azimuth": 90.0,
+        "gained": 22,
+        "coverage": 0.9455
+      },
+      {
+        "step": 4,
+        "phase": "initial",
+        "pos": [
+          -38.61974746830583,
+          -45.88025253169417,
+          -3.1057142857142854
+        ],
+        "alt": 3.3,
+        "azimuth": 135.0,
+        "gained": 7,
+        "coverage": 0.9802
+      },
+      {
+        "step": 5,
+        "phase": "initial",
+        "pos": [
+          -40.67,
+          -50.83,
+          -2.5342857142857143
+        ],
+        "alt": 2.7,
+        "azimuth": 180.0,
+        "gained": 4,
+        "coverage": 1.0
+      },
+      {
+        "step": 6,
+        "phase": "initial",
+        "pos": [
+          -38.61974746830583,
+          -55.77974746830583,
+          -1.9628571428571433
+        ],
+        "alt": 2.1,
+        "azimuth": -135.0,
+        "gained": 0,
+        "coverage": 1.0
+      },
+      {
+        "step": 7,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -57.83,
+          -1.3914285714285717
+        ],
+        "alt": 1.6,
+        "azimuth": -90.0,
+        "gained": 0,
+        "coverage": 1.0
+      },
+      {
+        "step": 8,
+        "phase": "initial",
+        "pos": [
+          -28.72025253169417,
+          -55.77974746830583,
+          -0.8200000000000001
+        ],
+        "alt": 1.0,
+        "azimuth": -45.0,
+        "gained": 0,
+        "coverage": 1.0
+      }
+    ]
+  },
+  "2\ubc14\ud034 (2m 4\uc2dc\uc810 + 6m 4\uc2dc\uc810)": {
+    "name": "2\ubc14\ud034 (2m 4\uc2dc\uc810 + 6m 4\uc2dc\uc810)",
+    "initial_n_waypoints": 8,
+    "initial_coverage": 1.0,
+    "initial_distance_m": 74.4,
+    "initial_gain": 202,
+    "total_steps": 8,
+    "final_coverage": 1.0,
+    "total_distance_m": 74.4,
+    "total_gain": 202,
+    "path": [
+      {
+        "step": 1,
+        "phase": "initial",
+        "pos": [
+          -26.67,
+          -50.83,
+          -1.82
+        ],
+        "alt": 2.0,
+        "azimuth": 0.0,
+        "gained": 141,
+        "coverage": 0.698
+      },
+      {
+        "step": 2,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -43.83,
+          -1.82
+        ],
+        "alt": 2.0,
+        "azimuth": 90.0,
+        "gained": 39,
+        "coverage": 0.8911
+      },
+      {
+        "step": 3,
+        "phase": "initial",
+        "pos": [
+          -40.67,
+          -50.83,
+          -1.82
+        ],
+        "alt": 2.0,
+        "azimuth": 180.0,
+        "gained": 20,
+        "coverage": 0.9901
+      },
+      {
+        "step": 4,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -57.83,
+          -1.82
+        ],
+        "alt": 2.0,
+        "azimuth": -90.0,
+        "gained": 0,
+        "coverage": 0.9901
+      },
+      {
+        "step": 5,
+        "phase": "initial",
+        "pos": [
+          -26.67,
+          -50.83,
+          -5.82
+        ],
+        "alt": 6.0,
+        "azimuth": 0.0,
+        "gained": 2,
+        "coverage": 1.0
+      },
+      {
+        "step": 6,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -43.83,
+          -5.82
+        ],
+        "alt": 6.0,
+        "azimuth": 90.0,
+        "gained": 0,
+        "coverage": 1.0
+      },
+      {
+        "step": 7,
+        "phase": "initial",
+        "pos": [
+          -40.67,
+          -50.83,
+          -5.82
+        ],
+        "alt": 6.0,
+        "azimuth": 180.0,
+        "gained": 0,
+        "coverage": 1.0
+      },
+      {
+        "step": 8,
+        "phase": "initial",
+        "pos": [
+          -33.67,
+          -57.83,
+          -5.82
+        ],
+        "alt": 6.0,
+        "azimuth": -90.0,
+        "gained": 0,
+        "coverage": 1.0
+      }
+    ]
+  },
+  "4m \uc6d0\ud615 3\uc2dc\uc810 (\ucd5c\uc801?)": {
+    "name": "4m \uc6d0\ud615 3\uc2dc\uc810 (\ucd5c\uc801?)",
+    "initial_n_waypoints": 3,
+    "initial_coverage": 1.0,
+    "initial_distance_m": 26.6,
+    "initial_gain": 202,
+    "total_steps": 3,
+    "final_coverage": 1.0,
+    "total_distance_m": 26.6,
+    "total_gain": 202,
+    "path": [
+      {
+        "step": 1,
+        "phase": "initial",
+        "pos": [
+          -26.67,
+          -50.83,
+          -3.82
+        ],
+        "alt": 4.0,
+        "azimuth": 0.0,
+        "gained": 154,
+        "coverage": 0.7624
+      },
+      {
+        "step": 2,
+        "phase": "initial",
+        "pos": [
+          -37.17,
+          -44.767822173508925,
+          -3.82
+        ],
+        "alt": 4.0,
+        "azimuth": 120.0,
+        "gained": 43,
+        "coverage": 0.9752
+      },
+      {
+        "step": 3,
+        "phase": "initial",
+        "pos": [
+          -37.17,
+          -56.892177826491064,
+          -3.82
+        ],
+        "alt": 4.0,
+        "azimuth": -120.0,
+        "gained": 5,
+        "coverage": 1.0
+      }
+    ]
+  }
+}

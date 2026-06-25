@@ -1,0 +1,9 @@
+{
+  "timestamp": "20260624_221126",
+  "conclusion": {
+    "best_for_reconstruction": "Hybrid-16 / Orbit-16",
+    "reason": "Azimuth uniformity enables better viewpoint diversity for SfM",
+    "worst_for_reconstruction": "Greedy-16",
+    "reason_worst": "Greedy clustering causes viewing angle bias and occlusion"
+  }
+}

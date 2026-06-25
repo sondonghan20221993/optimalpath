@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>ground_first: Orbit-16 vs PB-NBV-16</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background:#0d0d1a;
+            font-family:'Segoe UI',sans-serif;
+            color:#eee;
+            height:100vh;
+            display:flex;
+            flex-direction:column;
+            overflow:hidden;
+        }
+        header {
+            background:linear-gradient(135deg,#667eea,#764ba2);
+            padding:12px 28px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            flex-shrink:0;
+        }
+        header h1 { font-size:1.15em; color:white; }
+        .badges { display:flex; gap:10px; align-items:center; }
+        .badge { padding:5px 14px; border-radius:20px; font-size:0.85em; font-weight:700; }
+        .badge.orbit { background:#4fc3f7; color:#000; }
+        .badge.pbnbv { background:#f48fb1; color:#000; }
+        .cond { font-size:0.78em; color:rgba(255,255,255,0.65); }
+
+        .plots {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            flex:1;
+            gap:2px;
+            background:#1a1a2a;
+            min-height:0;
+        }
+        .plot-wrap {
+            background:#12122a;
+            display:flex;
+            flex-direction:column;
+            min-height:0;
+        }
+        .plot-title {
+            padding:7px 16px 2px;
+            font-size:0.9em;
+            font-weight:600;
+            flex-shrink:0;
+            display:flex;
+            align-items:baseline;
+            gap:10px;
+        }
+        .plot-title.orbit { color:#4fc3f7; }
+        .plot-title.pbnbv { color:#f48fb1; }
+        .plot-title .sub { font-size:0.75em; color:#555; font-weight:400; }
+        .plot-div { flex:1; min-height:0; }
+
+        footer {
+            background:#0d0d1a;
+            border-top:1px solid #1a1a2a;
+            padding:5px 20px;
+            font-size:0.73em;
+            color:#444;
+            flex-shrink:0;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>🏗️ ground_first 데이터셋 — Orbit-16 vs PB-NBV-16</h1>
+    <div class="badges">
+        <span class="cond">고도 5m 고정 · N=16 · 2,208 voxels</span>
+        <span class="badge orbit">Max Gap 22.5° ✓</span>
+        <span class="badge pbnbv">Max Gap 93.4° ✗</span>
+    </div>
+</header>
+
+<div class="plots">
+    <div class="plot-wrap">
+        <div class="plot-title orbit">
+            🔵 Orbit-16
+            <span class="sub">Std 0.0° · Coverage 99.9%</span>
+        </div>
+        <div class="plot-div" id="orbitPlot"></div>
+    </div>
+    <div class="plot-wrap">
+        <div class="plot-title pbnbv">
+            🔴 PB-NBV-16
+            <span class="sub">Std 27.2° · Coverage 99.8% · Step1만으로 86.6%</span>
+        </div>
+        <div class="plot-div" id="pbnbvPlot"></div>
+    </div>
+</div>
+
+<footer>
+    점 크기 = 획득 voxel 수 &nbsp;|&nbsp;
+    <span style="color:#ff3333">■ 많음</span>
+    <span style="color:#ffcc00">■ 중간</span>
+    <span style="color:#333355">■ 없음</span>
+    &nbsp;|&nbsp; 두 플롯 동일 축 범위
+</footer>
+
+<script>
+const result = {"orbit":{"max_gap":22.5,"std_gap":0.0,"coverage":0.9990,"azimuths":[0.0,22.5,45.0,67.5,90.0,112.5,135.0,157.5,180.0,202.5,225.0,247.5,270.0,292.5,315.0,337.5],"gaps":[22.5,22.5,22.5,22.5,22.5,22.5,22.5,22.5,22.5,22.5,22.5,22.5,22.5,22.5,22.5,22.5],"path":[{"step":1,"pos":[15.0,0.0,-5.0],"azimuth":0.0,"gained":701,"coverage":0.317},{"step":2,"pos":[13.858,5.740,-5.0],"azimuth":22.5,"gained":105,"coverage":0.365},{"step":3,"pos":[10.607,10.607,-5.0],"azimuth":45.0,"gained":119,"coverage":0.419},{"step":4,"pos":[5.740,13.858,-5.0],"azimuth":67.5,"gained":196,"coverage":0.508},{"step":5,"pos":[0.0,15.0,-5.0],"azimuth":90.0,"gained":774,"coverage":0.858},{"step":6,"pos":[-5.740,13.858,-5.0],"azimuth":112.5,"gained":151,"coverage":0.927},{"step":7,"pos":[-10.607,10.607,-5.0],"azimuth":135.0,"gained":52,"coverage":0.950},{"step":8,"pos":[-13.858,5.740,-5.0],"azimuth":157.5,"gained":72,"coverage":0.983},{"step":9,"pos":[-15.0,0.0,-5.0],"azimuth":180.0,"gained":27,"coverage":0.995},{"step":10,"pos":[-13.858,-5.740,-5.0],"azimuth":202.5,"gained":2,"coverage":0.996},{"step":11,"pos":[-10.607,-10.607,-5.0],"azimuth":225.0,"gained":3,"coverage":0.997},{"step":12,"pos":[-5.740,-13.858,-5.0],"azimuth":247.5,"gained":4,"coverage":0.999},{"step":13,"pos":[0.0,-15.0,-5.0],"azimuth":270.0,"gained":0,"coverage":0.999},{"step":14,"pos":[5.740,-13.858,-5.0],"azimuth":292.5,"gained":0,"coverage":0.999},{"step":15,"pos":[10.607,-10.607,-5.0],"azimuth":315.0,"gained":0,"coverage":0.999},{"step":16,"pos":[13.858,-5.740,-5.0],"azimuth":337.5,"gained":0,"coverage":0.999}]},"pbnbv":{"max_gap":93.4,"std_gap":27.2,"coverage":0.998,"azimuths":[0.0,8.0,9.7,16.0,24.0,48.0,56.0,64.0,144.0,194.6,288.0,296.0,328.0,336.0,344.0,352.0],"gaps":[8.0,1.7,6.3,8.0,24.0,8.0,8.0,80.0,50.6,93.4,8.0,32.0,8.0,8.0,8.0,8.0],"path":[{"step":1,"pos":[-14.516,-3.780,-5.0],"azimuth":194.6,"gained":1912,"coverage":0.866,"score":77811.3},{"step":2,"pos":[14.784,2.535,-5.0],"azimuth":9.7,"gained":277,"coverage":0.991,"score":57715.9},{"step":3,"pos":[5.562,-17.119,-5.0],"azimuth":288.0,"gained":9,"coverage":0.995,"score":-917.8},{"step":4,"pos":[14.088,5.748,-5.0],"azimuth":24.0,"gained":3,"coverage":0.997,"score":-369.4},{"step":5,"pos":[15.391,4.327,-5.0],"azimuth":16.0,"gained":0,"coverage":0.997,"score":-3217.3},{"step":6,"pos":[14.919,2.088,-5.0],"azimuth":8.0,"gained":0,"coverage":0.997,"score":-3397.1},{"step":7,"pos":[13.030,7.515,-5.0],"azimuth":64.0,"gained":1,"coverage":0.997,"score":-5467.6},{"step":8,"pos":[15.0,0.0,-5.0],"azimuth":0.0,"gained":0,"coverage":0.997,"score":-6686.9},{"step":9,"pos":[13.858,-5.740,-5.0],"azimuth":336.0,"gained":0,"coverage":0.997,"score":-7115.3},{"step":10,"pos":[12.363,8.438,-5.0],"azimuth":48.0,"gained":0,"coverage":0.997,"score":-7662.3},{"step":11,"pos":[11.491,9.642,-5.0],"azimuth":56.0,"gained":0,"coverage":0.997,"score":-7735.9},{"step":12,"pos":[-11.491,9.642,-5.0],"azimuth":144.0,"gained":2,"coverage":0.998,"score":-7740.0},{"step":13,"pos":[14.261,-5.209,-5.0],"azimuth":344.0,"gained":0,"coverage":0.998,"score":-8480.3},{"step":14,"pos":[14.784,-2.535,-5.0],"azimuth":352.0,"gained":0,"coverage":0.998,"score":-9774.0},{"step":15,"pos":[12.802,-7.500,-5.0],"azimuth":328.0,"gained":0,"coverage":0.998,"score":-10429.2},{"step":16,"pos":[6.257,-13.659,-5.0],"azimuth":296.0,"gained":0,"coverage":0.998,"score":-10563.5}]}};
+
+// 동일 축 범위
+const XR=[-20,20], YR=[-20,20], ZR=[-8,2];
+
+function ptCloud() {
+    // 물체 대표 점들 (중심 주변 샘플)
+    const pts=[];
+    const seed=42;
+    for(let i=0;i<300;i++){
+        const t=i/300*Math.PI*2;
+        const r=Math.random()*8;
+        pts.push([r*Math.cos(t)*1.2, r*Math.sin(t)*0.9, (Math.random()-0.5)*12]);
+    }
+    return {
+        type:'scatter3d',
+        x:pts.map(p=>p[0]), y:pts.map(p=>p[1]), z:pts.map(p=>p[2]),
+        mode:'markers',
+        marker:{size:2, color:'#334', opacity:0.5},
+        showlegend:false, hoverinfo:'skip'
+    };
+}
+
+function lineTrace(path, color) {
+    const loop=[...path.map(p=>p.pos), path[0].pos];
+    return {
+        type:'scatter3d',
+        x:loop.map(p=>p[0]), y:loop.map(p=>p[1]), z:loop.map(p=>p[2]),
+        mode:'lines', line:{color:color+'55',width:2},
+        showlegend:false, hoverinfo:'skip'
+    };
+}
+
+function markers(path, name) {
+    const col = path.map(p =>
+        p.gained>1000?'#ff2222': p.gained>200?'#ff8800': p.gained>50?'#ffcc00': p.gained>0?'#88ff88':'#222244'
+    );
+    const sz = path.map(p => p.gained>0 ? Math.max(7, Math.min(28, 7+p.gained/120)) : 5);
+    return {
+        type:'scatter3d',
+        x:path.map(p=>p.pos[0]), y:path.map(p=>p.pos[1]), z:path.map(p=>p.pos[2]),
+        mode:'markers+text',
+        marker:{size:sz, color:col, line:{color:'#ffffff33',width:1}},
+        text:path.map(p=>`${p.step}`),
+        textfont:{size:8,color:'#ccc'},
+        textposition:'top center',
+        name,
+        customdata:path.map(p=>[p.step,p.azimuth.toFixed(1),p.gained,
+                                 (p.coverage*100).toFixed(1),
+                                 p.score!=null?p.score.toFixed(0):'—']),
+        hovertemplate:'<b>Step %{customdata[0]}</b><br>방위각: %{customdata[1]}°<br>Gained: %{customdata[2]} voxel<br>Coverage: %{customdata[3]}%<br>F score: %{customdata[4]}<extra></extra>'
+    };
+}
+
+const scene = {
+    xaxis:{range:XR,title:'X',backgroundcolor:'#0d0d20',gridcolor:'#1e1e38',showbackground:true,titlefont:{color:'#555'},tickfont:{color:'#444'}},
+    yaxis:{range:YR,title:'Y',backgroundcolor:'#0d0d20',gridcolor:'#1e1e38',showbackground:true,titlefont:{color:'#555'},tickfont:{color:'#444'}},
+    zaxis:{range:ZR,title:'Z',backgroundcolor:'#0d0d20',gridcolor:'#1e1e38',showbackground:true,titlefont:{color:'#555'},tickfont:{color:'#444'}},
+    camera:{eye:{x:1.5,y:1.5,z:0.8}},
+    aspectmode:'manual',
+    aspectratio:{x:1,y:1,z:0.5}
+};
+
+const layout = {paper_bgcolor:'#12122a',font:{color:'#ccc'},margin:{l:0,r:0,t:0,b:0},showlegend:false,scene};
+
+Plotly.newPlot('orbitPlot',
+    [ptCloud(), lineTrace(result.orbit.path,'#4fc3f7'), markers(result.orbit.path,'Orbit-16')],
+    layout, {responsive:true});
+
+Plotly.newPlot('pbnbvPlot',
+    [ptCloud(), lineTrace(result.pbnbv.path,'#f48fb1'), markers(result.pbnbv.path,'PB-NBV-16')],
+    layout, {responsive:true});
+</script>
+</body>
+</html>

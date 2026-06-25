@@ -1,0 +1,51 @@
+{
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "ClockSpeed": 1.0,
+  "Vehicles": {
+    "Drone1": {
+      "VehicleType": "SimpleFlight",
+      "AutoCreate": true,
+      "X": 0,
+      "Y": -5,
+      "Z": 0,
+      "Yaw": 0
+    }
+  },
+  "CameraDefaults": {
+    "CaptureSettings": [
+      {
+        "ImageType": 0,
+        "PixelsAsFloat": false,
+        "Compress": false,
+        "Width": 640,
+        "Height": 480,
+        "FOV_Degrees": 90.0,
+        "AutoExposureSpeed": 100.0,
+        "AutoExposureBias": 0.0,
+        "MotionBlurAmount": 0.0
+      }
+    ]
+  },
+  "SceneObjectDefaults": {
+    "Building": {
+      "AssetName": "SM_CityBlg_A_1x_Demo",
+      "X": 0,
+      "Y": 0,
+      "Z": 0,
+      "Yaw": 0,
+      "Roll": 0,
+      "Pitch": 0,
+      "Scale": {"X": 1.0, "Y": 1.0, "Z": 1.0}
+    }
+  },
+  "SubWindows": [
+    {
+      "WindowID": 0,
+      "ImageType": 0,
+      "Visible": true,
+      "X": 0,
+      "Y": 0
+    }
+  ]
+}

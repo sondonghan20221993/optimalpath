@@ -1,0 +1,64 @@
+{
+  "objects": {
+    "flat-simple": {
+      "0.15m": {
+        "n_voxels": 202,
+        "flatness": 0.16667041153246684
+      },
+      "0.075m": {
+        "n_voxels": 988,
+        "flatness": 0.1503731056316326
+      }
+    },
+    "flat-complex": {
+      "0.15m": {
+        "n_voxels": 196,
+        "flatness": 0.16001786964050313
+      },
+      "0.075m": {
+        "n_voxels": 990,
+        "flatness": 0.14418048280243906
+      }
+    },
+    "box": {
+      "0.15m": {
+        "n_voxels": 88,
+        "flatness": 0.1383032365494528
+      },
+      "0.075m": {
+        "n_voxels": 271,
+        "flatness": 0.09322704634170936
+      }
+    },
+    "sphere-small": {
+      "0.15m": {
+        "n_voxels": 189,
+        "flatness": 0.9329890851300313
+      },
+      "0.075m": {
+        "n_voxels": 710,
+        "flatness": 0.9896451096909673
+      }
+    },
+    "sphere-large": {
+      "0.15m": {
+        "n_voxels": 362,
+        "flatness": 0.971750878628303
+      },
+      "0.075m": {
+        "n_voxels": 1265,
+        "flatness": 0.963093097890688
+      }
+    },
+    "occluded-chair": {
+      "0.15m": {
+        "n_voxels": 38,
+        "flatness": 0.19757305001019249
+      },
+      "0.075m": {
+        "n_voxels": 144,
+        "flatness": 0.13780309267208032
+      }
+    }
+  }
+}

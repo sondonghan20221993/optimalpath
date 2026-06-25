@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "name": "\ucd08\uae30\uacbd\ub85c \uace0\uace0\ub3c4\uc6d0\ud6151\ubc14\ud034",
+  "path_step_count": 8,
+  "config": {
+    "altitude": 4.5,
+    "radius": 7.0,
+    "depression_angle_deg": 32.7352262721076
+  },
+  "waypoints": [
+    {
+      "index": 1,
+      "position": [
+        -26.67,
+        -50.83,
+        -4.32
+      ],
+      "azimuth_deg": 0.0,
+      "relative_to_target": [
+        7.0,
+        0.0,
+        -4.5
+      ]
+    },
+    {
+      "index": 2,
+      "position": [
+        -28.720252531694168,
+        -45.88025253169417,
+        -4.32
+      ],
+      "azimuth_deg": 45.0,
+      "relative_to_target": [
+        4.949747468305834,
+        4.94974746830583,
+        -4.5
+      ]
+    },
+    {
+      "index": 3,
+      "position": [
+        -33.67,
+        -43.83,
+        -4.32
+      ],
+      "azimuth_deg": 90.0,
+      "relative_to_target": [
+        0.0,
+        7.0,
+        -4.5
+      ]
+    },
+    {
+      "index": 4,
+      "position": [
+        -38.61974746830583,
+        -45.88025253169417,
+        -4.32
+      ],
+      "azimuth_deg": 135.0,
+      "relative_to_target": [
+        -4.94974746830583,
+        4.94974746830583,
+        -4.5
+      ]
+    },
+    {
+      "index": 5,
+      "position": [
+        -40.67,
+        -50.83,
+        -4.32
+      ],
+      "azimuth_deg": 180.0,
+      "relative_to_target": [
+        -7.0,
+        0.0,
+        -4.5
+      ]
+    },
+    {
+      "index": 6,
+      "position": [
+        -38.61974746830583,
+        -55.77974746830583,
+        -4.32
+      ],
+      "azimuth_deg": 225.0,
+      "relative_to_target": [
+        -4.94974746830583,
+        -4.94974746830583,
+        -4.5
+      ]
+    },
+    {
+      "index": 7,
+      "position": [
+        -33.67,
+        -57.83,
+        -4.32
+      ],
+      "azimuth_deg": 270.0,
+      "relative_to_target": [
+        0.0,
+        -7.0,
+        -4.5
+      ]
+    },
+    {
+      "index": 8,
+      "position": [
+        -28.72025253169417,
+        -55.77974746830583,
+        -4.32
+      ],
+      "azimuth_deg": 315.0,
+      "relative_to_target": [
+        4.94974746830583,
+        -4.94974746830583,
+        -4.5
+      ]
+    }
+  ]
+}

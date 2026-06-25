@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Orbit-16 vs PB-NBV-16 공정 비교</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            padding: 20px;
+            color: #eee;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #1e1e2e;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 40px;
+            text-align: center;
+        }
+        header h1 { font-size: 2em; color: white; margin-bottom: 10px; }
+        header p { color: rgba(255,255,255,0.85); font-size: 1.05em; }
+        .content { padding: 40px; }
+
+        .scorecard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .card {
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+        .card.orbit { background: linear-gradient(135deg, #00b4db, #0083b0); }
+        .card.pbnbv { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .card h2 { font-size: 1.4em; margin-bottom: 20px; color: white; }
+        .card .big { font-size: 3em; font-weight: bold; color: white; }
+        .card .label { font-size: 0.85em; color: rgba(255,255,255,0.75); margin-top: 5px; text-transform: uppercase; }
+        .card .row { margin: 12px 0; }
+        .card .verdict {
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .good { background: rgba(255,255,255,0.2); color: #00ffaa; }
+        .bad  { background: rgba(255,255,255,0.2); color: #ff6b6b; }
+
+        h2.section {
+            color: #a78bfa;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #a78bfa;
+        }
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .chart-box {
+            background: #2a2a3e;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .full-chart {
+            background: #2a2a3e;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 40px;
+        }
+
+        .insight {
+            background: #2a2a3e;
+            border-left: 4px solid #a78bfa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.02em;
+        }
+        .insight strong { color: #a78bfa; }
+        .insight .ok { color: #00ffaa; }
+        .insight .ng { color: #ff6b6b; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #2a2a3e;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        thead { background: linear-gradient(135deg, #667eea, #764ba2); }
+        th { padding: 14px 18px; text-align: left; color: white; }
+        td { padding: 12px 18px; border-bottom: 1px solid #3a3a5e; color: #ddd; }
+        tr:hover { background: #3a3a5e; }
+
+        footer {
+            background: #12121e;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🛰️ Orbit-16 vs PB-NBV-16</h1>
+        <p>공정 비교 — 동일 N, 동일 물체, Greedy는 처음부터 독립 실행</p>
+    </header>
+
+    <div class="content">
+
+        <!-- 스코어카드 -->
+        <div class="scorecard">
+            <div class="card orbit">
+                <h2>🔵 Orbit-16</h2>
+                <div class="row">
+                    <div class="big">22.5°</div>
+                    <div class="label">Max Azimuth Gap</div>
+                </div>
+                <div class="row">
+                    <div class="big">99.0%</div>
+                    <div class="label">Coverage</div>
+                </div>
+                <div class="row">Std: 0.0° | 고도 고정 2m</div>
+                <div class="verdict good">균등 ✓</div>
+            </div>
+            <div class="card pbnbv">
+                <h2>🔴 PB-NBV-16</h2>
+                <div class="row">
+                    <div class="big">107.0°</div>
+                    <div class="label">Max Azimuth Gap</div>
+                </div>
+                <div class="row">
+                    <div class="big">100.0%</div>
+                    <div class="label">Coverage</div>
+                </div>
+                <div class="row">Std: 25.5° | 고도 자유 1~9m</div>
+                <div class="verdict bad">불균등 ✗</div>
+            </div>
+        </div>
+
+        <!-- XY 경로 분포 -->
+        <h2 class="section">XY 평면 경로 분포</h2>
+        <div class="chart-grid">
+            <div class="chart-box" id="orbitXY"></div>
+            <div class="chart-box" id="pbnbvXY"></div>
+        </div>
+
+        <!-- 방위각 히스토그램 -->
+        <h2 class="section">방위각 분포 히스토그램</h2>
+        <div class="full-chart" id="azHist"></div>
+
+        <!-- 인접 간격 -->
+        <h2 class="section">인접 포인트 간 각도 차이</h2>
+        <div class="full-chart" id="gapChart"></div>
+
+        <!-- Coverage 곡선 -->
+        <h2 class="section">누적 Coverage 곡선</h2>
+        <div class="full-chart" id="covCurve"></div>
+
+        <!-- 상세 표 -->
+        <h2 class="section">PB-NBV 선택 상세</h2>
+        <table id="pbnbvTable">
+            <thead><tr><th>Step</th><th>방위각</th><th>고도</th><th>F 점수</th><th>Gained</th><th>Coverage</th></tr></thead>
+            <tbody id="pbnbvBody"></tbody>
+        </table>
+
+        <!-- 해석 -->
+        <h2 class="section">결과 해석</h2>
+        <div class="insight">
+            <strong>PB-NBV는 왜 불균등한가?</strong><br>
+            Step 1~2만으로 <span class="ok">90.6% coverage 달성</span> — 단 2개 시점(100°, 0°)으로 대부분 커버.<br>
+            Step 3~부터는 F 점수가 급감 (Frontier 소멸) → 이후 선택은 <span class="ng">정보가 아닌 tie-breaking</span>에 의존.<br>
+            결과: 방위각 100°~200° 구간에 5개 집중, 반대쪽 <span class="ng">107° 공백</span>.
+        </div>
+        <div class="insight">
+            <strong>Coverage vs 방위각 균등성 트레이드오프</strong><br>
+            <span class="ok">PB-NBV</span>: 적은 시점(5개)으로 99% 커버 → <span class="ng">방위각 불균등</span><br>
+            <span class="ok">Orbit</span>: 모든 시점 균등 분배 → <span class="ng">개별 시점이 중복 관측(step 10~16: +0 voxel)</span><br>
+            → SfM 복원에는 <strong>방위각 균등성이 coverage보다 중요</strong> (다양한 기선 필요).
+        </div>
+        <div class="insight">
+            <strong>결론: 올바른 비교</strong><br>
+            이전 실험의 오류(Hybrid: Orbit이 먼저 포화시킨 뒤 Greedy 실행)를 제거하고<br>
+            PB-NBV를 처음부터 독립 실행한 결과에서도<br>
+            <strong>Orbit이 방위각 균등성에서 명확히 우세 (22.5° vs 107.0°)</strong>.<br>
+            PB-NBV는 coverage 효율이 더 높지만 SfM에 필요한 관점 다양성은 부족.
+        </div>
+    </div>
+    <footer>© 2026 공정 비교 실험 — PB-NBV 독립 실행</footer>
+</div>
+
+<script>
+const orbitPath = [
+    {az:0.0,   x:-27.67, y:-50.83, step:1,  cov:69.8, gained:141},
+    {az:22.5,  x:-28.24, y:-49.56, step:2,  cov:74.8, gained:10},
+    {az:45.0,  x:-29.43, y:-47.49, step:3,  cov:76.7, gained:4},
+    {az:67.5,  x:-31.34, y:-47.34, step:4,  cov:80.2, gained:7},
+    {az:90.0,  x:-33.67, y:-44.83, step:5,  cov:89.1, gained:18},
+    {az:112.5, x:-36.0,  y:-47.34, step:6,  cov:94.1, gained:10},
+    {az:135.0, x:-37.91, y:-49.43, step:7,  cov:95.5, gained:3},
+    {az:157.5, x:-39.1,  y:-52.1,  step:8,  cov:98.0, gained:5},
+    {az:180.0, x:-39.67, y:-50.83, step:9,  cov:99.0, gained:2},
+    {az:202.5, x:-39.1,  y:-56.5,  step:10, cov:99.0, gained:0},
+    {az:225.0, x:-37.91, y:-58.2,  step:11, cov:99.0, gained:0},
+    {az:247.5, x:-36.0,  y:-60.3,  step:12, cov:99.0, gained:0},
+    {az:270.0, x:-33.67, y:-56.83, step:13, cov:99.0, gained:0},
+    {az:292.5, x:-31.34, y:-60.3,  step:14, cov:99.0, gained:0},
+    {az:315.0, x:-29.43, y:-59.17, step:15, cov:99.0, gained:0},
+    {az:337.5, x:-28.24, y:-55.1,  step:16, cov:99.0, gained:0},
+];
+
+const pbnbvPath = [
+    {az:100.0, alt:2.0, score:11334.6, gained:112, cov:55.4},
+    {az:0.0,   alt:2.0, score:7758.1,  gained:71,  cov:90.6},
+    {az:60.0,  alt:1.0, score:556.4,   gained:2,   cov:91.6},
+    {az:201.6, alt:1.0, score:558.6,   gained:14,  cov:98.5},
+    {az:160.0, alt:1.0, score:3130.3,  gained:1,   cov:99.0},
+    {az:80.0,  alt:1.0, score:0.0,     gained:0,   cov:99.0},
+    {az:180.0, alt:1.0, score:0.0,     gained:0,   cov:99.0},
+    {az:0.0,   alt:1.0, score:-1199.0, gained:0,   cov:99.0},
+    {az:136.2, alt:1.0, score:-1241.5, gained:0,   cov:99.0},
+    {az:19.5,  alt:1.0, score:-1252.8, gained:0,   cov:99.0},
+    {az:350.3, alt:1.0, score:-1335.8, gained:0,   cov:99.0},
+    {az:0.0,   alt:2.0, score:-1377.5, gained:0,   cov:99.0},
+    {az:9.7,   alt:1.0, score:-1379.7, gained:0,   cov:99.0},
+    {az:145.9, alt:1.0, score:-1426.5, gained:0,   cov:99.0},
+    {az:243.2, alt:9.0, score:-1468.5, gained:2,   cov:100.0},
+];
+
+const TARGET = [-33.67, -50.83];
+const R = 6.0;
+function azToXY(az) {
+    const a = az * Math.PI / 180;
+    return [TARGET[0] + R * Math.cos(a), TARGET[1] + R * Math.sin(a)];
+}
+
+// XY 분포
+function plotXY(data, divId, title, color) {
+    const pts = data.map(d => azToXY(d.az));
+    const trace = {
+        x: pts.map(p => p[0]),
+        y: pts.map(p => p[1]),
+        mode: 'markers+text',
+        type: 'scatter',
+        marker: { size: 14, color: data.map((_, i) => i), colorscale: 'Viridis',
+                  line: { color: '#fff', width: 1 } },
+        text: data.map(d => d.az.toFixed(0)+'°'),
+        textposition: 'top center',
+        textfont: { size: 9, color: '#aaa' }
+    };
+    const building = {
+        x: [TARGET[0]], y: [TARGET[1]],
+        mode: 'markers', marker: { size: 20, color: '#ff4444', symbol: 'square' },
+        name: '건축물', showlegend: false
+    };
+    Plotly.newPlot(divId, [building, trace], {
+        title: { text: title, font: { color: '#ccc' } },
+        paper_bgcolor: '#2a2a3e', plot_bgcolor: '#2a2a3e',
+        font: { color: '#ccc' },
+        xaxis: { title: 'X (m)', gridcolor: '#3a3a5e' },
+        yaxis: { title: 'Y (m)', gridcolor: '#3a3a5e', scaleanchor: 'x' },
+        height: 420, margin: { t: 50, b: 40, l: 50, r: 20 }
+    }, {responsive: true});
+}
+
+plotXY(orbitPath, 'orbitXY', 'Orbit-16: 균등 배치', 'blue');
+plotXY(pbnbvPath, 'pbnbvXY', 'PB-NBV-16: Coverage 기반 선택', 'red');
+
+// 히스토그램
+const bins = Array.from({length: 16}, (_, i) => i * 22.5);
+function countBin(data) {
+    const h = Array(16).fill(0);
+    data.forEach(d => { const b = Math.round((d.az % 360) / 22.5) % 16; h[b]++; });
+    return h;
+}
+Plotly.newPlot('azHist', [
+    { x: bins, y: countBin(orbitPath), type: 'bar', name: 'Orbit-16',
+      marker: { color: '#4fc3f7' }, opacity: 0.85 },
+    { x: bins, y: countBin(pbnbvPath), type: 'bar', name: 'PB-NBV-16',
+      marker: { color: '#f48fb1' }, opacity: 0.85 }
+], {
+    barmode: 'group',
+    title: { text: '방위각 구간별 포인트 수 (균등하면 모든 구간 1개)', font: { color: '#ccc' } },
+    paper_bgcolor: '#2a2a3e', plot_bgcolor: '#2a2a3e', font: { color: '#ccc' },
+    xaxis: { title: '방위각 (°)', gridcolor: '#3a3a5e' },
+    yaxis: { title: '개수', gridcolor: '#3a3a5e' },
+    height: 350, legend: { font: { color: '#ccc' } }
+}, {responsive: true});
+
+// 갭 차트
+function getGaps(data) {
+    const angles = [...data].map(d => d.az).sort((a,b) => a-b);
+    return angles.map((a, i) => ((angles[(i+1)%angles.length] - a) + 360) % 360);
+}
+const go = getGaps(orbitPath), gn = getGaps(pbnbvPath);
+Plotly.newPlot('gapChart', [
+    { x: Array.from({length: go.length}, (_, i) => i+1), y: go,
+      type: 'bar', name: 'Orbit-16', marker: { color: '#4fc3f7' }, opacity: 0.85 },
+    { x: Array.from({length: gn.length}, (_, i) => i+1), y: gn,
+      type: 'bar', name: 'PB-NBV-16', marker: { color: '#f48fb1' }, opacity: 0.85 }
+], {
+    barmode: 'group',
+    title: { text: '인접 포인트 간 각도 간격 — 붉은 막대가 높을수록 공백', font: { color: '#ccc' } },
+    paper_bgcolor: '#2a2a3e', plot_bgcolor: '#2a2a3e', font: { color: '#ccc' },
+    xaxis: { title: '인덱스', gridcolor: '#3a3a5e' },
+    yaxis: { title: '간격 (°)', gridcolor: '#3a3a5e' },
+    shapes: [{ type: 'line', x0: 0, x1: 20, y0: 70, y1: 70,
+               line: { color: '#ff4444', dash: 'dash', width: 2 } }],
+    annotations: [{ x: 18, y: 72, text: '70° 기준선', showarrow: false,
+                    font: { color: '#ff4444', size: 11 } }],
+    height: 350, legend: { font: { color: '#ccc' } }
+}, {responsive: true});
+
+// Coverage 곡선
+Plotly.newPlot('covCurve', [
+    { x: Array.from({length: orbitPath.length}, (_, i) => i+1),
+      y: orbitPath.map(d => d.cov),
+      mode: 'lines+markers', name: 'Orbit-16',
+      line: { color: '#4fc3f7', width: 3 }, marker: { size: 8 } },
+    { x: Array.from({length: pbnbvPath.length}, (_, i) => i+1),
+      y: pbnbvPath.map(d => d.cov),
+      mode: 'lines+markers', name: 'PB-NBV-16',
+      line: { color: '#f48fb1', width: 3 }, marker: { size: 8 } }
+], {
+    title: { text: '누적 Coverage (%) — PB-NBV가 더 빠르게 포화', font: { color: '#ccc' } },
+    paper_bgcolor: '#2a2a3e', plot_bgcolor: '#2a2a3e', font: { color: '#ccc' },
+    xaxis: { title: 'Step', gridcolor: '#3a3a5e' },
+    yaxis: { title: 'Coverage (%)', gridcolor: '#3a3a5e', range: [50, 102] },
+    height: 350, legend: { font: { color: '#ccc' } }
+}, {responsive: true});
+
+// 상세 표
+const tbody = document.getElementById('pbnbvBody');
+pbnbvPath.forEach(d => {
+    const tr = document.createElement('tr');
+    const scoreColor = d.score > 0 ? '#00ffaa' : '#ff6b6b';
+    tr.innerHTML = `<td>${pbnbvPath.indexOf(d)+1}</td>
+        <td>${d.az.toFixed(1)}°</td>
+        <td>${d.alt}m</td>
+        <td style="color:${scoreColor}">${d.score.toFixed(1)}</td>
+        <td>${d.gained}</td>
+        <td>${d.cov.toFixed(1)}%</td>`;
+    tbody.appendChild(tr);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+[
+  {
+    "voxel_size": 0.15,
+    "flatness": NaN,
+    "n_budget": 4,
+    "orbit_coverage": 0.0,
+    "greedy_coverage": 0.0,
+    "random_coverage": 0.0,
+    "orbit_distance": 0.0,
+    "greedy_distance": 0.0,
+    "random_distance": 0.0
+  },
+  {
+    "voxel_size": 0.15,
+    "flatness": NaN,
+    "n_budget": 6,
+    "orbit_coverage": 0.0,
+    "greedy_coverage": 0.0,
+    "random_coverage": 0.0,
+    "orbit_distance": 0.0,
+    "greedy_distance": 0.0,
+    "random_distance": 0.0
+  },
+  {
+    "voxel_size": 0.15,
+    "flatness": NaN,
+    "n_budget": 8,
+    "orbit_coverage": 0.0,
+    "greedy_coverage": 0.0,
+    "random_coverage": 0.0,
+    "orbit_distance": 0.0,
+    "greedy_distance": 0.0,
+    "random_distance": 0.0
+  },
+  {
+    "voxel_size": 0.15,
+    "flatness": NaN,
+    "n_budget": 12,
+    "orbit_coverage": 0.0,
+    "greedy_coverage": 0.0,
+    "random_coverage": 0.0,
+    "orbit_distance": 0.0,
+    "greedy_distance": 0.0,
+    "random_distance": 0.0
+  },
+  {
+    "voxel_size": 0.15,
+    "flatness": NaN,
+    "n_budget": 16,
+    "orbit_coverage": 0.0,
+    "greedy_coverage": 0.0,
+    "random_coverage": 0.0,
+    "orbit_distance": 0.0,
+    "greedy_distance": 0.0,
+    "random_distance": 0.0
+  },
+  {
+    "voxel_size": 0.075,
+    "flatness": NaN,
+    "n_budget": 4,
+    "orbit_coverage": 0.0,
+    "greedy_coverage": 0.0,
+    "random_coverage": 0.0,
+    "orbit_distance": 0.0,
+    "greedy_distance": 0.0,
+    "random_distance": 0.0
+  },
+  {
+    "voxel_size": 0.075,
+    "flatness": NaN,
+    "n_budget": 6,
+    "orbit_coverage": 0.0,
+    "greedy_coverage": 0.0,
+    "random_coverage": 0.0,
+    "orbit_distance": 0.0,
+    "greedy_distance": 0.0,
+    "random_distance": 0.0
+  },
+  {
+    "voxel_size": 0.075,
+    "flatness": NaN,
+    "n_budget": 8,
+    "orbit_coverage": 0.0,
+    "greedy_coverage": 0.0,
+    "random_coverage": 0.0,
+    "orbit_distance": 0.0,
+    "greedy_distance": 0.0,
+    "random_distance": 0.0
+  },
+  {
+    "voxel_size": 0.075,
+    "flatness": NaN,
+    "n_budget": 12,
+    "orbit_coverage": 0.0,
+    "greedy_coverage": 0.0,
+    "random_coverage": 0.0,
+    "orbit_distance": 0.0,
+    "greedy_distance": 0.0,
+    "random_distance": 0.0
+  },
+  {
+    "voxel_size": 0.075,
+    "flatness": NaN,
+    "n_budget": 16,
+    "orbit_coverage": 0.0,
+    "greedy_coverage": 0.0,
+    "random_coverage": 0.0,
+    "orbit_distance": 0.0,
+    "greedy_distance": 0.0,
+    "random_distance": 0.0
+  }
+]
