@@ -1,0 +1,5 @@
+Log file created at: 2026/06/24 17:52:39
+Running on machine: 80bc977c9090
+Running duration (h:mm:ss): 0:00:00
+Log line format: [IWEF]yyyymmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I20260624 17:52:39.588896  3170 voxelstruct.cpp:36] voxelstruct init success

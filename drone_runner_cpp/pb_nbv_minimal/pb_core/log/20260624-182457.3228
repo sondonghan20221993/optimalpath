@@ -1,0 +1,349 @@
+Log file created at: 2026/06/24 18:24:57
+Running on machine: 8d9ee86b4b32
+Running duration (h:mm:ss): 0:00:00
+Log line format: [IWEF]yyyymmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I20260624 18:24:57.156106  3228 voxelstruct.cpp:36] voxelstruct init success
+I20260624 18:24:57.192788  3228 nbvstrategy.cpp:61] nbvstrategy init success
+I20260624 18:24:57.215850  3228 visualization.cpp:40] visualization init success.
+I20260624 18:24:57.217658  3228 pbnbv.cpp:19] pbnbv init success
+I20260624 18:24:57.219283  3228 pbnbv.cpp:23] enable_visualization: 0
+I20260624 18:24:57.302665  3228 pbnbv.cpp:43] execute :
+I20260624 18:24:57.302714  3228 pbnbv.cpp:55] update_voxel_map : 
+W20260624 18:24:57.302740  3228 voxelstruct.cpp:65] cloud is empty
+I20260624 18:24:57.303042  3228 pbnbv.cpp:65] voxel_map size: 0
+I20260624 18:24:57.303064  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:24:57.303251  3228 nbvstrategy.cpp:78] compute_init_view : 
+I20260624 18:24:57.303267  3228 nbvstrategy.cpp:80] Use first_viewpoint_position  !
+I20260624 18:24:57.303274  3228 nbvstrategy.cpp:277] unknown_center: 0
+0
+0
+I20260624 18:24:57.303310  3228 pbnbv.cpp:78] out nbv: 
+        0 -0.316228 -0.948683        15
+        1         0         0         0
+       -0 -0.948683  0.316228        -5
+        0         0         0         1
+I20260624 18:24:57.303336  3228 pbnbv.cpp:79] execute time: 0 ms
+I20260624 18:24:57.303349  3228 pbnbv.cpp:80] update_voxel_map time: 0 ms
+I20260624 18:24:57.303361  3228 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:24:57.303377  3228 visualization.cpp:76] visualization voxel_map size: 0
+I20260624 18:24:57.303601  3228 pbnbv.cpp:43] execute :
+I20260624 18:24:57.303625  3228 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:24:57.303644  3228 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:24:57.303656  3228 voxelstruct.cpp:85] past octomap getNumLeafNodes: 0
+I20260624 18:24:57.313669  3228 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:24:57.313701  3228 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2164
+I20260624 18:24:58.566314  3228 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:24:58.566360  3228 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:24:59.599007  3228 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:24:59.599067  3228 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:24:59.616108  3228 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:24:59.616180  3228 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:24:59.638896  3228 voxelstruct.cpp:519] voxel map expand bbx done
+I20260624 18:24:59.638958  3228 voxelstruct.cpp:520] current octomap getNumLeafNodes: 70993
+I20260624 18:24:59.639376  3228 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:24:59.639572  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:24:59.639731  3228 nbvstrategy.cpp:133] next_best_view_index: 108
+I20260624 18:24:59.639746  3228 nbvstrategy.cpp:134] next_best_view_res: -0.989821 -0.133732 0.0486745    -2.344
+-0.142315  0.930128 -0.338539   3.77464
+        0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:24:59.639780  3228 pbnbv.cpp:78] out nbv: 
+-0.989821 -0.133732 0.0486745    -2.344
+-0.142315  0.930128 -0.338539   3.77464
+        0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:24:59.639804  3228 pbnbv.cpp:79] execute time: 2336 ms
+I20260624 18:24:59.639808  3228 pbnbv.cpp:80] update_voxel_map time: 2335 ms
+I20260624 18:24:59.639818  3228 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:24:59.640332  3228 visualization.cpp:76] visualization voxel_map size: 2206
+I20260624 18:24:59.642545  3228 pbnbv.cpp:43] execute :
+I20260624 18:24:59.642580  3228 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:24:59.643749  3228 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:24:59.643774  3228 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:24:59.655689  3228 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:24:59.655756  3228 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:25:01.218201  3228 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:25:01.218266  3228 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:25:01.256506  3228 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:25:01.256567  3228 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:25:01.275804  3228 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:25:01.275859  3228 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:25:01.300581  3228 voxelstruct.cpp:519] voxel map expand bbx done
+I20260624 18:25:01.300629  3228 voxelstruct.cpp:520] current octomap getNumLeafNodes: 70993
+I20260624 18:25:01.301112  3228 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:25:01.301461  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:25:01.301545  3228 nbvstrategy.cpp:133] next_best_view_index: 704
+I20260624 18:25:01.301558  3228 nbvstrategy.cpp:134] next_best_view_res: -0.866025 -0.469846   0.17101  -4.23519
+     -0.5  0.813798 -0.296198   3.16428
+        0  -0.34202 -0.939693   13.8802
+        0         0         0         1
+I20260624 18:25:01.301596  3228 pbnbv.cpp:78] out nbv: 
+-0.866025 -0.469846   0.17101  -4.23519
+     -0.5  0.813798 -0.296198   3.16428
+        0  -0.34202 -0.939693   13.8802
+        0         0         0         1
+I20260624 18:25:01.301621  3228 pbnbv.cpp:79] execute time: 1659 ms
+I20260624 18:25:01.301626  3228 pbnbv.cpp:80] update_voxel_map time: 1658 ms
+I20260624 18:25:01.301630  3228 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:25:01.302371  3228 visualization.cpp:76] visualization voxel_map size: 2295
+I20260624 18:25:01.305063  3228 pbnbv.cpp:43] execute :
+I20260624 18:25:01.305090  3228 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:25:01.306340  3228 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:25:01.306363  3228 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:25:01.319331  3228 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:25:01.319353  3228 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:25:02.979848  3228 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:25:02.979902  3228 voxelstruct.cpp:186] current octomap getNumLeafNodes: 71527
+I20260624 18:25:03.006206  3228 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:25:03.006266  3228 voxelstruct.cpp:224] current octomap getNumLeafNodes: 71527
+I20260624 18:25:03.019616  3228 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:25:03.019665  3228 voxelstruct.cpp:476] current octomap getNumLeafNodes: 71527
+I20260624 18:25:03.047206  3228 voxelstruct.cpp:519] voxel map expand bbx done
+I20260624 18:25:03.047282  3228 voxelstruct.cpp:520] current octomap getNumLeafNodes: 71527
+I20260624 18:25:03.047832  3228 pbnbv.cpp:65] voxel_map size: 71527
+I20260624 18:25:03.048069  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:25:03.048211  3228 nbvstrategy.cpp:133] next_best_view_index: 735
+I20260624 18:25:03.048233  3228 nbvstrategy.cpp:134] next_best_view_res: -0.989821 -0.133732 0.0486745    -2.344
+-0.142315  0.930128 -0.338539   3.77464
+        0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:25:03.048267  3228 pbnbv.cpp:78] out nbv: 
+-0.989821 -0.133732 0.0486745    -2.344
+-0.142315  0.930128 -0.338539   3.77464
+        0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:25:03.048292  3228 pbnbv.cpp:79] execute time: 1743 ms
+I20260624 18:25:03.048305  3228 pbnbv.cpp:80] update_voxel_map time: 1742 ms
+I20260624 18:25:03.048317  3228 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:25:03.048935  3228 visualization.cpp:76] visualization voxel_map size: 2280
+I20260624 18:25:03.051693  3228 pbnbv.cpp:43] execute :
+I20260624 18:25:03.051717  3228 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:25:03.053010  3228 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:25:03.053030  3228 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:25:03.066042  3228 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:25:03.066990  3228 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:25:04.731185  3228 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:25:04.731235  3228 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:25:04.754735  3228 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:25:04.754796  3228 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:25:04.774310  3228 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:25:04.774389  3228 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:25:04.799666  3228 voxelstruct.cpp:519] voxel map expand bbx done
+I20260624 18:25:04.799726  3228 voxelstruct.cpp:520] current octomap getNumLeafNodes: 70993
+I20260624 18:25:04.800284  3228 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:25:04.800546  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:25:04.800628  3228 nbvstrategy.cpp:133] next_best_view_index: 195
+I20260624 18:25:04.800642  3228 nbvstrategy.cpp:134] next_best_view_res:  0.540641   0.79052 -0.287726   2.79795
+ 0.841254 -0.508036   0.18491  -4.22639
+       -0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:25:04.800676  3228 pbnbv.cpp:78] out nbv: 
+ 0.540641   0.79052 -0.287726   2.79795
+ 0.841254 -0.508036   0.18491  -4.22639
+       -0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:25:04.800701  3228 pbnbv.cpp:79] execute time: 1748 ms
+I20260624 18:25:04.800707  3228 pbnbv.cpp:80] update_voxel_map time: 1748 ms
+I20260624 18:25:04.800719  3228 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:25:04.801362  3228 visualization.cpp:76] visualization voxel_map size: 2230
+I20260624 18:25:04.804240  3228 pbnbv.cpp:43] execute :
+I20260624 18:25:04.804265  3228 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:25:04.805575  3228 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:25:04.805598  3228 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:25:04.818761  3228 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:25:04.818853  3228 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:25:06.464941  3228 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:25:06.464994  3228 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:25:06.489478  3228 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:25:06.489782  3228 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:25:06.509450  3228 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:25:06.509521  3228 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:25:06.529966  3228 voxelstruct.cpp:519] voxel map expand bbx done
+I20260624 18:25:06.530016  3228 voxelstruct.cpp:520] current octomap getNumLeafNodes: 70993
+I20260624 18:25:06.530762  3228 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:25:06.531028  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:25:06.531133  3228 nbvstrategy.cpp:133] next_best_view_index: 215
+I20260624 18:25:06.531148  3228 nbvstrategy.cpp:134] next_best_view_res:   0.095056  -0.935438   0.340471   -6.80418
+ -0.995472 -0.0893235  0.0325111   -1.89694
+         0   -0.34202  -0.939693    13.5634
+         0          0          0          1
+I20260624 18:25:06.531183  3228 pbnbv.cpp:78] out nbv: 
+  0.095056  -0.935438   0.340471   -6.80418
+ -0.995472 -0.0893235  0.0325111   -1.89694
+         0   -0.34202  -0.939693    13.5634
+         0          0          0          1
+I20260624 18:25:06.531208  3228 pbnbv.cpp:79] execute time: 1726 ms
+I20260624 18:25:06.531219  3228 pbnbv.cpp:80] update_voxel_map time: 1726 ms
+I20260624 18:25:06.531230  3228 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:25:06.531862  3228 visualization.cpp:76] visualization voxel_map size: 2237
+I20260624 18:25:06.534749  3228 pbnbv.cpp:43] execute :
+I20260624 18:25:06.534773  3228 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:25:06.535996  3228 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:25:06.536693  3228 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:25:06.549448  3228 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:25:06.549490  3228 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:25:08.204634  3228 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:25:08.204778  3228 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:25:08.232244  3228 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:25:08.232345  3228 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:25:08.251613  3228 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:25:08.251674  3228 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:25:08.268724  3228 voxelstruct.cpp:519] voxel map expand bbx done
+I20260624 18:25:08.268792  3228 voxelstruct.cpp:520] current octomap getNumLeafNodes: 70993
+I20260624 18:25:08.269860  3228 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:25:08.270110  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:25:08.270367  3228 nbvstrategy.cpp:133] next_best_view_index: 26
+I20260624 18:25:08.270390  3228 nbvstrategy.cpp:134] next_best_view_res:   0.971812   0.221541 -0.0806343  -0.367486
+  0.235759  -0.913204   0.332379   -6.48049
+        -0   -0.34202  -0.939693    13.5634
+         0          0          0          1
+I20260624 18:25:08.270429  3228 pbnbv.cpp:78] out nbv: 
+  0.971812   0.221541 -0.0806343  -0.367486
+  0.235759  -0.913204   0.332379   -6.48049
+        -0   -0.34202  -0.939693    13.5634
+         0          0          0          1
+I20260624 18:25:08.270454  3228 pbnbv.cpp:79] execute time: 1735 ms
+I20260624 18:25:08.270460  3228 pbnbv.cpp:80] update_voxel_map time: 1735 ms
+I20260624 18:25:08.270473  3228 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:25:08.271090  3228 visualization.cpp:76] visualization voxel_map size: 2249
+I20260624 18:25:08.273968  3228 pbnbv.cpp:43] execute :
+I20260624 18:25:08.273994  3228 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:25:08.274981  3228 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:25:08.275004  3228 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:25:08.287997  3228 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:25:08.288084  3228 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:25:09.715137  3228 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:25:09.715185  3228 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:25:09.726351  3228 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:25:09.726401  3228 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:25:09.744931  3228 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:25:09.745010  3228 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:25:09.758103  3228 voxelstruct.cpp:519] voxel map expand bbx done
+I20260624 18:25:09.758159  3228 voxelstruct.cpp:520] current octomap getNumLeafNodes: 70993
+I20260624 18:25:09.759033  3228 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:25:09.759279  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:25:09.759385  3228 nbvstrategy.cpp:133] next_best_view_index: 55
+I20260624 18:25:09.759402  3228 nbvstrategy.cpp:134] next_best_view_res:  0.866025 -0.469846   0.17101  -4.21393
+     -0.5 -0.813798  0.296198  -5.92746
+        0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:25:09.759439  3228 pbnbv.cpp:78] out nbv: 
+ 0.866025 -0.469846   0.17101  -4.21393
+     -0.5 -0.813798  0.296198  -5.92746
+        0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:25:09.759456  3228 pbnbv.cpp:79] execute time: 1485 ms
+I20260624 18:25:09.759459  3228 pbnbv.cpp:80] update_voxel_map time: 1485 ms
+I20260624 18:25:09.759469  3228 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:25:09.760962  3228 visualization.cpp:76] visualization voxel_map size: 2246
+I20260624 18:25:09.763705  3228 pbnbv.cpp:43] execute :
+I20260624 18:25:09.763746  3228 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:25:09.764650  3228 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:25:09.764672  3228 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:25:09.778498  3228 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:25:09.778569  3228 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:25:11.104393  3228 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:25:11.104460  3228 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:25:11.110903  3228 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:25:11.110949  3228 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:25:11.130800  3228 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:25:11.130836  3228 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:25:11.142689  3228 voxelstruct.cpp:519] voxel map expand bbx done
+I20260624 18:25:11.142735  3228 voxelstruct.cpp:520] current octomap getNumLeafNodes: 70993
+I20260624 18:25:11.143148  3228 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:25:11.143338  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:25:11.143410  3228 nbvstrategy.cpp:133] next_best_view_index: 194
+I20260624 18:25:11.143424  3228 nbvstrategy.cpp:134] next_best_view_res:  0.690079  0.680088 -0.247532   2.18358
+ 0.723734 -0.648462  0.236021  -5.00763
+       -0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:25:11.143455  3228 pbnbv.cpp:78] out nbv: 
+ 0.690079  0.680088 -0.247532   2.18358
+ 0.723734 -0.648462  0.236021  -5.00763
+       -0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:25:11.143481  3228 pbnbv.cpp:79] execute time: 1379 ms
+I20260624 18:25:11.143486  3228 pbnbv.cpp:80] update_voxel_map time: 1379 ms
+I20260624 18:25:11.143497  3228 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:25:11.144045  3228 visualization.cpp:76] visualization voxel_map size: 2254
+I20260624 18:25:11.146364  3228 pbnbv.cpp:43] execute :
+I20260624 18:25:11.146387  3228 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:25:11.147146  3228 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:25:11.147164  3228 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:25:11.159252  3228 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:25:11.159288  3228 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:25:12.440800  3228 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:25:12.440874  3228 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:25:12.447628  3228 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:25:12.447679  3228 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:25:12.463737  3228 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:25:12.463770  3228 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:25:12.471724  3228 voxelstruct.cpp:519] voxel map expand bbx done
+I20260624 18:25:12.471760  3228 voxelstruct.cpp:520] current octomap getNumLeafNodes: 70993
+I20260624 18:25:12.472298  3228 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:25:12.472563  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:25:12.472684  3228 nbvstrategy.cpp:133] next_best_view_index: 397
+I20260624 18:25:12.472702  3228 nbvstrategy.cpp:134] next_best_view_res:  -0.189251   0.922711  -0.335839    3.53338
+  0.981929   0.177838 -0.0647277  -0.410622
+         0   -0.34202  -0.939693    13.5634
+         0          0          0          1
+I20260624 18:25:12.472734  3228 pbnbv.cpp:78] out nbv: 
+ -0.189251   0.922711  -0.335839    3.53338
+  0.981929   0.177838 -0.0647277  -0.410622
+         0   -0.34202  -0.939693    13.5634
+         0          0          0          1
+I20260624 18:25:12.473487  3228 pbnbv.cpp:79] execute time: 1326 ms
+I20260624 18:25:12.473515  3228 pbnbv.cpp:80] update_voxel_map time: 1326 ms
+I20260624 18:25:12.473523  3228 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:25:12.474696  3228 visualization.cpp:76] visualization voxel_map size: 2255
+I20260624 18:25:12.477939  3228 pbnbv.cpp:43] execute :
+I20260624 18:25:12.478025  3228 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:25:12.479014  3228 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:25:12.479060  3228 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:25:12.491962  3228 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:25:12.492035  3228 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:25:13.753734  3228 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:25:13.753795  3228 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:25:13.759689  3228 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:25:13.759760  3228 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:25:13.783999  3228 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:25:13.784132  3228 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:25:13.794507  3228 voxelstruct.cpp:519] voxel map expand bbx done
+I20260624 18:25:13.794569  3228 voxelstruct.cpp:520] current octomap getNumLeafNodes: 70993
+I20260624 18:25:13.794975  3228 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:25:13.795159  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:25:13.795243  3228 nbvstrategy.cpp:133] next_best_view_index: 134
+I20260624 18:25:13.795255  3228 nbvstrategy.cpp:134] next_best_view_res: -0.371662   0.87238 -0.317521   3.25337
+ 0.928368  0.349248 -0.127116  0.542998
+        0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:25:13.795289  3228 pbnbv.cpp:78] out nbv: 
+-0.371662   0.87238 -0.317521   3.25337
+ 0.928368  0.349248 -0.127116  0.542998
+        0  -0.34202 -0.939693   13.5634
+        0         0         0         1
+I20260624 18:25:13.795313  3228 pbnbv.cpp:79] execute time: 1317 ms
+I20260624 18:25:13.795325  3228 pbnbv.cpp:80] update_voxel_map time: 1317 ms
+I20260624 18:25:13.795337  3228 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:25:13.795881  3228 visualization.cpp:76] visualization voxel_map size: 2248
+I20260624 18:25:13.798209  3228 pbnbv.cpp:43] execute :
+I20260624 18:25:13.798235  3228 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:25:13.799110  3228 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:25:13.799130  3228 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:25:13.811281  3228 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:25:13.811305  3228 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:25:15.126309  3228 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:25:15.126354  3228 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:25:15.132259  3228 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:25:15.132334  3228 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:25:15.147221  3228 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:25:15.147280  3228 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:25:15.156760  3228 voxelstruct.cpp:519] voxel map expand bbx done
+I20260624 18:25:15.156826  3228 voxelstruct.cpp:520] current octomap getNumLeafNodes: 70993
+I20260624 18:25:15.157284  3228 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:25:15.157536  3228 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:25:15.157709  3228 nbvstrategy.cpp:133] next_best_view_index: 498
+I20260624 18:25:15.157727  3228 nbvstrategy.cpp:134] next_best_view_res: -0.540641   0.79052 -0.287726   2.79795
+ 0.841254  0.508036  -0.18491   1.42639
+        0  -0.34202 -0.939693   13.5634
+     

@@ -1,0 +1,577 @@
+Log file created at: 2026/06/24 18:04:14
+Running on machine: 6000fe10714f
+Running duration (h:mm:ss): 0:00:00
+Log line format: [IWEF]yyyymmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I20260624 18:04:14.642373  3170 voxelstruct.cpp:36] voxelstruct init success
+I20260624 18:04:14.664949  3170 nbvstrategy.cpp:61] nbvstrategy init success
+I20260624 18:04:14.680383  3170 visualization.cpp:40] visualization init success.
+I20260624 18:04:14.681615  3170 pbnbv.cpp:19] pbnbv init success
+I20260624 18:04:14.682811  3170 pbnbv.cpp:23] enable_visualization: 0
+I20260624 18:04:14.831158  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:14.831197  3170 pbnbv.cpp:55] update_voxel_map : 
+W20260624 18:04:14.831214  3170 voxelstruct.cpp:65] cloud is empty
+I20260624 18:04:14.831472  3170 pbnbv.cpp:65] voxel_map size: 0
+I20260624 18:04:14.831489  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:14.831492  3170 nbvstrategy.cpp:78] compute_init_view : 
+I20260624 18:04:14.831496  3170 nbvstrategy.cpp:80] Use first_viewpoint_position  !
+I20260624 18:04:14.831501  3170 nbvstrategy.cpp:277] unknown_center: 0
+0
+0
+I20260624 18:04:14.831535  3170 pbnbv.cpp:78] out nbv: 
+        0 -0.316228 -0.948683        15
+        1         0         0         0
+       -0 -0.948683  0.316228        -5
+        0         0         0         1
+I20260624 18:04:14.831562  3170 pbnbv.cpp:79] execute time: 0 ms
+I20260624 18:04:14.831568  3170 pbnbv.cpp:80] update_voxel_map time: 0 ms
+I20260624 18:04:14.831571  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:14.831578  3170 visualization.cpp:76] visualization voxel_map size: 0
+I20260624 18:04:14.831799  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:14.831825  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:14.831836  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:14.831840  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 0
+I20260624 18:04:14.841893  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:14.841954  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2164
+I20260624 18:04:16.100947  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:16.101001  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:17.089025  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:17.089143  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:17.112100  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:17.112221  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:17.112687  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:17.134227  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:17.134969  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:17.135102  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:17.135788  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:17.135860  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:17.135921  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:17.135933  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:17.136411  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:17.136433  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:17.136439  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:17.136849  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:17.137040  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:17.137234  3170 nbvstrategy.cpp:133] next_best_view_index: 102
+I20260624 18:04:17.137253  3170 nbvstrategy.cpp:134] next_best_view_res: -0.844328  0.451912   -0.2879   2.80061
+ 0.535827  0.712099 -0.453657   5.53425
+        0   -0.5373 -0.843391   12.0914
+        0         0         0         1
+I20260624 18:04:17.137286  3170 pbnbv.cpp:78] out nbv: 
+-0.844328  0.451912   -0.2879   2.80061
+ 0.535827  0.712099 -0.453657   5.53425
+        0   -0.5373 -0.843391   12.0914
+        0         0         0         1
+I20260624 18:04:17.138119  3170 pbnbv.cpp:79] execute time: 2305 ms
+I20260624 18:04:17.138128  3170 pbnbv.cpp:80] update_voxel_map time: 2305 ms
+I20260624 18:04:17.138131  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:17.138849  3170 visualization.cpp:76] visualization voxel_map size: 2206
+I20260624 18:04:17.141254  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:17.141290  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:17.142405  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:17.142433  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:17.154275  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:17.154328  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:18.813175  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:18.813265  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:18.840507  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:18.840642  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:18.861320  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:18.861444  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:18.861940  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:18.884560  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:18.885931  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:18.886097  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:18.886853  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:18.886935  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:18.886998  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:18.887013  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:18.888553  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:18.888605  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:18.888610  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:18.889391  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:18.889649  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:18.889760  3170 nbvstrategy.cpp:133] next_best_view_index: 415
+I20260624 18:04:18.889775  3170 nbvstrategy.cpp:134] next_best_view_res:  0.324699  0.542498 -0.774768   10.2425
+ 0.945817  -0.18624  0.265978  -5.46554
+       -0 -0.819152 -0.573576   7.96725
+        0         0         0         1
+I20260624 18:04:18.889824  3170 pbnbv.cpp:78] out nbv: 
+ 0.324699  0.542498 -0.774768   10.2425
+ 0.945817  -0.18624  0.265978  -5.46554
+       -0 -0.819152 -0.573576   7.96725
+        0         0         0         1
+I20260624 18:04:18.889849  3170 pbnbv.cpp:79] execute time: 1748 ms
+I20260624 18:04:18.889854  3170 pbnbv.cpp:80] update_voxel_map time: 1748 ms
+I20260624 18:04:18.889858  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:18.890478  3170 visualization.cpp:76] visualization voxel_map size: 2248
+I20260624 18:04:18.893113  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:18.893147  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:18.894375  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:18.894409  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:18.909379  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:18.909466  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:20.586459  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:20.586699  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:20.617947  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:20.618027  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:20.632989  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:20.633239  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:20.633867  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:20.657922  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:20.658703  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:20.658850  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:20.659552  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:20.659626  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:20.659689  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:20.659703  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:20.660573  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:20.660601  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:20.660607  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:20.661211  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:20.661499  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:20.661650  3170 nbvstrategy.cpp:133] next_best_view_index: 373
+I20260624 18:04:20.661664  3170 nbvstrategy.cpp:134] next_best_view_res:  0.851529  0.319178 -0.415961   4.75806
+ 0.524307 -0.518378  0.675563  -11.7261
+       -0 -0.793353 -0.608761   8.50506
+        0         0         0         1
+I20260624 18:04:20.661701  3170 pbnbv.cpp:78] out nbv: 
+ 0.851529  0.319178 -0.415961   4.75806
+ 0.524307 -0.518378  0.675563  -11.7261
+       -0 -0.793353 -0.608761   8.50506
+        0         0         0         1
+I20260624 18:04:20.661726  3170 pbnbv.cpp:79] execute time: 1768 ms
+I20260624 18:04:20.661731  3170 pbnbv.cpp:80] update_voxel_map time: 1768 ms
+I20260624 18:04:20.661742  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:20.662465  3170 visualization.cpp:76] visualization voxel_map size: 2259
+I20260624 18:04:20.666590  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:20.666648  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:20.668252  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:20.668282  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:20.680882  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:20.680941  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:22.424332  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:22.424412  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:22.449554  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:22.449615  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:22.473292  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:22.473383  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:22.474047  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:22.495355  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:22.495968  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:22.496084  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:22.496778  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:22.496856  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:22.497758  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:22.497787  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:22.498588  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:22.498615  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:22.498620  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:22.499303  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:22.499675  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:22.499751  3170 nbvstrategy.cpp:133] next_best_view_index: 482
+I20260624 18:04:22.499764  3170 nbvstrategy.cpp:134] next_best_view_res:  0.809017 -0.293893  0.509037  -9.38075
+-0.587785 -0.404508  0.700629  -12.1093
+        0 -0.866025      -0.5   6.84261
+        0         0         0         1
+I20260624 18:04:22.499797  3170 pbnbv.cpp:78] out nbv: 
+ 0.809017 -0.293893  0.509037  -9.38075
+-0.587785 -0.404508  0.700629  -12.1093
+        0 -0.866025      -0.5   6.84261
+        0         0         0         1
+I20260624 18:04:22.499814  3170 pbnbv.cpp:79] execute time: 1833 ms
+I20260624 18:04:22.499816  3170 pbnbv.cpp:80] update_voxel_map time: 1833 ms
+I20260624 18:04:22.499818  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:22.500474  3170 visualization.cpp:76] visualization voxel_map size: 2258
+I20260624 18:04:22.503379  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:22.503407  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:22.504654  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:22.504679  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:22.517930  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:22.517999  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:24.149566  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:24.149633  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:24.175771  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:24.175829  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:24.196377  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:24.196458  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:24.196879  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:24.215924  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:24.216465  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:24.216576  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:24.217286  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:24.217360  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:24.217420  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:24.217435  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:24.218062  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:24.218086  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:24.218092  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:24.218837  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:24.219112  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:24.219214  3170 nbvstrategy.cpp:133] next_best_view_index: 459
+I20260624 18:04:24.219233  3170 nbvstrategy.cpp:134] next_best_view_res:  -0.45399  0.445503 -0.771634   10.1946
+ 0.891007  0.226995 -0.393167   4.60965
+        0 -0.866025      -0.5   6.84261
+        0         0         0         1
+I20260624 18:04:24.219267  3170 pbnbv.cpp:78] out nbv: 
+ -0.45399  0.445503 -0.771634   10.1946
+ 0.891007  0.226995 -0.393167   4.60965
+        0 -0.866025      -0.5   6.84261
+        0         0         0         1
+I20260624 18:04:24.219985  3170 pbnbv.cpp:79] execute time: 1715 ms
+I20260624 18:04:24.219996  3170 pbnbv.cpp:80] update_voxel_map time: 1715 ms
+I20260624 18:04:24.220000  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:24.220885  3170 visualization.cpp:76] visualization voxel_map size: 2258
+I20260624 18:04:24.223959  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:24.223999  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:24.225255  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:24.225282  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:24.238036  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:24.238116  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:25.765583  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:25.765694  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:25.787184  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:25.787256  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:25.808463  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:25.808589  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:25.809075  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:25.823542  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:25.824115  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:25.824249  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:25.824959  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:25.825035  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:25.825098  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:25.825112  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:25.825799  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:25.825819  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:25.825824  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:25.826819  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:25.827045  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:25.827266  3170 nbvstrategy.cpp:133] next_best_view_index: 68
+I20260624 18:04:25.827286  3170 nbvstrategy.cpp:134] next_best_view_res:  0.866025 -0.443505  0.230874  -5.12897
+     -0.5 -0.768174  0.399886  -7.51235
+        0 -0.461749 -0.887011   12.7582
+        0         0         0         1
+I20260624 18:04:25.827325  3170 pbnbv.cpp:78] out nbv: 
+ 0.866025 -0.443505  0.230874  -5.12897
+     -0.5 -0.768174  0.399886  -7.51235
+        0 -0.461749 -0.887011   12.7582
+        0         0         0         1
+I20260624 18:04:25.827350  3170 pbnbv.cpp:79] execute time: 1603 ms
+I20260624 18:04:25.827355  3170 pbnbv.cpp:80] update_voxel_map time: 1603 ms
+I20260624 18:04:25.827358  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:25.827979  3170 visualization.cpp:76] visualization voxel_map size: 2262
+I20260624 18:04:25.830706  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:25.830739  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:25.831763  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:25.831784  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:25.844794  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:25.844837  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:27.270709  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:27.275493  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:27.289214  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:27.289263  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:27.304322  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:27.304411  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:27.304847  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:27.311873  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:27.312153  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:27.312289  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:27.313118  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:27.313203  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:27.313261  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:27.313264  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:27.313920  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:27.313949  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:27.313956  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:27.314971  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:27.315222  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:27.315321  3170 nbvstrategy.cpp:133] next_best_view_index: 512
+I20260624 18:04:27.315336  3170 nbvstrategy.cpp:134] next_best_view_res: -0.636242 -0.356234  0.684319  -12.4143
+-0.771489  0.293784 -0.564354   7.35353
+        0 -0.887011 -0.461749   6.56205
+        0         0         0         1
+I20260624 18:04:27.315371  3170 pbnbv.cpp:78] out nbv: 
+-0.636242 -0.356234  0.684319  -12.4143
+-0.771489  0.293784 -0.564354   7.35353
+        0 -0.887011 -0.461749   6.56205
+        0         0         0         1
+I20260624 18:04:27.315395  3170 pbnbv.cpp:79] execute time: 1484 ms
+I20260624 18:04:27.315400  3170 pbnbv.cpp:80] update_voxel_map time: 1484 ms
+I20260624 18:04:27.315403  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:27.315992  3170 visualization.cpp:76] visualization voxel_map size: 2274
+I20260624 18:04:27.319422  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:27.319495  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:27.320644  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:27.320765  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:27.333789  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:27.333845  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:28.694667  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:28.694743  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 71621
+I20260624 18:04:28.699846  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:28.699879  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 71621
+I20260624 18:04:28.715934  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:28.715984  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 71621
+I20260624 18:04:28.716290  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:28.727577  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:28.727989  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:28.728147  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:28.728956  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:28.729817  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:28.729895  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:28.729909  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:28.730463  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:28.730484  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:28.730489  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 71621
+I20260624 18:04:28.730937  3170 pbnbv.cpp:65] voxel_map size: 71621
+I20260624 18:04:28.731128  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:28.731204  3170 nbvstrategy.cpp:133] next_best_view_index: 76
+I20260624 18:04:28.731215  3170 nbvstrategy.cpp:134] next_best_view_res: -0.269797  0.833911 -0.481459    5.7592
+ 0.962917  0.233651 -0.134898  0.661952
+        0      -0.5 -0.866025   12.4374
+        0         0         0         1
+I20260624 18:04:28.731251  3170 pbnbv.cpp:78] out nbv: 
+-0.269797  0.833911 -0.481459    5.7592
+ 0.962917  0.233651 -0.134898  0.661952
+        0      -0.5 -0.866025   12.4374
+        0         0         0         1
+I20260624 18:04:28.731267  3170 pbnbv.cpp:79] execute time: 1411 ms
+I20260624 18:04:28.731271  3170 pbnbv.cpp:80] update_voxel_map time: 1411 ms
+I20260624 18:04:28.731272  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:28.731843  3170 visualization.cpp:76] visualization voxel_map size: 2256
+I20260624 18:04:28.734287  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:28.734314  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:28.735098  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:28.735114  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:28.747215  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:28.747242  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:30.048346  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:30.048409  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:30.054177  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:30.054229  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:30.072252  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:30.072304  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:30.072619  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:30.078796  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:30.079113  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:30.079246  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:30.080037  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:30.080117  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:30.080186  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:30.080202  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:30.080834  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:30.080862  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:30.080869  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:30.081403  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:30.081652  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:30.081771  3170 nbvstrategy.cpp:133] next_best_view_index: 652
+I20260624 18:04:30.081799  3170 nbvstrategy.cpp:134] next_best_view_res:  0.909632  -0.14208  0.390362  -7.56678
+-0.415415 -0.311112  0.854774  -14.4654
+        0 -0.939693  -0.34202   4.42786
+        0         0         0         1
+I20260624 18:04:30.082458  3170 pbnbv.cpp:78] out nbv: 
+ 0.909632  -0.14208  0.390362  -7.56678
+-0.415415 -0.311112  0.854774  -14.4654
+        0 -0.939693  -0.34202   4.42786
+        0         0         0         1
+I20260624 18:04:30.082497  3170 pbnbv.cpp:79] execute time: 1348 ms
+I20260624 18:04:30.082502  3170 pbnbv.cpp:80] update_voxel_map time: 1347 ms
+I20260624 18:04:30.082506  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:30.083209  3170 visualization.cpp:76] visualization voxel_map size: 2266
+I20260624 18:04:30.085632  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:30.085659  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:30.086488  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:30.086510  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:30.098646  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:30.098701  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:31.428011  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:31.428126  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:31.434957  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:31.435011  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:31.456360  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:31.456449  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:31.456929  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:31.465857  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:31.466130  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:31.466246  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:31.466979  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:31.467057  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:31.467110  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:31.467114  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:31.467635  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:31.467661  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:31.467666  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:31.468106  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:31.468307  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:31.468382  3170 nbvstrategy.cpp:133] next_best_view_index: 224
+I20260624 18:04:31.468395  3170 nbvstrategy.cpp:134] next_best_view_res:   0.101168  -0.733495   0.672124   -11.8736
+ -0.994869 -0.0745891  0.0683483   -2.44472
+         0   -0.67559  -0.737277    10.4695
+         0          0          0          1
+I20260624 18:04:31.468430  3170 pbnbv.cpp:78] out nbv: 
+  0.101168  -0.733495   0.672124   -11.8736
+ -0.994869 -0.0745891  0.0683483   -2.44472
+         0   -0.67559  -0.737277    10.4695
+         0          0          0          1
+I20260624 18:04:31.468463  3170 pbnbv.cpp:79] execute time: 1382 ms
+I20260624 18:04:31.468468  3170 pbnbv.cpp:80] update_voxel_map time: 1382 ms
+I20260624 18:04:31.468479  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:31.469034  3170 visualization.cpp:76] visualization voxel_map size: 2253
+I20260624 18:04:31.471345  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:31.471374  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:31.472209  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:31.472229  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:31.484439  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:31.485590  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:32.754837  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:32.755015  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:32.760367  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:32.760494  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:32.776166  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:32.776230  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:32.776578  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:32.782282  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:32.782644  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:32.782900  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:32.783644  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:32.783725  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:32.783795  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:32.783802  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:32.784484  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:32.784510  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:32.784515  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:32.784996  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:32.785208  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:32.785315  3170 nbvstrategy.cpp:133] next_best_view_index: 256
+I20260624 18:04:32.785331  3170 nbvstrategy.cpp:134] next_best_view_res:   0.095056  -0.703905   0.703905   -12.4469
+ -0.995472 -0.0672148  0.0672148   -2.43575
+         0  -0.707107  -0.707107    10.2962
+         0          0          0          1
+I20260624 18:04:32.785359  3170 pbnbv.cpp:78] out nbv: 
+  0.095056  -0.703905   0.703905   -12.4469
+ -0.995472 -0.0672148  0.0672148   -2.43575
+         0  -0.707107  -0.707107    10.2962
+         0          0          0          1
+I20260624 18:04:32.785383  3170 pbnbv.cpp:79] execute time: 1313 ms
+I20260624 18:04:32.785387  3170 pbnbv.cpp:80] update_voxel_map time: 1313 ms
+I20260624 18:04:32.785391  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:32.786046  3170 visualization.cpp:76] visualization voxel_map size: 2256
+I20260624 18:04:32.788546  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:32.788575  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:32.789425  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:32.789446  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:32.801939  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:32.801987  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:34.132637  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:34.132696  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 71527
+I20260624 18:04:34.139678  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:34.139734  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 71527
+I20260624 18:04:34.164229  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:34.164314  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 71527
+I20260624 18:04:34.164743  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:34.170789  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:34.171080  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:34.171833  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:34.172554  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:34.172632  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:34.172708  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:34.172722  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:34.173230  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:34.173254  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:34.173260  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 71527
+I20260624 18:04:34.173700  3170 pbnbv.cpp:65] voxel_map size: 71527
+I20260624 18:04:34.173894  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:34.173969  3170 nbvstrategy.cpp:133] next_best_view_index: 335
+I20260624 18:04:34.173983  3170 nbvstrategy.cpp:134] next_best_view_res:  0.939693  0.219846 -0.262003   2.40477
+  0.34202 -0.604023  0.719846   -12.403
+       -0 -0.766044 -0.642788   9.02515
+        0         0         0         1
+I20260624 18:04:34.174007  3170 pbnbv.cpp:78] out nbv: 
+ 0.939693  0.219846 -0.262003   2.40477
+  0.34202 -0.604023  0.719846   -12.403
+       -0 -0.766044 -0.642788   9.02515
+        0         0         0         1
+I20260624 18:04:34.174029  3170 pbnbv.cpp:79] execute time: 1385 ms
+I20260624 18:04:34.174034  3170 pbnbv.cpp:80] update_voxel_map time: 1385 ms
+I20260624 18:04:34.174037  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:34.174587  3170 visualization.cpp:76] visualization voxel_map size: 2254
+I20260624 18:04:34.176913  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:34.176937  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:34.177780  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:34.177799  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:34.190125  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:34.190168  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:35.471545  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:35.471627  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:35.478742  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:35.478804  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:35.499788  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:35.499876  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:35.500223  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:35.505916  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:35.506208  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:35.506332  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:35.507190  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:35.507308  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:35.507365  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:35.507390  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:35.508061  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:35.508091  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:35.508098  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:35.508644  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:35.508903  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:35.509019  3170 nbvstrategy.cpp:133] next_best_view_index: 81
+I20260624 18:04:35.509728  3170 nbvstrategy.cpp:134] next_best_view_res:  -0.997669 -0.0590997  0.0341212   -2.12155
+-0.0682424   0.864006  -0.498834     6.2248
+         0       -0.5  -0.866025    12.4374
+         0          0          0          1
+I20260624 18:04:35.509761  3170 pbnbv.cpp:78] out nbv: 
+ -0.997669 -0.0590997  0.0341212   -2.12155
+-0.0682424   0.864006  -0.498834     6.2248
+         0       -0.5  -0.866025    12.4374
+         0          0          0          1
+I20260624 18:04:35.509785  3170 pbnbv.cpp:79] execute time: 1332 ms
+I20260624 18:04:35.509789  3170 pbnbv.cpp:80] update_voxel_map time: 1331 ms
+I20260624 18:04:35.509793  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:35.510442  3170 visualization.cpp:76] visualization voxel_map size: 2254
+I20260624 18:04:35.512970  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:35.512998  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:35.513882  3170 voxelstruct.cpp:84] past point cloud get occupancy node done
+I20260624 18:04:35.513921  3170 voxelstruct.cpp:85] past octomap getNumLeafNodes: 2038
+I20260624 18:04:35.526324  3170 voxelstruct.cpp:100] current point cloud get occupancy node done
+I20260624 18:04:35.526373  3170 voxelstruct.cpp:101] current octomap getNumLeafNodes: 2143
+I20260624 18:04:36.873456  3170 voxelstruct.cpp:185] reset voxel_map bbx done
+I20260624 18:04:36.873497  3170 voxelstruct.cpp:186] current octomap getNumLeafNodes: 70993
+I20260624 18:04:36.880159  3170 voxelstruct.cpp:223] voxel map add old voxel done
+I20260624 18:04:36.880206  3170 voxelstruct.cpp:224] current octomap getNumLeafNodes: 70993
+I20260624 18:04:36.900321  3170 voxelstruct.cpp:475] voxel map classification done
+I20260624 18:04:36.900401  3170 voxelstruct.cpp:476] current octomap getNumLeafNodes: 70993
+I20260624 18:04:36.900781  3170 voxelstruct.cpp:478] [DBG] entering step 5.1: update _voxel_map
+I20260624 18:04:36.906802  3170 voxelstruct.cpp:485] [DBG] _voxel_map loop done, calling updateInnerOccupancy
+I20260624 18:04:36.907127  3170 voxelstruct.cpp:487] [DBG] _voxel_map.updateInnerOccupancy done. Calling _bbx_voxel_map.clear()
+I20260624 18:04:36.907320  3170 voxelstruct.cpp:490] [DBG] _bbx_voxel_map.clear() done
+I20260624 18:04:36.908114  3170 voxelstruct.cpp:510] [DBG] calling _bbx_voxel_map.updateInnerOccupancy()
+I20260624 18:04:36.908200  3170 voxelstruct.cpp:512] [DBG] _bbx_voxel_map.updateInnerOccupancy done. Getting metrics
+I20260624 18:04:36.908259  3170 voxelstruct.cpp:520] [DBG] skipping clearOutsideBBX, using BBX limits instead
+I20260624 18:04:36.908278  3170 voxelstruct.cpp:523] [DBG] calling voxel_map.updateInnerOccupancy()
+I20260624 18:04:36.908933  3170 voxelstruct.cpp:525] [DBG] voxel_map.updateInnerOccupancy done
+I20260624 18:04:36.908963  3170 voxelstruct.cpp:527] voxel map expand bbx done
+I20260624 18:04:36.908970  3170 voxelstruct.cpp:528] current octomap getNumLeafNodes: 70993
+I20260624 18:04:36.909515  3170 pbnbv.cpp:65] voxel_map size: 70993
+I20260624 18:04:36.909776  3170 pbnbv.cpp:67] compute_next_view : 
+I20260624 18:04:36.909873  3170 nbvstrategy.cpp:133] next_best_view_index: 167
+I20260624 18:04:36.909891  3170 nbvstrategy.cpp:134] next_best_view_res:   0.62349 -0.620269  0.475949  -8.87499
+-0.781831 -0.494648  0.379557  -7.20161
+        0 -0.608761 -0.793353   11.3266
+        0         0         0         1
+I20260624 18:04:36.909936  3170 pbnbv.cpp:78] out nbv: 
+  0.62349 -0.620269  0.475949  -8.87499
+-0.781831 -0.494648  0.379557  -7.20161
+        0 -0.608761 -0.793353   11.3266
+        0         0         0         1
+I20260624 18:04:36.909955  3170 pbnbv.cpp:79] execute time: 1396 ms
+I20260624 18:04:36.909960  3170 pbnbv.cpp:80] update_voxel_map time: 1396 ms
+I20260624 18:04:36.909962  3170 pbnbv.cpp:81] compute_next_view time: 0 ms
+I20260624 18:04:36.910562  3170 visualization.cpp:76] visualization voxel_map size: 2260
+I20260624 18:04:36.912798  3170 pbnbv.cpp:43] execute :
+I20260624 18:04:36.912827  3170 pbnbv.cpp:55] update_voxel_map : 
+I20260624 18:04:36.913636  3170 voxelstruct.cpp:84] past point clou
