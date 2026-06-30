@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>drone_runner</name>
+  <version>0.0.1</version>
+  <description>Drone-based PB-NBV runner for ground_first dataset</description>
+  <maintainer email="user@example.com">user</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>pb_core</build_depend>
+  <build_depend>utils_msgs</build_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>pb_core</exec_depend>
+  <exec_depend>utils_msgs</exec_depend>
+</package>

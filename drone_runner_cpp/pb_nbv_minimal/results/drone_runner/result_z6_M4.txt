@@ -1,0 +1,8 @@
+num_steps: 4
+platform: drone_with_pb_nbv
+
+Path:
+Step 1: x=15 y=0 z=6 azimuth=0.000000
+Step 2: x=-5.02 y=-5.35 z=13.6 azimuth=226.800000
+Step 3: x=-5.27 y=-5.41 z=14 azimuth=225.700000
+Step 4: x=1.43 y=-5.66 z=13.6 azimuth=284.200000

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PB-NBV 45° Camera, M=8, z=2~7m</title>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; padding: 16px; background: #1a1a2e; color: #eee; }
+  h1 { text-align: center; color: #e0e0ff; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: #888; margin-bottom: 16px; font-size: 13px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card { background: #16213e; border-radius: 10px; padding: 14px; }
+  .card-title { font-size: 13px; color: #7af; margin-bottom: 8px; font-weight: bold; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+  .tab-btn { padding: 7px 16px; border: none; border-radius: 6px; background: #2a2a4a; color: #aaa; cursor: pointer; font-size: 13px; font-weight: bold; transition: all 0.2s; }
+  .tab-btn.active { background: #5572f5; color: white; }
+  .tab-btn:hover:not(.active) { background: #3a3a6a; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .stats-row { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .stat-card { background: #0f3460; border-radius: 8px; padding: 10px 16px; flex: 1; min-width: 100px; border-left: 3px solid; }
+  .stat-label { font-size: 11px; color: #888; }
+  .stat-val { font-size: 18px; font-weight: bold; margin-top: 2px; }
+  .note { background: #1e2a3a; border-left: 3px solid #f4a261; padding: 8px 14px; border-radius: 4px; margin-bottom: 14px; font-size: 12px; color: #cca; }
+</style>
+</head>
+<body>
+<h1>PB-NBV — 45° Camera Angle, M=8</h1>
+<p class="subtitle">candidate_longitude_angle=[[45,45]], first_viewpoint_overlooking_angle=45°, z=2~7m</p>
+
+<div class="note">
+  📐 카메라가 수평에서 45도 아래를 향함 &nbsp;|&nbsp;
+  Step 1: z=설정값(2~7m) &nbsp;|&nbsp;
+  Step 2+: z≈10m으로 수렴 (20° 때는 13.6m였음)
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div id="contents"></div>
+
+<script>
+const data = {
+  2: [{s:1,x:15,y:0,z:2,az:0},{s:2,x:7.49,y:-7.24,z:10,az:315.9},{s:3,x:-3.14,y:9.3,z:10,az:108.6},{s:4,x:9.21,y:-1.4,z:10,az:351.3},{s:5,x:-1.09,y:9.4,z:10,az:96.5},{s:6,x:-12.4,y:-0.373,z:10,az:181.7},{s:7,x:-11.3,y:3.59,z:10.3,az:162.3},{s:8,x:-5.14,y:-11.6,z:10,az:246.1}],
+  3: [{s:1,x:15,y:0,z:3,az:0},{s:2,x:7.49,y:-7.24,z:10,az:315.9},{s:3,x:9.21,y:-1.4,z:10,az:351.3},{s:4,x:-12.4,y:-0.373,z:10,az:181.7},{s:5,x:-5.16,y:8.9,z:10.3,az:120.1},{s:6,x:4.67,y:7.4,z:10,az:57.7},{s:7,x:-1.09,y:9.4,z:10,az:96.5},{s:8,x:6.22,y:6.06,z:10,az:44.2}],
+  4: [{s:1,x:15,y:0,z:4,az:0},{s:2,x:7.49,y:-7.24,z:10,az:315.9},{s:3,x:9.01,y:0.645,z:10,az:4.0},{s:4,x:-1.09,y:9.4,z:10,az:96.5},{s:5,x:-11.2,y:3.55,z:10,az:162.4},{s:6,x:-8.68,y:6.77,z:10,az:142.0},{s:7,x:-12,y:-4.45,z:10,az:200.3},{s:8,x:0.969,y:-12,z:10.3,az:274.6}],
+  5: [{s:1,x:15,y:0,z:5,az:0},{s:2,x:7.49,y:-7.24,z:10,az:315.9},{s:3,x:-1.09,y:-12.2,z:10,az:264.9},{s:4,x:-3.14,y:-12.1,z:10,az:255.4},{s:5,x:-12.4,y:-0.373,z:10,az:181.7},{s:6,x:9.1,y:0.662,z:10.3,az:4.1},{s:7,x:-8.53,y:6.82,z:10.1,az:141.3},{s:8,x:0.948,y:9.1,z:10,az:84.0}],
+  6: [{s:1,x:15,y:0,z:6,az:0},{s:2,x:7.49,y:-7.24,z:10,az:315.9},{s:3,x:-8.68,y:-9.57,z:10,az:227.7},{s:4,x:-7,y:7.96,z:10,az:131.3},{s:5,x:-11.2,y:-6.35,z:10,az:209.5},{s:6,x:-12.1,y:1.67,z:10.3,az:172.1},{s:7,x:-11.2,y:3.55,z:10,az:162.4},{s:8,x:-1.09,y:-12.2,z:10,az:264.9}],
+  7: [{s:1,x:15,y:0,z:7,az:0},{s:2,x:8.43,y:-5.42,z:10,az:327.2},{s:3,x:-7,y:-10.8,z:10,az:236.9},{s:4,x:7.49,y:4.44,z:10,az:30.6},{s:5,x:-5.14,y:-11.6,z:10,az:246.1},{s:6,x:-7,y:-10.8,z:10,az:236.9},{s:7,x:-3.14,y:-12.1,z:10,az:255.4},{s:8,x:-11.2,y:3.55,z:10,az:162.4}]
+};
+
+const ZCOLORS = {2:'#e63946',3:'#f4a261',4:'#2a9d8f',5:'#457b9d',6:'#a8dadc',7:'#c77dff'};
+
+function maxGap(path) {
+  const azs = path.slice(1).map(p => p.az).sort((a,b) => a-b);
+  let max = 0;
+  for (let i = 0; i < azs.length; i++) {
+    const gap = i === 0
+      ? (azs[0] - azs[azs.length-1] + 360) % 360
+      : azs[i] - azs[i-1];
+    if (gap > max) max = gap;
+  }
+  return max.toFixed(1);
+}
+
+function buildAll() {
+  const tabsEl = document.getElementById('tabs');
+  const contentsEl = document.getElementById('contents');
+
+  for (const z of [2,3,4,5,6,7]) {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (z===2?' active':'');
+    btn.textContent = `z = ${z}m`;
+    btn.onclick = () => switchTab(z);
+    tabsEl.appendChild(btn);
+
+    const path = data[z];
+    const color = ZCOLORS[z];
+    const gap = maxGap(path);
+    const azs = path.slice(1).map(p => p.az);
+    const uniqueAz = new Set(azs.map(a => Math.round(a))).size;
+
+    const div = document.createElement('div');
+    div.id = `tab-${z}`;
+    div.className = 'tab-content' + (z===2?' active':'');
+    div.innerHTML = `
+      <div class="stats-row">
+        <div class="stat-card" style="border-color:${color}">
+          <div class="stat-label">시작 고도</div>
+          <div class="stat-val" style="color:${color}">z = ${z}m</div>
+        </div>
+        <div class="stat-card" style="border-color:#7af">
+          <div class="stat-label">순항 고도 (Step2+)</div>
+          <div class="stat-val" style="color:#7af">z ≈ 10m</div>
+        </div>
+        <div class="stat-card" style="border-color:#f4a261">
+          <div class="stat-label">최대 방위각 갭</div>
+          <div class="stat-val" style="color:#f4a261">${gap}°</div>
+        </div>
+        <div class="stat-card" style="border-color:#2a9d8f">
+          <div class="stat-label">고유 방위각 수</div>
+          <div class="stat-val" style="color:#2a9d8f">${uniqueAz} / 7</div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card"><div class="card-title">3D 경로</div><div id="p3d-${z}" style="height:420px"></div></div>
+        <div class="card"><div class="card-title">Top-down XY</div><div id="p2d-${z}" style="height:420px"></div></div>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <div class="card-title">방위각 순서</div>
+        <div id="paz-${z}" style="height:280px"></div>
+      </div>
+    `;
+    contentsEl.appendChild(div);
+  }
+}
+
+const plotted = {};
+function plotTab(z) {
+  if (plotted[z]) return;
+  plotted[z] = true;
+  const path = data[z];
+  const color = ZCOLORS[z];
+  const xs = path.map(p=>p.x), ys = path.map(p=>p.y), zs = path.map(p=>p.z);
+
+  // 3D
+  Plotly.newPlot(`p3d-${z}`, [
+    {x:xs,y:ys,z:zs,mode:'lines',type:'scatter3d',name:'path',
+     line:{color,width:3},showlegend:false},
+    {x:xs,y:ys,z:zs,mode:'markers',type:'scatter3d',showlegend:false,
+     marker:{
+       size: path.map((_,i)=>i===0?12:7),
+       color: path.map((_,i)=>i===0?'#fff':color),
+       symbol: path.map((_,i)=>i===0?'diamond':'circle'),
+       line:{color,width:1}
+     },
+     text: path.map(p=>`Step ${p.s}<br>Az:${p.az}°<br>(${p.x.toFixed(1)},${p.y.toFixed(1)},${p.z.toFixed(1)})`),
+     hoverinfo:'text'}
+  ], {
+    paper_bgcolor:'#16213e', plot_bgcolor:'#16213e',
+    scene:{
+      xaxis:{title:'X',color:'#555',gridcolor:'#2a2a4a',zerolinecolor:'#444'},
+      yaxis:{title:'Y',color:'#555',gridcolor:'#2a2a4a',zerolinecolor:'#444'},
+      zaxis:{title:'Z',color:'#555',gridcolor:'#2a2a4a',zerolinecolor:'#444'},
+      bgcolor:'#16213e',
+      camera:{eye:{x:1.4,y:1.4,z:1.0}}
+    },
+    margin:{l:0,r:0,t:0,b:0}
+  }, {responsive:true});
+
+  // 2D
+  Plotly.newPlot(`p2d-${z}`, [{
+    x:xs, y:ys, mode:'lines+markers', showlegend:false,
+    line:{color,width:2},
+    marker:{
+      size:path.map((_,i)=>i===0?14:8),
+      color:path.map((_,i)=>i===0?'#fff':color),
+      symbol:path.map((_,i)=>i===0?'star':'circle'),
+      line:{color,width:1}
+    },
+    text:path.map(p=>`Step ${p.s}<br>Az:${p.az}°`), hoverinfo:'text'
+  }], {
+    paper_bgcolor:'#16213e', plot_bgcolor:'#16213e',
+    xaxis:{title:'X (m)',color:'#555',gridcolor:'#2a2a4a',zerolinecolor:'#444',scaleanchor:'y'},
+    yaxis:{title:'Y (m)',color:'#555',gridcolor:'#2a2a4a',zerolinecolor:'#444'},
+    margin:{l:50,r:10,t:10,b:50}
+  }, {responsive:true});
+
+  // Azimuth bar
+  const steps = path.slice(1).map(p=>p.s);
+  const azVals = path.slice(1).map(p=>p.az);
+  Plotly.newPlot(`paz-${z}`, [{
+    x: steps.map(s=>`Step ${s}`),
+    y: azVals,
+    type:'bar', marker:{color:azVals, colorscale:'HSV', cmin:0, cmax:360,
+      colorbar:{title:'Az°',tickfont:{color:'#888'},titlefont:{color:'#888'}}},
+    text: azVals.map(a=>a.toFixed(1)+'°'), textposition:'outside',
+    textfont:{color:'#ccc',size:11}
+  }], {
+    paper_bgcolor:'#16213e', plot_bgcolor:'#16213e',
+    xaxis:{color:'#555',gridcolor:'#2a2a4a'},
+    yaxis:{title:'Azimuth (°)',color:'#555',gridcolor:'#2a2a4a',range:[0,380]},
+    margin:{l:60,r:80,t:10,b:50}
+  }, {responsive:true});
+}
+
+function switchTab(z) {
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',[2,3,4,5,6,7][i]===z));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById(`tab-${z}`).classList.add('active');
+  setTimeout(()=>plotTab(z), 10);
+}
+
+buildAll();
+window.addEventListener('load', () => plotTab(2));
+</script>
+</body>
+</html>

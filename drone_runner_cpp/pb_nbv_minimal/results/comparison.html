@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>PB-NBV vs Orbit-16 비교 시각화</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', sans-serif; background: #0f1117; color: #e0e0e0; }
+
+header {
+  padding: 24px 32px 16px;
+  border-bottom: 1px solid #2a2a3a;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+header h1 { font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+header p { font-size: 0.9rem; color: #888; }
+
+.stats-bar {
+  display: flex; gap: 16px; padding: 16px 32px;
+  background: #12121f; border-bottom: 1px solid #1e1e30;
+  flex-wrap: wrap;
+}
+.stat-card {
+  background: #1a1a2e; border: 1px solid #2a2a4a; border-radius: 8px;
+  padding: 12px 20px; min-width: 150px; flex: 1;
+}
+.stat-card .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 4px; }
+.stat-card .value { font-size: 1.4rem; font-weight: 700; }
+.stat-card .sub { font-size: 0.75rem; color: #888; margin-top: 2px; }
+.orbit .value { color: #4fc3f7; }
+.pbnbv_py .value { color: #ffb74d; }
+.pbnbv_cpp .value { color: #81c784; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+  padding: 16px 32px;
+}
+
+.panel {
+  background: #13131f; border: 1px solid #1e1e30; border-radius: 10px;
+  overflow: hidden;
+}
+.panel .panel-title {
+  padding: 12px 16px; font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.5px; text-transform: uppercase; color: #aaa;
+  background: #0f0f1a; border-bottom: 1px solid #1e1e30;
+}
+.panel-body { padding: 0; }
+
+.plot-container { width: 100%; }
+
+.full-width { grid-column: 1 / -1; }
+
+table {
+  width: 100%; border-collapse: collapse; font-size: 0.85rem;
+}
+th {
+  padding: 10px 14px; background: #0f0f1a; text-align: left;
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: #666;
+  border-bottom: 1px solid #1e1e30;
+}
+td {
+  padding: 9px 14px; border-bottom: 1px solid #1a1a28;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #1a1a2a; }
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.5px;
+}
+.badge-orbit { background: #0d3a52; color: #4fc3f7; }
+.badge-py { background: #4a2c00; color: #ffb74d; }
+.badge-cpp { background: #1a3a1f; color: #81c784; }
+
+.win { color: #81c784; font-weight: 700; }
+.lose { color: #e57373; }
+.neutral { color: #888; }
+
+.step-table td:first-child { color: #666; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>PB-NBV C++ 논문 코드 vs Orbit-16 비교</h1>
+  <p>ground_first 건물 데이터 (40,000 pts, 14×17×17m, voxel 0.4m) · 16 viewpoints</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-card orbit">
+    <div class="label">Orbit-16</div>
+    <div class="value">99.91%</div>
+    <div class="sub">Coverage · Max gap 22.5°</div>
+  </div>
+  <div class="stat-card pbnbv_py">
+    <div class="label">PB-NBV Python (reimpl)</div>
+    <div class="value">99.82%</div>
+    <div class="sub">Coverage · Max gap 93.4°</div>
+  </div>
+  <div class="stat-card pbnbv_cpp">
+    <div class="label">PB-NBV C++ (논문 원본)</div>
+    <div class="value">—</div>
+    <div class="sub">Max gap 41.7° · 3D 자유도</div>
+  </div>
+  <div class="stat-card" style="border-color:#2a2a4a">
+    <div class="label" style="color:#555">Key Difference</div>
+    <div class="value" style="color:#ce93d8; font-size:1.1rem;">3D altitude</div>
+    <div class="sub">C++: z varies −5 ~ 12.8m<br>Python/Orbit: z = −5 (fixed)</div>
+  </div>
+</div>
+
+<div class="layout">
+
+  <!-- 3D Paths -->
+  <div class="panel full-width">
+    <div class="panel-title">3D 경로 비교 (드래그: 회전, 스크롤: 확대)</div>
+    <div class="panel-body">
+      <div id="plot3d" class="plot-container" style="height:480px;"></div>
+    </div>
+  </div>
+
+  <!-- Azimuth Polar -->
+  <div class="panel">
+    <div class="panel-title">방위각 분포 (Polar View)</div>
+    <div class="panel-body">
+      <div id="plotPolar" class="plot-container" style="height:400px;"></div>
+    </div>
+  </div>
+
+  <!-- Gap Analysis -->
+  <div class="panel">
+    <div class="panel-title">방위각 Gap 분석 (각 step 간격)</div>
+    <div class="panel-body">
+      <div id="plotGap" class="plot-container" style="height:400px;"></div>
+    </div>
+  </div>
+
+  <!-- Stats Table -->
+  <div class="panel">
+    <div class="panel-title">성능 비교표</div>
+    <div class="panel-body" style="padding:0;">
+      <table>
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th><span class="badge badge-orbit">Orbit-16</span></th>
+            <th><span class="badge badge-py">PB-NBV Py</span></th>
+            <th><span class="badge badge-cpp">PB-NBV C++</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Coverage</td>
+            <td class="win">99.91%</td>
+            <td>99.82%</td>
+            <td class="neutral">— (미계산)</td>
+          </tr>
+          <tr>
+            <td>Max Gap</td>
+            <td class="win">22.5°</td>
+            <td class="lose">93.4°</td>
+            <td>41.7°</td>
+          </tr>
+          <tr>
+            <td>Std Gap</td>
+            <td class="win">0.0°</td>
+            <td>27.2°</td>
+            <td>14.5°</td>
+          </tr>
+          <tr>
+            <td>Altitude</td>
+            <td>고정 (−5m)</td>
+            <td>고정 (−5m)</td>
+            <td class="win">가변 (−5 ~ 12.8m)</td>
+          </tr>
+          <tr>
+            <td>반경</td>
+            <td>고정 (15m)</td>
+            <td>가변</td>
+            <td class="win">가변 (6 ~ 17m)</td>
+          </tr>
+          <tr>
+            <td>궤도 타입</td>
+            <td>원형 (2D)</td>
+            <td>원형 (2D)</td>
+            <td class="win">구형 (3D)</td>
+          </tr>
+          <tr>
+            <td>알고리즘</td>
+            <td>기하학적</td>
+            <td>Frontier NBV</td>
+            <td class="win">Frontier NBV + CGAL</td>
+          </tr>
+          <tr>
+            <td>실행 시간/step</td>
+            <td class="win">즉시</td>
+            <td>~1초</td>
+            <td>~1.3초</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Step-by-Step Table -->
+  <div class="panel">
+    <div class="panel-title">Step별 C++ PB-NBV 상세 (논문 원본 출력)</div>
+    <div class="panel-body" style="padding:0; max-height:380px; overflow-y:auto;">
+      <table class="step-table">
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>X</th>
+            <th>Y</th>
+            <th>Z</th>
+            <th>Azimuth</th>
+            <th>Dist</th>
+          </tr>
+        </thead>
+        <tbody id="stepBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============ DATA ============
+const orbit = [
+  {step:1, x:15.0, y:0.0, z:-5, az:0.0, cov:0.3175},
+  {step:2, x:13.86, y:5.74, z:-5, az:22.5, cov:0.365},
+  {step:3, x:10.61, y:10.61, z:-5, az:45.0, cov:0.4189},
+  {step:4, x:5.74, y:13.86, z:-5, az:67.5, cov:0.5077},
+  {step:5, x:0.0, y:15.0, z:-5, az:90.0, cov:0.8582},
+  {step:6, x:-5.74, y:13.86, z:-5, az:112.5, cov:0.9266},
+  {step:7, x:-10.61, y:10.61, z:-5, az:135.0, cov:0.9502},
+  {step:8, x:-13.86, y:5.74, z:-5, az:157.5, cov:0.9828},
+  {step:9, x:-15.0, y:0.0, z:-5, az:180.0, cov:0.995},
+  {step:10, x:-13.86, y:-5.74, z:-5, az:202.5, cov:0.9959},
+  {step:11, x:-10.61, y:-10.61, z:-5, az:225.0, cov:0.9973},
+  {step:12, x:-5.74, y:-13.86, z:-5, az:247.5, cov:0.9991},
+  {step:13, x:0.0, y:-15.0, z:-5, az:270.0, cov:0.9991},
+  {step:14, x:5.74, y:-13.86, z:-5, az:292.5, cov:0.9991},
+  {step:15, x:10.61, y:-10.61, z:-5, az:315.0, cov:0.9991},
+  {step:16, x:13.86, y:-5.74, z:-5, az:337.5, cov:0.9991},
+];
+
+const pbnbv_py = [
+  {step:1, x:-14.52, y:-3.78, z:-5, az:194.6, cov:0.8659},
+  {step:2, x:14.78, y:2.54, z:-5, az:9.7, cov:0.9914},
+  {step:3, x:5.56, y:-17.12, z:-5, az:288.0, cov:0.9955},
+  {step:4, x:16.44, y:7.32, z:-5, az:24.0, cov:0.9968},
+  {step:5, x:17.30, y:4.96, z:-5, az:16.0, cov:0.9968},
+  {step:6, x:17.82, y:2.51, z:-5, az:8.0, cov:0.9968},
+  {step:7, x:7.89, y:16.18, z:-5, az:64.0, cov:0.9973},
+  {step:8, x:18.0, y:0.0, z:-5, az:0.0, cov:0.9973},
+  {step:9, x:16.44, y:-7.32, z:-5, az:336.0, cov:0.9973},
+  {step:10, x:12.04, y:13.38, z:-5, az:48.0, cov:0.9973},
+  {step:11, x:10.07, y:14.92, z:-5, az:56.0, cov:0.9973},
+  {step:12, x:-14.56, y:10.58, z:-5, az:144.0, cov:0.9982},
+  {step:13, x:17.30, y:-4.96, z:-5, az:344.0, cov:0.9982},
+  {step:14, x:17.82, y:-2.51, z:-5, az:352.0, cov:0.9982},
+  {step:15, x:15.26, y:-9.54, z:-5, az:328.0, cov:0.9982},
+  {step:16, x:7.89, y:-16.18, z:-5, az:296.0, cov:0.9982},
+];
+
+const pbnbv_cpp = [
+  {step:1, x:15, y:0, z:-5, az:0.0},
+  {step:2, x:2.8, y:5.53, z:12.1, az:63.1},
+  {step:3, x:10.2, y:-5.47, z:7.97, az:331.9},
+  {step:4, x:4.76, y:-11.7, z:8.51, az:292.0},
+  {step:5, x:-9.38, y:-12.1, z:6.84, az:232.2},
+  {step:6, x:10.2, y:4.61, z:6.84, az:24.3},
+  {step:7, x:-5.13, y:-7.51, z:12.8, az:235.6},
+  {step:8, x:-12.4, y:7.35, z:6.56, az:149.3},
+  {step:9, x:5.76, y:0.662, z:12.4, az:6.5},
+  {step:10, x:-7.57, y:-14.5, z:4.43, az:242.3},
+  {step:11, x:-11.9, y:-2.44, z:10.5, az:191.6},
+  {step:12, x:-12.4, y:-2.44, z:10.3, az:191.0},
+  {step:13, x:2.4, y:-12.4, z:9.03, az:280.9},
+  {step:14, x:-2.12, y:6.22, z:12.4, az:108.8},
+  {step:15, x:-8.87, y:-7.2, z:11.3, az:219.0},
+  {step:16, x:-1.28, y:13.6, z:2.53, az:95.3},
+];
+
+// ============ UTILS ============
+function pathCoords(data) {
+  return {
+    x: data.map(d => d.x),
+    y: data.map(d => d.y),
+    z: data.map(d => d.z),
+    text: data.map(d => `Step ${d.step}<br>Az: ${d.az}°<br>Pos: (${d.x}, ${d.y}, ${d.z})`)
+  };
+}
+
+// ============ 3D PLOT ============
+function make3DPlot() {
+  const c_o = pathCoords(orbit);
+  const c_p = pathCoords(pbnbv_py);
+  const c_c = pathCoords(pbnbv_cpp);
+
+  // Building box (14×17×17m, centered at origin)
+  const bx = [-7, 7, 7, -7, -7, 7, 7, -7, -7];
+  const by = [-8.5, -8.5, 8.5, 8.5, -8.5, -8.5, 8.5, 8.5, -8.5];
+  const bz = [0, 0, 0, 0, 17, 17, 17, 17, 0];
+
+  const traces = [
+    // Building footprint / box wireframe
+    {type:'scatter3d', mode:'lines', x:[-7,7,7,-7,-7], y:[-8.5,-8.5,8.5,8.5,-8.5], z:[0,0,0,0,0],
+     line:{color:'#444',width:2}, hoverinfo:'skip', showlegend:false},
+    {type:'scatter3d', mode:'lines', x:[-7,7,7,-7,-7], y:[-8.5,-8.5,8.5,8.5,-8.5], z:[17,17,17,17,17],
+     line:{color:'#444',width:2}, hoverinfo:'skip', showlegend:false},
+    {type:'scatter3d', mode:'lines', x:[-7,-7], y:[-8.5,-8.5], z:[0,17],
+     line:{color:'#444',width:2}, hoverinfo:'skip', showlegend:false},
+    {type:'scatter3d', mode:'lines', x:[7,7], y:[-8.5,-8.5], z:[0,17],
+     line:{color:'#444',width:2}, hoverinfo:'skip', showlegend:false},
+    {type:'scatter3d', mode:'lines', x:[7,7], y:[8.5,8.5], z:[0,17],
+     line:{color:'#444',width:2}, hoverinfo:'skip', showlegend:false},
+    {type:'scatter3d', mode:'lines', x:[-7,-7], y:[8.5,8.5], z:[0,17],
+     line:{color:'#444',width:2}, hoverinfo:'skip', showlegend:false},
+
+    // Orbit-16 path
+    {type:'scatter3d', mode:'lines+markers', name:'Orbit-16',
+     x:[...c_o.x, c_o.x[0]], y:[...c_o.y, c_o.y[0]], z:[...c_o.z, c_o.z[0]],
+     line:{color:'#4fc3f7', width:3},
+     marker:{size:6, color:'#4fc3f7', symbol:'circle'},
+     text:[...c_o.text, ''], hovertemplate:'%{text}<extra>Orbit-16</extra>'},
+
+    // PB-NBV Python path
+    {type:'scatter3d', mode:'lines+markers', name:'PB-NBV Python',
+     x:c_p.x, y:c_p.y, z:c_p.z,
+     line:{color:'#ffb74d', width:3, dash:'dot'},
+     marker:{size:6, color:'#ffb74d', symbol:'diamond'},
+     text:c_p.text, hovertemplate:'%{text}<extra>PB-NBV Py</extra>'},
+
+    // PB-NBV C++ path
+    {type:'scatter3d', mode:'lines+markers', name:'PB-NBV C++ (논문)',
+     x:c_c.x, y:c_c.y, z:c_c.z,
+     line:{color:'#81c784', width:4},
+     marker:{size:8, color:pbnbv_cpp.map((d,i)=>`hsl(${120+i*8},70%,55%)`),
+             symbol:'square', line:{color:'#fff',width:1}},
+     text:c_c.text, hovertemplate:'%{text}<extra>PB-NBV C++</extra>'},
+
+    // Step numbers for C++
+    {type:'scatter3d', mode:'text', name:'',
+     x:c_c.x, y:c_c.y, z:c_c.z,
+     text:pbnbv_cpp.map(d=>d.step.toString()),
+     textfont:{size:10, color:'#fff'},
+     hoverinfo:'skip', showlegend:false},
+
+    // Origin marker
+    {type:'scatter3d', mode:'markers', name:'Origin',
+     x:[0], y:[0], z:[0],
+     marker:{size:8, color:'#ff5252', symbol:'cross'},
+     hoverinfo:'skip', showlegend:false},
+  ];
+
+  const layout = {
+    paper_bgcolor:'#13131f', plot_bgcolor:'#13131f',
+    scene:{
+      bgcolor:'#13131f',
+      xaxis:{title:'X (m)', gridcolor:'#2a2a3a', color:'#666', zerolinecolor:'#3a3a4a'},
+      yaxis:{title:'Y (m)', gridcolor:'#2a2a3a', color:'#666', zerolinecolor:'#3a3a4a'},
+      zaxis:{title:'Z (m)', gridcolor:'#2a2a3a', color:'#666', zerolinecolor:'#3a3a4a'},
+      aspectmode:'data',
+      camera:{eye:{x:1.5, y:1.5, z:1.2}},
+    },
+    legend:{bgcolor:'#1a1a2e', bordercolor:'#2a2a4a', font:{color:'#ccc'}, x:0.01, y:0.99},
+    margin:{l:0, r:0, t:10, b:0},
+    font:{color:'#888'},
+  };
+  Plotly.newPlot('plot3d', traces, layout, {responsive:true});
+}
+
+// ============ POLAR PLOT ============
+function makePolarPlot() {
+  function polarTrace(data, name, color, symbol, opacity=1) {
+    const r = data.map(d => Math.sqrt(d.x*d.x + d.y*d.y));
+    return {
+      type:'scatterpolar',
+      r: r,
+      theta: data.map(d => d.az),
+      mode: 'markers+text',
+      name,
+      marker:{color, size:10, symbol, opacity, line:{color:'#fff',width:1}},
+      text: data.map(d=>`${d.step}`),
+      textposition:'top center',
+      textfont:{size:9, color},
+      hovertemplate: data.map(d=>`Step ${d.step}<br>Az: ${d.az}°<br>r: ${Math.sqrt(d.x*d.x+d.y*d.y).toFixed(1)}m`),
+    };
+  }
+
+  const traces = [
+    polarTrace(orbit, 'Orbit-16', '#4fc3f7', 'circle'),
+    polarTrace(pbnbv_py, 'PB-NBV Python', '#ffb74d', 'diamond', 0.8),
+    polarTrace(pbnbv_cpp, 'PB-NBV C++', '#81c784', 'square'),
+  ];
+
+  const layout = {
+    paper_bgcolor:'#13131f', plot_bgcolor:'#13131f',
+    polar:{
+      bgcolor:'#0f0f1a',
+      radialaxis:{color:'#555', gridcolor:'#2a2a3a'},
+      angularaxis:{color:'#555', gridcolor:'#2a2a3a', direction:'clockwise', rotation:90,
+                   tickmode:'array', tickvals:[0,45,90,135,180,225,270,315],
+                   ticktext:['N(0°)','NE(45°)','E(90°)','SE(135°)','S(180°)','SW(225°)','W(270°)','NW(315°)']},
+    },
+    legend:{bgcolor:'#1a1a2e', bordercolor:'#2a2a4a', font:{color:'#ccc'}, x:0.5, y:-0.1, xanchor:'center', orientation:'h'},
+    margin:{l:40, r:40, t:20, b:60},
+    font:{color:'#888'},
+  };
+  Plotly.newPlot('plotPolar', traces, layout, {responsive:true});
+}
+
+// ============ GAP ANALYSIS ============
+function makeGapPlot() {
+  function computeGaps(data) {
+    const azs = [...data.map(d=>d.az)].sort((a,b)=>a-b);
+    return azs.map((a,i) => {
+      const next = azs[(i+1)%azs.length];
+      let g = next - a;
+      if (g < 0) g += 360;
+      return +g.toFixed(1);
+    });
+  }
+
+  const orbitGaps = computeGaps(orbit);
+  const pyGaps = computeGaps(pbnbv_py);
+  const cppGaps = computeGaps(pbnbv_cpp);
+
+  const orbitAzsSorted = [...orbit.map(d=>d.az)].sort((a,b)=>a-b);
+  const pyAzsSorted = [...pbnbv_py.map(d=>d.az)].sort((a,b)=>a-b);
+  const cppAzsSorted = [...pbnbv_cpp.map(d=>d.az)].sort((a,b)=>a-b);
+
+  const traces = [
+    {type:'bar', name:'Orbit-16', x:orbitAzsSorted.map((a,i)=>`${a}°→${orbitAzsSorted[(i+1)%16]}°`),
+     y:orbitGaps, marker:{color:'#4fc3f7', opacity:0.8}},
+    {type:'bar', name:'PB-NBV Py', x:pyAzsSorted.map((a,i)=>`${a}°`),
+     y:pyGaps, marker:{color:'#ffb74d', opacity:0.8}},
+    {type:'bar', name:'PB-NBV C++', x:cppAzsSorted.map((a,i)=>`${a}°`),
+     y:cppGaps, marker:{color:'#81c784', opacity:0.8}},
+    // Max gap reference line
+    {type:'scatter', mode:'lines', name:'Orbit 허용 최대 (22.5°)',
+     x:[orbitAzsSorted[0]+'°', orbitAzsSorted[15]+'°→0°'],
+     y:[22.5, 22.5],
+     line:{color:'#4fc3f7', dash:'dash', width:1.5},
+     showlegend:true},
+  ];
+
+  const layout = {
+    paper_bgcolor:'#13131f', plot_bgcolor:'#0f0f1a',
+    barmode:'group',
+    xaxis:{color:'#555', tickangle:-45, tickfont:{size:9}},
+    yaxis:{title:'Gap (°)', color:'#666', gridcolor:'#2a2a3a'},
+    legend:{bgcolor:'#1a1a2e', bordercolor:'#2a2a4a', font:{color:'#ccc'},
+            orientation:'h', x:0.5, y:1.05, xanchor:'center'},
+    margin:{l:50, r:20, t:40, b:100},
+    font:{color:'#888'},
+  };
+  Plotly.newPlot('plotGap', traces, layout, {responsive:true});
+}
+
+// ============ STEP TABLE ============
+function fillStepTable() {
+  const tbody = document.getElementById('stepBody');
+  pbnbv_cpp.forEach(d => {
+    const dist = Math.sqrt(d.x*d.x + d.y*d.y + d.z*d.z).toFixed(1);
+    const hdist = Math.sqrt(d.x*d.x + d.y*d.y).toFixed(1);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${d.step}</td>
+      <td>${d.x.toFixed(2)}</td>
+      <td>${d.y.toFixed(2)}</td>
+      <td style="color:${d.z>0?'#81c784':'#4fc3f7'}">${d.z.toFixed(2)}</td>
+      <td>${d.az.toFixed(1)}°</td>
+      <td>${hdist}m</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ============ INIT ============
+make3DPlot();
+makePolarPlot();
+makeGapPlot();
+fillStepTable();
+</script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>PB-NBV 고도 고정 · M별 비교</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', sans-serif; background: #0f1117; color: #e0e0e0; }
+
+header {
+  padding: 20px 28px 14px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-bottom: 1px solid #2a2a3a;
+}
+header h1 { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+header p { font-size: 0.82rem; color: #888; }
+
+.top-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  padding: 14px 28px; background: #12121f; border-bottom: 1px solid #1e1e30;
+}
+.m-card {
+  border-radius: 8px; padding: 12px 16px; border: 1px solid;
+  position: relative; overflow: hidden;
+}
+.m-card::before {
+  content: attr(data-m);
+  position: absolute; right: 12px; top: 8px;
+  font-size: 2.2rem; font-weight: 900; opacity: 0.12; color: currentColor;
+}
+.m4  { background: #1a1428; border-color: #9c27b0; color: #ce93d8; }
+.m8  { background: #1a2614; border-color: #4caf50; color: #81c784; }
+.m12 { background: #1a1f28; border-color: #2196f3; color: #64b5f6; }
+.m16 { background: #281a14; border-color: #ff9800; color: #ffb74d; }
+
+.m-card .title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 6px; }
+.m-card .metric { display: flex; justify-content: space-between; margin-top: 4px; }
+.m-card .metric span:first-child { font-size: 0.75rem; opacity: 0.6; }
+.m-card .metric span:last-child { font-size: 0.88rem; font-weight: 600; }
+.m-card .main-val { font-size: 1.5rem; font-weight: 700; margin-bottom: 2px; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px; padding: 14px 28px;
+}
+.panel {
+  background: #13131f; border: 1px solid #1e1e30; border-radius: 10px; overflow: hidden;
+}
+.panel-title {
+  padding: 10px 14px; font-size: 0.75rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #aaa;
+  background: #0f0f1a; border-bottom: 1px solid #1e1e30;
+}
+.full { grid-column: 1 / -1; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+th { padding: 8px 12px; background: #0f0f1a; text-align: left; font-size: 0.7rem;
+     text-transform: uppercase; letter-spacing: 1px; color: #666; border-bottom: 1px solid #1e1e30; }
+td { padding: 8px 12px; border-bottom: 1px solid #1a1a28; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #1a1a2a; }
+.tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; }
+.t4  { background: #3a1a4a; color: #ce93d8; }
+.t8  { background: #1a3a1a; color: #81c784; }
+.t12 { background: #1a2a3a; color: #64b5f6; }
+.t16 { background: #3a2a14; color: #ffb74d; }
+.best { color: #81c784; font-weight: 700; }
+.worst { color: #e57373; }
+
+.tabs { display: flex; gap: 4px; padding: 8px 12px; background: #0f0f1a; border-bottom: 1px solid #1e1e30; }
+.tab-btn {
+  padding: 5px 14px; border-radius: 6px; border: none; cursor: pointer;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.3px;
+  background: #1a1a2e; color: #888; transition: all 0.15s;
+}
+.tab-btn.active { color: #fff; }
+.tab-btn.t4.active  { background: #9c27b0; }
+.tab-btn.t8.active  { background: #4caf50; }
+.tab-btn.t12.active { background: #2196f3; }
+.tab-btn.t16.active { background: #ff9800; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>PB-NBV C++ · 고도 고정 (z≈13.6m) · M별 경로 비교</h1>
+  <p>candidate_longitude_angle = [20°, 20°] (단일 앙각 고정) · ground_first 건물 데이터</p>
+</header>
+
+<!-- Top stats cards -->
+<div class="top-row">
+  <div class="m-card m4" data-m="M4">
+    <div class="title">M = 4 steps</div>
+    <div class="main-val">—</div>
+    <div class="metric"><span>Max Gap</span><span id="s4-gap">—</span></div>
+    <div class="metric"><span>Std Gap</span><span id="s4-std">—</span></div>
+    <div class="metric"><span>고도 일관성</span><span id="s4-alt">—</span></div>
+  </div>
+  <div class="m-card m8" data-m="M8">
+    <div class="title">M = 8 steps</div>
+    <div class="main-val">—</div>
+    <div class="metric"><span>Max Gap</span><span id="s8-gap">—</span></div>
+    <div class="metric"><span>Std Gap</span><span id="s8-std">—</span></div>
+    <div class="metric"><span>고도 일관성</span><span id="s8-alt">—</span></div>
+  </div>
+  <div class="m-card m12" data-m="M12">
+    <div class="title">M = 12 steps</div>
+    <div class="main-val">—</div>
+    <div class="metric"><span>Max Gap</span><span id="s12-gap">—</span></div>
+    <div class="metric"><span>Std Gap</span><span id="s12-std">—</span></div>
+    <div class="metric"><span>고도 일관성</span><span id="s12-alt">—</span></div>
+  </div>
+  <div class="m-card m16" data-m="M16">
+    <div class="title">M = 16 steps</div>
+    <div class="main-val">—</div>
+    <div class="metric"><span>Max Gap</span><span id="s16-gap">—</span></div>
+    <div class="metric"><span>Std Gap</span><span id="s16-std">—</span></div>
+    <div class="metric"><span>고도 일관성</span><span id="s16-alt">—</span></div>
+  </div>
+</div>
+
+<div class="layout">
+
+  <!-- Polar azimuth overlay -->
+  <div class="panel full">
+    <div class="panel-title">방위각 분포 비교 — M별 Polar View + Orbit 기준선</div>
+    <div id="plotPolar" style="height:420px;"></div>
+  </div>
+
+  <!-- Top-down XY view -->
+  <div class="panel">
+    <div class="panel-title">상공 뷰 (X-Y 평면) · M별 경로</div>
+    <div id="plotXY" style="height:380px;"></div>
+  </div>
+
+  <!-- Gap bar chart -->
+  <div class="panel">
+    <div class="panel-title">방위각 Gap 분포 (정렬 후 인접 간격)</div>
+    <div id="plotGap" style="height:380px;"></div>
+  </div>
+
+  <!-- Cumulative coverage (azimuth coverage sim) -->
+  <div class="panel">
+    <div class="panel-title">누적 방위각 커버리지 (step 순서대로)</div>
+    <div id="plotCoverage" style="height:380px;"></div>
+  </div>
+
+  <!-- Detail stats table -->
+  <div class="panel">
+    <div class="panel-title">비교표 · M별 통계</div>
+    <div style="padding:0; overflow:auto;">
+      <table>
+        <thead><tr>
+          <th>항목</th>
+          <th><span class="tag t4">M=4</span></th>
+          <th><span class="tag t8">M=8</span></th>
+          <th><span class="tag t12">M=12</span></th>
+          <th><span class="tag t16">M=16</span></th>
+          <th>Orbit 기준</th>
+        </tr></thead>
+        <tbody id="statsTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Step detail tabs -->
+  <div class="panel">
+    <div class="panel-title">Step별 상세 (방위각 · 고도)</div>
+    <div class="tabs">
+      <button class="tab-btn t4 active" onclick="showTab(4,this)">M=4</button>
+      <button class="tab-btn t8" onclick="showTab(8,this)">M=8</button>
+      <button class="tab-btn t12" onclick="showTab(12,this)">M=12</button>
+      <button class="tab-btn t16" onclick="showTab(16,this)">M=16</button>
+    </div>
+    <div id="stepDetail" style="overflow:auto; max-height:300px;">
+      <table>
+        <thead><tr><th>Step</th><th>X</th><th>Y</th><th>Z</th><th>Azimuth</th><th>H-Dist</th></tr></thead>
+        <tbody id="stepBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ============ DATA ============
+const COLORS = { 4:'#ce93d8', 8:'#81c784', 12:'#64b5f6', 16:'#ffb74d' };
+const BG_COLORS = { 4:'rgba(156,39,176,0.15)', 8:'rgba(76,175,80,0.15)', 12:'rgba(33,150,243,0.15)', 16:'rgba(255,152,0,0.15)' };
+
+const paths = {
+  4: [
+    {step:1, x:15, y:0, z:-5, az:0.0},
+    {step:2, x:-2.34, y:3.77, z:13.6, az:121.8},
+    {step:3, x:-5.05, y:2.58, z:13.9, az:152.9},
+    {step:4, x:-3.31, y:-6.34, z:13.6, az:242.4},
+  ],
+  8: [
+    {step:1, x:15, y:0, z:-5, az:0.0},
+    {step:2, x:-2.34, y:3.77, z:13.6, az:121.8},
+    {step:3, x:-3.32, y:3.58, z:13.9, az:132.8},
+    {step:4, x:-6.8, y:-1.9, z:13.6, az:195.5},
+    {step:5, x:0.572, y:-6.16, z:13.6, az:275.3},
+    {step:6, x:-2.75, y:3.84, z:13.8, az:125.6},
+    {step:7, x:-7.12, y:0.105, z:14.1, az:179.1},
+    {step:8, x:3.53, y:-2.39, z:13.6, az:325.9},
+  ],
+  12: [
+    {step:1, x:15, y:0, z:-5, az:0.0},
+    {step:2, x:-2.34, y:3.77, z:13.6, az:121.8},
+    {step:3, x:-4.24, y:3.16, z:13.9, az:143.2},
+    {step:4, x:-2.34, y:3.77, z:13.6, az:121.8},
+    {step:5, x:2.8, y:-4.23, z:13.6, az:303.5},
+    {step:6, x:-6.8, y:-1.9, z:13.6, az:195.5},
+    {step:7, x:-0.367, y:-6.48, z:13.6, az:266.7},
+    {step:8, x:-4.21, y:-5.93, z:13.6, az:234.5},
+    {step:9, x:2.18, y:-5.01, z:13.6, az:293.5},
+    {step:10, x:3.53, y:-0.411, z:13.6, az:353.3},
+    {step:11, x:3.25, y:0.543, z:13.6, az:9.4},
+    {step:12, x:2.8, y:1.43, z:13.6, az:27.0},
+  ],
+  16: [
+    {step:1, x:15, y:0, z:-5, az:0.0},
+    {step:2, x:-3.31, y:3.54, z:13.6, az:133.0},
+    {step:3, x:1.43, y:2.86, z:13.6, az:63.3},
+    {step:4, x:-3.31, y:-6.34, z:13.6, az:242.4},
+    {step:5, x:3.25, y:0.543, z:13.6, az:9.4},
+    {step:6, x:-4.21, y:-5.93, z:13.6, az:234.5},
+    {step:7, x:-5.25, y:2.58, z:13.7, az:153.8},
+    {step:8, x:3.53, y:-2.39, z:13.6, az:325.9},
+    {step:9, x:1.43, y:2.86, z:13.6, az:63.3},
+    {step:10, x:-6.8, y:-0.903, z:13.6, az:187.5},
+    {step:11, x:1.43, y:-5.66, z:13.6, az:284.2},
+    {step:12, x:-1.35, y:-6.62, z:13.6, az:258.4},
+    {step:13, x:-0.367, y:3.68, z:13.6, az:95.7},
+    {step:14, x:1.43, y:-5.66, z:13.6, az:284.2},
+    {step:15, x:-6.62, y:0.0729, z:13.6, az:179.3},
+    {step:16, x:-4.21, y:-5.93, z:13.6, az:234.5},
+  ],
+};
+
+// Orbit reference (360/M uniform)
+function orbitRef(M) {
+  return Array.from({length:M}, (_,i) => ({
+    az: (360/M * i + (M===16?0:0)) % 360,
+  }));
+}
+
+// ============ STATS ============
+function computeStats(path) {
+  const azs = path.map(d=>d.az).sort((a,b)=>a-b);
+  const gaps = azs.map((a,i) => {
+    let g = azs[(i+1)%azs.length] - a; if(g<0) g+=360; return +g.toFixed(1);
+  });
+  const maxGap = Math.max(...gaps);
+  const meanGap = gaps.reduce((s,g)=>s+g,0)/gaps.length;
+  const stdGap = +Math.sqrt(gaps.reduce((s,g)=>s+(g-meanGap)**2,0)/gaps.length).toFixed(1);
+  const unique = new Set(azs.map(a=>a.toFixed(1))).size;
+  const zVals = path.slice(1).map(d=>d.z);
+  const zStd = +Math.sqrt(zVals.reduce((s,z)=>s+(z-zVals.reduce((a,b)=>a+b,0)/zVals.length)**2,0)/zVals.length).toFixed(2);
+  return { maxGap:+maxGap.toFixed(1), stdGap, unique, zStd };
+}
+
+// Cumulative azimuth coverage: fraction of 360° covered after k steps
+function cumCoverage(path, bins=360) {
+  const covered = new Array(bins).fill(false);
+  const threshold = 360/bins * 5; // within 5° counts
+  const result = [];
+  path.forEach((p, i) => {
+    for(let b=0; b<bins; b++) {
+      const angle = b * 360/bins;
+      let diff = Math.abs(p.az - angle); if(diff>180) diff=360-diff;
+      if(diff < threshold) covered[b] = true;
+    }
+    result.push(+(covered.filter(Boolean).length / bins * 100).toFixed(1));
+  });
+  return result;
+}
+
+// ============ POLAR PLOT ============
+function makePolar() {
+  const traces = [];
+
+  // Orbit M=16 reference ring
+  traces.push({
+    type:'scatterpolar', r:Array(17).fill(15), theta:[...Array.from({length:16},(_,i)=>i*22.5),0],
+    mode:'lines', line:{color:'#4fc3f7', width:1.5, dash:'dot'},
+    name:'Orbit-16 기준', hoverinfo:'skip',
+  });
+
+  [4,8,12,16].forEach(M => {
+    const data = paths[M];
+    const r = data.map(d => Math.sqrt(d.x**2+d.y**2));
+    traces.push({
+      type:'scatterpolar', r, theta:data.map(d=>d.az),
+      mode:'markers+lines',
+      name:`M=${M}`,
+      marker:{color:COLORS[M], size:M===4?12:10, symbol:'circle',
+              line:{color:'#fff',width:1}},
+      line:{color:COLORS[M], width:2},
+      hovertemplate: data.map(d=>`Step ${d.step}<br>Az: ${d.az}°<br>r: ${Math.sqrt(d.x**2+d.y**2).toFixed(1)}m`),
+    });
+    // Step labels
+    traces.push({
+      type:'scatterpolar', r, theta:data.map(d=>d.az),
+      mode:'text', text:data.map(d=>d.step),
+      textfont:{size:9, color:COLORS[M]},
+      hoverinfo:'skip', showlegend:false,
+    });
+  });
+
+  Plotly.newPlot('plotPolar', traces, {
+    paper_bgcolor:'#13131f',
+    polar:{bgcolor:'#0f0f1a',
+      radialaxis:{color:'#555', gridcolor:'#2a2a3a', range:[0,20]},
+      angularaxis:{color:'#555', gridcolor:'#2a2a3a', direction:'clockwise', rotation:90,
+        tickmode:'array', tickvals:[0,45,90,135,180,225,270,315],
+        ticktext:['N','NE','E','SE','S','SW','W','NW']},
+    },
+    legend:{bgcolor:'#1a1a2e', bordercolor:'#2a2a4a', font:{color:'#ccc'},
+            orientation:'h', x:0.5, y:-0.05, xanchor:'center'},
+    margin:{l:40, r:40, t:10, b:50}, font:{color:'#888'},
+  }, {responsive:true});
+}
+
+// ============ XY TOP VIEW ============
+function makeXY() {
+  const traces = [];
+
+  // Building outline
+  traces.push({type:'scatter', mode:'lines', x:[-7,7,7,-7,-7], y:[-8.5,-8.5,8.5,8.5,-8.5],
+    line:{color:'#444', width:2}, hoverinfo:'skip', showlegend:false, fill:'toself',
+    fillcolor:'rgba(255,255,255,0.03)'});
+
+  // Origin
+  traces.push({type:'scatter', mode:'markers', x:[0], y:[0],
+    marker:{color:'#ff5252', size:8, symbol:'cross'}, hoverinfo:'skip', showlegend:false});
+
+  [4,8,12,16].forEach(M => {
+    const data = paths[M];
+    const x = data.map(d=>d.x), y = data.map(d=>d.y);
+    traces.push({
+      type:'scatter', mode:'lines+markers', name:`M=${M}`,
+      x:[...x, x[0]], y:[...y, y[0]],
+      line:{color:COLORS[M], width:2.5},
+      marker:{color:COLORS[M], size:8, symbol:'circle', line:{color:'#fff',width:1}},
+      hovertemplate:data.map(d=>`Step ${d.step}<br>(${d.x}, ${d.y})<br>Az: ${d.az}°`)
+        .concat([''])
+    });
+    traces.push({
+      type:'scatter', mode:'text', x, y,
+      text:data.map(d=>d.step), textfont:{size:9, color:COLORS[M]},
+      hoverinfo:'skip', showlegend:false,
+    });
+  });
+
+  Plotly.newPlot('plotXY', traces, {
+    paper_bgcolor:'#13131f', plot_bgcolor:'#0f0f1a',
+    xaxis:{title:'X (m)', color:'#666', gridcolor:'#2a2a3a', zeroline:false, range:[-22,22]},
+    yaxis:{title:'Y (m)', color:'#666', gridcolor:'#2a2a3a', zeroline:false, range:[-22,22], scaleanchor:'x'},
+    legend:{bgcolor:'#1a1a2e', bordercolor:'#2a2a4a', font:{color:'#ccc'}},
+    margin:{l:50, r:20, t:10, b:50}, font:{color:'#888'},
+  }, {responsive:true});
+}
+
+// ============ GAP CHART ============
+function makeGap() {
+  const traces = [];
+  [4,8,12,16].forEach(M => {
+    const azs = [...paths[M].map(d=>d.az)].sort((a,b)=>a-b);
+    const gaps = azs.map((a,i)=>{let g=azs[(i+1)%azs.length]-a; if(g<0)g+=360; return +g.toFixed(1);});
+    traces.push({
+      type:'bar', name:`M=${M}`,
+      x:azs.map((a,i)=>`${a}°`),
+      y:gaps, marker:{color:COLORS[M], opacity:0.8},
+    });
+  });
+  // Ideal gap lines
+  [4,8,12,16].forEach(M => {
+    traces.push({
+      type:'scatter', mode:'lines', name:`Orbit M=${M} 이상값 (${(360/M).toFixed(1)}°)`,
+      x:['0°','350°'], y:[360/M, 360/M],
+      line:{color:COLORS[M], dash:'dash', width:1.5},
+    });
+  });
+
+  Plotly.newPlot('plotGap', traces, {
+    paper_bgcolor:'#13131f', plot_bgcolor:'#0f0f1a',
+    barmode:'group',
+    xaxis:{color:'#555', tickangle:-60, tickfont:{size:9}},
+    yaxis:{title:'Gap (°)', color:'#666', gridcolor:'#2a2a3a'},
+    legend:{bgcolor:'#1a1a2e', bordercolor:'#2a2a4a', font:{color:'#ccc'},
+            orientation:'h', x:0.5, y:1.12, xanchor:'center', font:{size:10}},
+    margin:{l:50, r:20, t:50, b:80}, font:{color:'#888'},
+  }, {responsive:true});
+}
+
+// ============ CUMULATIVE COVERAGE ============
+function makeCoverage() {
+  const traces = [];
+  [4,8,12,16].forEach(M => {
+    const cov = cumCoverage(paths[M]);
+    const orbitCov = cumCoverage(orbitRef(M).map((d,i)=>({...d, step:i+1})));
+    traces.push({
+      type:'scatter', mode:'lines+markers', name:`PB-NBV M=${M}`,
+      x:Array.from({length:M},(_,i)=>i+1), y:cov,
+      line:{color:COLORS[M], width:2.5},
+      marker:{color:COLORS[M], size:7},
+    });
+    traces.push({
+      type:'scatter', mode:'lines', name:`Orbit M=${M}`,
+      x:Array.from({length:M},(_,i)=>i+1), y:orbitCov,
+      line:{color:COLORS[M], width:1.5, dash:'dot'},
+      hoverinfo:'skip',
+    });
+  });
+
+  Plotly.newPlot('plotCoverage', traces, {
+    paper_bgcolor:'#13131f', plot_bgcolor:'#0f0f1a',
+    xaxis:{title:'Step', color:'#666', gridcolor:'#2a2a3a', dtick:1},
+    yaxis:{title:'방위각 커버리지 (%)', color:'#666', gridcolor:'#2a2a3a', range:[0,105]},
+    legend:{bgcolor:'#1a1a2e', bordercolor:'#2a2a4a', font:{color:'#ccc'},
+            orientation:'h', x:0.5, y:1.12, xanchor:'center', font:{size:10}},
+    margin:{l:55, r:20, t:50, b:50}, font:{color:'#888'},
+  }, {responsive:true});
+}
+
+// ============ STATS TABLE ============
+function fillStats() {
+  const Ms = [4,8,12,16];
+  const stats = {};
+  Ms.forEach(M => stats[M] = computeStats(paths[M]));
+
+  // Update cards
+  Ms.forEach(M => {
+    const s = stats[M];
+    const prefix = `s${M}`;
+    document.getElementById(`${prefix}-gap`).textContent = s.maxGap + '°';
+    document.getElementById(`${prefix}-std`).textContent = s.stdGap + '°';
+    document.getElementById(`${prefix}-alt`).textContent = `z std: ${s.zStd}`;
+    const card = document.querySelector(`.m${M}`);
+    card.querySelector('.main-val').textContent = `${s.unique}/${M} 고유`;
+  });
+
+  // Table rows
+  const tbody = document.getElementById('statsTable');
+  const rows = [
+    ['Max Gap', M => stats[M].maxGap+'°', (a,b)=>a<b],
+    ['Std Gap', M => stats[M].stdGap+'°', (a,b)=>a<b],
+    ['고유 방위각', M => stats[M].unique+'/'+M, (a,b)=>a>b],
+    ['Z 표준편차', M => stats[M].zStd+'m', (a,b)=>a<b],
+    ['Orbit 이상 Max Gap', M => (360/M).toFixed(1)+'°', ()=>false],
+  ];
+
+  rows.forEach(([label, fn, isBetter]) => {
+    const vals = Ms.map(M => fn(M));
+    const raw = Ms.map(M => parseFloat(fn(M)));
+    const tr = document.createElement('tr');
+    const bestIdx = raw.reduce((bi, v, i) => isBetter(v, raw[bi]) ? i : bi, 0);
+    tr.innerHTML = `<td><b>${label}</b></td>` +
+      Ms.map((M,i) => `<td class="${i===bestIdx&&label!=='Orbit 이상 Max Gap'?'best':''}">${vals[i]}</td>`).join('') +
+      `<td style="color:#4fc3f7">${Ms.map(M=>(360/M).toFixed(1)+'°').join(' / ')}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+// ============ STEP DETAIL TABLE ============
+function showTab(M, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const tbody = document.getElementById('stepBody');
+  tbody.innerHTML = '';
+  paths[M].forEach(d => {
+    const hdist = Math.sqrt(d.x**2+d.y**2).toFixed(2);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${d.step}</td><td>${d.x.toFixed(2)}</td><td>${d.y.toFixed(2)}</td>
+      <td style="color:${d.z>0?'#81c784':'#4fc3f7'}">${d.z.toFixed(1)}</td>
+      <td>${d.az.toFixed(1)}°</td><td>${hdist}m</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+// ============ INIT ============
+makePolar();
+makeXY();
+makeGap();
+makeCoverage();
+fillStats();
+showTab(4, document.querySelector('.tab-btn.t4'));
+</script>
+</body>
+</html>

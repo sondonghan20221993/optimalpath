@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PB-NBV M-Variation 3D Comparison</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        .tab-btn {
+            padding: 12px 20px;
+            border: none;
+            background: #f0f0f0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            background: #2196F3;
+            color: white;
+            border-bottom-color: #2196F3;
+        }
+        .tab-btn:hover {
+            background: #ddd;
+        }
+        .tab-btn.active:hover {
+            background: #2196F3;
+        }
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .plot-container {
+            width: 100%;
+            height: 600px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #2196F3;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .info-box h3 {
+            margin-top: 0;
+            color: #2196F3;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .stat-item {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+        .stat-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2196F3;
+            margin-top: 5px;
+        }
+        .path-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .path-table th {
+            background: #f0f0f0;
+            padding: 8px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd;
+        }
+        .path-table td {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .path-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PB-NBV M-Variation 3D Path Comparison</h1>
+        <p style="text-align: center; color: #666;">고도 고정 (z≈13.6m) 상태에서 M=4, 8, 12, 16 경로</p>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab(4)">M=4</button>
+            <button class="tab-btn" onclick="switchTab(8)">M=8</button>
+            <button class="tab-btn" onclick="switchTab(12)">M=12</button>
+            <button class="tab-btn" onclick="switchTab(16)">M=16</button>
+        </div>
+
+        <!-- M=4 Tab -->
+        <div class="tab-content active" id="tab-4">
+            <div class="info-box">
+                <h3>M=4 경로 (4개 지점)</h3>
+                <p>첫 번째 지점에서 z=-5m, 이후 z≈13.6m으로 고정</p>
+            </div>
+            <div class="plot-container" id="plot-4"></div>
+            <div class="path-table" id="table-4"></div>
+        </div>
+
+        <!-- M=8 Tab -->
+        <div class="tab-content" id="tab-8">
+            <div class="info-box">
+                <h3>M=8 경로 (8개 지점)</h3>
+                <p>첫 번째 지점에서 z=-5m, 이후 z≈13.6m으로 고정</p>
+            </div>
+            <div class="plot-container" id="plot-8"></div>
+            <div class="path-table" id="table-8"></div>
+        </div>
+
+        <!-- M=12 Tab -->
+        <div class="tab-content" id="tab-12">
+            <div class="info-box">
+                <h3>M=12 경로 (12개 지점)</h3>
+                <p>첫 번째 지점에서 z=-5m, 이후 z≈13.6m으로 고정</p>
+            </div>
+            <div class="plot-container" id="plot-12"></div>
+            <div class="path-table" id="table-12"></div>
+        </div>
+
+        <!-- M=16 Tab -->
+        <div class="tab-content" id="tab-16">
+            <div class="info-box">
+                <h3>M=16 경로 (16개 지점)</h3>
+                <p>첫 번째 지점에서 z=-5m, 이후 z≈13.6m으로 고정</p>
+            </div>
+            <div class="plot-container" id="plot-16"></div>
+            <div class="path-table" id="table-16"></div>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            4: [
+                {step: 1, x: 15, y: 0, z: -5, azimuth: 0.0},
+                {step: 2, x: -2.34, y: 3.77, z: 13.6, azimuth: 121.8},
+                {step: 3, x: -5.05, y: 2.58, z: 13.9, azimuth: 152.9},
+                {step: 4, x: -3.31, y: -6.34, z: 13.6, azimuth: 242.4}
+            ],
+            8: [
+                {step: 1, x: 15, y: 0, z: -5, azimuth: 0.0},
+                {step: 2, x: -2.34, y: 3.77, z: 13.6, azimuth: 121.8},
+                {step: 3, x: -3.32, y: 3.58, z: 13.9, azimuth: 132.8},
+                {step: 4, x: -6.8, y: -1.9, z: 13.6, azimuth: 195.5},
+                {step: 5, x: 0.572, y: -6.16, z: 13.6, azimuth: 275.3},
+                {step: 6, x: -2.75, y: 3.84, z: 13.8, azimuth: 125.6},
+                {step: 7, x: -7.12, y: 0.105, z: 14.1, azimuth: 179.1},
+                {step: 8, x: 3.53, y: -2.39, z: 13.6, azimuth: 325.9}
+            ],
+            12: [
+                {step: 1, x: 15, y: 0, z: -5, azimuth: 0.0},
+                {step: 2, x: -2.34, y: 3.77, z: 13.6, azimuth: 121.8},
+                {step: 3, x: -4.24, y: 3.16, z: 13.9, azimuth: 143.2},
+                {step: 4, x: -2.34, y: 3.77, z: 13.6, azimuth: 121.8},
+                {step: 5, x: 2.8, y: -4.23, z: 13.6, azimuth: 303.5},
+                {step: 6, x: -6.8, y: -1.9, z: 13.6, azimuth: 195.5},
+                {step: 7, x: -0.367, y: -6.48, z: 13.6, azimuth: 266.7},
+                {step: 8, x: -4.21, y: -5.93, z: 13.6, azimuth: 234.5},
+                {step: 9, x: 2.18, y: -5.01, z: 13.6, azimuth: 293.5},
+                {step: 10, x: 3.53, y: -0.411, z: 13.6, azimuth: 353.3},
+                {step: 11, x: 3.25, y: 0.543, z: 13.6, azimuth: 9.4},
+                {step: 12, x: 2.8, y: 1.43, z: 13.6, azimuth: 27.0}
+            ],
+            16: [
+                {step: 1, x: 15, y: 0, z: -5, azimuth: 0.0},
+                {step: 2, x: -3.31, y: 3.54, z: 13.6, azimuth: 133.0},
+                {step: 3, x: 1.43, y: 2.86, z: 13.6, azimuth: 63.3},
+                {step: 4, x: -3.31, y: -6.34, z: 13.6, azimuth: 242.4},
+                {step: 5, x: 3.25, y: 0.543, z: 13.6, azimuth: 9.4},
+                {step: 6, x: -4.21, y: -5.93, z: 13.6, azimuth: 234.5},
+                {step: 7, x: -5.25, y: 2.58, z: 13.7, azimuth: 153.8},
+                {step: 8, x: 3.53, y: -2.39, z: 13.6, azimuth: 325.9},
+                {step: 9, x: 1.43, y: 2.86, z: 13.6, azimuth: 63.3},
+                {step: 10, x: -6.8, y: -0.903, z: 13.6, azimuth: 187.5},
+                {step: 11, x: 1.43, y: -5.66, z: 13.6, azimuth: 284.2},
+                {step: 12, x: -1.35, y: -6.62, z: 13.6, azimuth: 258.4},
+                {step: 13, x: -0.367, y: 3.68, z: 13.6, azimuth: 95.7},
+                {step: 14, x: 1.43, y: -5.66, z: 13.6, azimuth: 284.2},
+                {step: 15, x: -6.62, y: 0.0729, z: 13.6, azimuth: 179.3},
+                {step: 16, x: -4.21, y: -5.93, z: 13.6, azimuth: 234.5}
+            ]
+        };
+
+        function plotPath(M) {
+            const path = data[M];
+            const xs = path.map(p => p.x);
+            const ys = path.map(p => p.y);
+            const zs = path.map(p => p.z);
+            const azimuths = path.map(p => p.azimuth);
+
+            // Line trace (path)
+            const lineTrace = {
+                x: xs,
+                y: ys,
+                z: zs,
+                mode: 'lines',
+                type: 'scatter3d',
+                name: 'Path',
+                line: {
+                    color: '#2196F3',
+                    width: 3
+                }
+            };
+
+            // Scatter trace (points)
+            const scatterTrace = {
+                x: xs,
+                y: ys,
+                z: zs,
+                mode: 'markers',
+                type: 'scatter3d',
+                name: 'Viewpoints',
+                marker: {
+                    size: 6,
+                    color: azimuths,
+                    colorscale: 'Viridis',
+                    showscale: true,
+                    colorbar: {
+                        title: 'Azimuth (°)'
+                    },
+                    line: {
+                        color: 'white',
+                        width: 2
+                    }
+                },
+                text: path.map((p, i) => `Step ${p.step}<br>Azimuth: ${p.azimuth.toFixed(1)}°<br>Pos: (${p.x.toFixed(2)}, ${p.y.toFixed(2)}, ${p.z.toFixed(2)})`),
+                hoverinfo: 'text'
+            };
+
+            const layout = {
+                title: `M=${M} Path (${M} viewpoints)`,
+                scene: {
+                    xaxis: { title: 'X (m)' },
+                    yaxis: { title: 'Y (m)' },
+                    zaxis: { title: 'Z (m)' }
+                },
+                margin: { l: 0, r: 0, t: 40, b: 0 },
+                showlegend: true,
+                hovermode: 'closest'
+            };
+
+            Plotly.newPlot(`plot-${M}`, [lineTrace, scatterTrace], layout, {responsive: true});
+        }
+
+        function createTable(M) {
+            const path = data[M];
+            let html = '<table class="path-table"><tr><th>Step</th><th>X (m)</th><th>Y (m)</th><th>Z (m)</th><th>Azimuth (°)</th></tr>';
+            path.forEach(p => {
+                html += `<tr>
+                    <td>${p.step}</td>
+                    <td>${p.x.toFixed(2)}</td>
+                    <td>${p.y.toFixed(2)}</td>
+                    <td>${p.z.toFixed(2)}</td>
+                    <td>${p.azimuth.toFixed(1)}</td>
+                </tr>`;
+            });
+            html += '</table>';
+            document.getElementById(`table-${M}`).innerHTML = html;
+        }
+
+        function switchTab(M) {
+            // Hide all tabs
+            [4, 8, 12, 16].forEach(m => {
+                document.getElementById(`tab-${m}`).classList.remove('active');
+                document.querySelector(`button[onclick="switchTab(${m})"]`).classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(`tab-${M}`).classList.add('active');
+            document.querySelector(`button[onclick="switchTab(${M})"]`).classList.add('active');
+
+            // Plot if not already plotted
+            setTimeout(() => {
+                plotPath(M);
+            }, 10);
+        }
+
+        // Initialize all plots on load
+        window.addEventListener('load', () => {
+            [4, 8, 12, 16].forEach(M => {
+                createTable(M);
+            });
+            plotPath(4);
+        });
+    </script>
+</body>
+</html>

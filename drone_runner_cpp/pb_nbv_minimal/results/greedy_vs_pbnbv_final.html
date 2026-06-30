@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Greedy vs PB-NBV — ground_first, M=8</title>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; padding: 16px; background: #1a1a2e; color: #eee; }
+  h1 { text-align: center; color: #e0e0ff; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: #888; margin-bottom: 16px; font-size: 13px; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .tab-btn { padding: 7px 18px; border: none; border-radius: 6px; background: #2a2a4a; color: #aaa; cursor: pointer; font-size: 13px; font-weight: bold; transition: all 0.2s; }
+  .tab-btn.active { background: #5572f5; color: white; }
+  .tab-btn:hover:not(.active) { background: #3a3a6a; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .card { background: #16213e; border-radius: 10px; padding: 14px; }
+  .card-title { font-size: 13px; color: #7af; margin-bottom: 8px; font-weight: bold; }
+  .stats-row { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+  .stat-card { background: #0f3460; border-radius: 8px; padding: 10px 18px; flex: 1; min-width: 110px; border-left: 3px solid; }
+  .stat-label { font-size: 11px; color: #888; }
+  .stat-val { font-size: 18px; font-weight: bold; margin-top: 2px; }
+  .note { background: #1e2a3a; border-left: 3px solid #f4a261; padding: 8px 14px; border-radius: 4px; margin-bottom: 14px; font-size: 12px; color: #cca; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #0f3460; padding: 8px; text-align: left; color: #7af; }
+  td { padding: 8px; border-bottom: 1px solid #2a2a4a; }
+  tr:hover td { background: #1e2a4a; }
+  .win { color: #2a9d8f; font-weight: bold; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+  .tag-g { background: #2a9d8f44; color: #2a9d8f; }
+  .tag-p { background: #f4a26144; color: #f4a261; }
+  .tag-c { background: #c77dff44; color: #c77dff; }
+</style>
+</head>
+<body>
+<h1>우리 설계(Greedy) vs 논문 알고리즘(PB-NBV)</h1>
+<p class="subtitle">ground_first.pcd | M=8 | voxel=0.4m | alt=5m | FOV=86°</p>
+
+<div class="tabs" id="tabs"></div>
+<div id="contents"></div>
+
+<script>
+// ── 데이터 ────────────────────────────────────────────────────────
+const greedy = [
+  {s:1,x:-12.0,y:0.0,z:5,az:180,gain:1759,cov:79.7},
+  {s:2,x:12.0,y:0.0,z:5,az:0,gain:368,cov:96.3},
+  {s:3,x:-17.4,y:-4.7,z:5,az:195,gain:59,cov:99.0},
+  {s:4,x:0.0,y:15.0,z:5,az:90,gain:13,cov:99.6},
+  {s:5,x:-9.0,y:-15.6,z:5,az:240,gain:8,cov:100.0},
+  {s:6,x:14.5,y:3.9,z:5,az:15,gain:1,cov:100.0},
+  {s:7,x:15.0,y:0.0,z:5,az:0,gain:0,cov:100.0},
+  {s:8,x:13.0,y:7.5,z:5,az:30,gain:0,cov:100.0}
+];
+
+const pbnbv_py = [
+  {s:1,x:-8.5,y:-8.5,z:5,az:225,gain:1722,cov:78.0},
+  {s:2,x:12.0,y:0.0,z:5,az:0,gain:353,cov:94.0},
+  {s:3,x:-8.5,y:8.5,z:5,az:135,gain:96,cov:98.3},
+  {s:4,x:-6.0,y:10.4,z:5,az:120,gain:3,cov:98.5},
+  {s:5,x:-10.6,y:10.6,z:5,az:135,gain:12,cov:99.0},
+  {s:6,x:9.0,y:15.6,z:5,az:60,gain:2,cov:99.1},
+  {s:7,x:-9.0,y:-15.6,z:5,az:240,gain:18,cov:99.9},
+  {s:8,x:-4.7,y:17.4,z:5,az:105,gain:0,cov:99.9}
+];
+
+const pbnbv_cpp = [
+  {s:1,x:15.0,y:0.0,z:5.0,az:0},
+  {s:2,x:8.43,y:-5.42,z:10.0,az:327.2},
+  {s:3,x:5.12,y:-7.04,z:11.7,az:306.0},
+  {s:4,x:6.23,y:2.53,z:11.7,az:22.1},
+  {s:5,x:6.41,y:7.7,z:8.51,az:50.2},
+  {s:6,x:2.44,y:-9.78,z:11.3,az:283.9},
+  {s:7,x:0.955,y:10.5,z:8.51,az:84.7},
+  {s:8,x:-1.08,y:-9.6,z:12.1,az:263.5}
+];
+
+const COLORS = {greedy:'#2a9d8f', pbnbv_py:'#f4a261', pbnbv_cpp:'#c77dff'};
+const LABELS = {greedy:'Greedy (우리계획)', pbnbv_py:'Python PB-NBV', pbnbv_cpp:'C++ PB-NBV (논문코드)'};
+
+function buildTabs() {
+  const tabsEl = document.getElementById('tabs');
+  const contEl = document.getElementById('contents');
+  const tabs = [
+    {id:'summary', label:'📊 결과 요약'},
+    {id:'coverage', label:'📈 Coverage 곡선'},
+    {id:'path3d',   label:'🌐 3D 경로 비교'},
+    {id:'topdown',  label:'🗺 Top-down 경로'},
+    {id:'detail',   label:'📋 단계별 상세'}
+  ];
+  tabs.forEach((t,i)=>{
+    const btn = document.createElement('button');
+    btn.className='tab-btn'+(i===0?' active':'');
+    btn.textContent=t.label;
+    btn.onclick=()=>switchTab(t.id);
+    tabsEl.appendChild(btn);
+    const div=document.createElement('div');
+    div.id='tab-'+t.id;
+    div.className='tab-content'+(i===0?' active':'');
+    contEl.appendChild(div);
+  });
+}
+
+function switchTab(id){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.querySelector(`.tab-btn[onclick*="${id}"]`).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='coverage') plotCoverage();
+  else if(id==='path3d') plot3d();
+  else if(id==='topdown') plotTopdown();
+  else if(id==='detail') buildDetail();
+}
+
+// ── 탭 1: 요약 ──────────────────────────────────────────────────
+function buildSummary(){
+  const el=document.getElementById('tab-summary');
+  const step100g = greedy.find(p=>p.cov>=100)?.s??'N/A';
+  const step100n = pbnbv_py.find(p=>p.cov>=99.9)?.s??'N/A';
+  el.innerHTML=`
+  <div class="note">
+    ⚠️ C++ PB-NBV: frontier voxel 수 = 0 (모든 스텝) → occupied ellipsoid만으로 동작 (논문 완전 구현 아님)<br>
+    ✅ Python 구현: frontier + occupied ellipsoid 정상 작동
+  </div>
+  <div class="stats-row">
+    <div class="stat-card" style="border-color:#2a9d8f">
+      <div class="stat-label">Greedy 최종 커버리지</div>
+      <div class="stat-val" style="color:#2a9d8f">100.0%</div>
+    </div>
+    <div class="stat-card" style="border-color:#f4a261">
+      <div class="stat-label">PB-NBV (Python) 최종 커버리지</div>
+      <div class="stat-val" style="color:#f4a261">99.9%</div>
+    </div>
+    <div class="stat-card" style="border-color:#2a9d8f">
+      <div class="stat-label">Greedy 100% 도달 스텝</div>
+      <div class="stat-val" style="color:#2a9d8f">Step ${step100g}</div>
+    </div>
+    <div class="stat-card" style="border-color:#f4a261">
+      <div class="stat-label">PB-NBV 99.9% 도달 스텝</div>
+      <div class="stat-val" style="color:#f4a261">Step ${step100n}</div>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:14px">
+    <div class="card">
+      <div class="card-title">알고리즘 비교 표</div>
+      <table>
+        <tr><th></th><th><span class="tag tag-g">Greedy</span></th><th><span class="tag tag-p">PB-NBV</span></th></tr>
+        <tr><td>선택 기준</td><td>새 voxel 최대화</td><td>frontier ellipsoid 투영 점수</td></tr>
+        <tr><td>고도 유지</td><td class="win">고정 (5m)</td><td>변동 (5→10→12m)</td></tr>
+        <tr><td>M=8 최종 커버</td><td class="win">100.0%</td><td>99.9%</td></tr>
+        <tr><td>100% 도달</td><td class="win">Step 5</td><td>미도달 (99.9%)</td></tr>
+        <tr><td>계산 복잡도</td><td class="win">O(N×|cands|)</td><td>O(GMM+ellipsoid)</td></tr>
+        <tr><td>oracle 필요</td><td>Yes (voxel 카운트)</td><td>Yes (frontier 계산)</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">C++ PB-NBV 경로 (논문 코드, M=8)</div>
+      <table>
+        <tr><th>Step</th><th>Az (°)</th><th>고도 (m)</th><th>거리 (m)</th></tr>
+        ${pbnbv_cpp.map(p=>`<tr><td>${p.s}</td><td>${p.az}</td><td>${p.z.toFixed(1)}</td><td>${Math.sqrt(p.x**2+p.y**2+p.z**2).toFixed(1)}</td></tr>`).join('')}
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">결론</div>
+    <p style="font-size:13px;line-height:1.7;color:#ccc">
+      📌 <strong style="color:#2a9d8f">Greedy가 PB-NBV보다 빠르게 수렴</strong>: ground_first 같은 비교적 단순한 지형에서 Greedy는 step 5에서 100% 달성, PB-NBV는 step 8에서 99.9%.
+      <br>
+      📌 PB-NBV의 frontier ellipsoid 투영 스코어링은 <strong>복잡한 오목 구조/군집 형태의 미지 물체</strong>에서 강점을 가짐 (평탄 지형은 Greedy로 충분).
+      <br>
+      📌 C++ PB-NBV는 frontier voxel = 0 이슈로 occupied ellipsoid만 사용 — 이는 ground_first 지형 특성상 발생하는 이슈.
+      <br>
+      📌 <strong style="color:#f4a261">제안서 방향 (Greedy) 유효</strong>: 단순 구조에서 Greedy ≥ PB-NBV 성능 확인.
+    </p>
+  </div>`;
+}
+
+// ── 탭 2: Coverage 곡선 ──────────────────────────────────────────
+const plotted={};
+function plotCoverage(){
+  if(plotted.cov) return; plotted.cov=true;
+  const steps=[1,2,3,4,5,6,7,8];
+  Plotly.newPlot('cov-chart',[
+    {x:steps, y:greedy.map(p=>p.cov), name:LABELS.greedy,
+     mode:'lines+markers', line:{color:COLORS.greedy,width:3}, marker:{size:8}},
+    {x:steps, y:pbnbv_py.map(p=>p.cov), name:LABELS.pbnbv_py,
+     mode:'lines+markers', line:{color:COLORS.pbnbv_py,width:3,dash:'dash'}, marker:{size:8}},
+    {x:steps, y:[null,null,null,null,null,null,null,null], name:'C++ PB-NBV (coverage 미측정)',
+     mode:'markers', marker:{color:COLORS.pbnbv_cpp,size:5}, line:{color:COLORS.pbnbv_cpp}}
+  ],{
+    paper_bgcolor:'#16213e',plot_bgcolor:'#16213e',
+    xaxis:{title:'Step',color:'#888',gridcolor:'#2a2a4a',dtick:1},
+    yaxis:{title:'Coverage (%)',color:'#888',gridcolor:'#2a2a4a',range:[70,102]},
+    legend:{font:{color:'#ccc'},bgcolor:'#1a2a4a'},
+    margin:{l:60,r:20,t:20,b:50}
+  },{responsive:true});
+
+  // gain bar
+  Plotly.newPlot('gain-chart',[
+    {x:steps.map(s=>'S'+s), y:greedy.map(p=>p.gain), name:LABELS.greedy,
+     type:'bar', marker:{color:COLORS.greedy+'aa'}},
+    {x:steps.map(s=>'S'+s), y:pbnbv_py.map(p=>p.gain), name:LABELS.pbnbv_py,
+     type:'bar', marker:{color:COLORS.pbnbv_py+'aa'}}
+  ],{
+    barmode:'group',
+    paper_bgcolor:'#16213e',plot_bgcolor:'#16213e',
+    xaxis:{color:'#888',gridcolor:'#2a2a4a'},
+    yaxis:{title:'새 voxel 수 (+gain)',color:'#888',gridcolor:'#2a2a4a'},
+    legend:{font:{color:'#ccc'},bgcolor:'#1a2a4a'},
+    margin:{l:60,r:20,t:10,b:50}
+  },{responsive:true});
+}
+
+// ── 탭 3: 3D 경로 ────────────────────────────────────────────────
+function plot3d(){
+  if(plotted.p3d) return; plotted.p3d=true;
+  const traces=[];
+  [[greedy,'greedy'],[pbnbv_py,'pbnbv_py'],[pbnbv_cpp,'pbnbv_cpp']].forEach(([path,key])=>{
+    const xs=path.map(p=>p.x),ys=path.map(p=>p.y),zs=path.map(p=>p.z);
+    const c=COLORS[key];
+    traces.push({x:xs,y:ys,z:zs,mode:'lines',type:'scatter3d',name:LABELS[key],
+      line:{color:c,width:3},showlegend:true});
+    traces.push({x:xs,y:ys,z:zs,mode:'markers',type:'scatter3d',showlegend:false,
+      marker:{size:path.map((_,i)=>i===0?12:7),color:path.map((_,i)=>i===0?'#fff':c),symbol:'circle'},
+      text:path.map(p=>`Step ${p.s}<br>Az:${p.az}°<br>(${p.x.toFixed(1)},${p.y.toFixed(1)},${p.z.toFixed(1)})`),
+      hoverinfo:'text'});
+  });
+  Plotly.newPlot('p3d',traces,{
+    paper_bgcolor:'#16213e',
+    scene:{xaxis:{title:'X',color:'#555',gridcolor:'#2a2a4a'},
+           yaxis:{title:'Y',color:'#555',gridcolor:'#2a2a4a'},
+           zaxis:{title:'Z',color:'#555',gridcolor:'#2a2a4a'},
+           bgcolor:'#16213e',camera:{eye:{x:1.4,y:1.4,z:1.0}}},
+    legend:{font:{color:'#ccc'},bgcolor:'#1a2a4a'},
+    margin:{l:0,r:0,t:10,b:0}
+  },{responsive:true});
+}
+
+// ── 탭 4: Top-down ───────────────────────────────────────────────
+function plotTopdown(){
+  if(plotted.td) return; plotted.td=true;
+  const traces=[];
+  [[greedy,'greedy'],[pbnbv_py,'pbnbv_py'],[pbnbv_cpp,'pbnbv_cpp']].forEach(([path,key])=>{
+    const c=COLORS[key];
+    traces.push({x:path.map(p=>p.x),y:path.map(p=>p.y),mode:'lines+markers',name:LABELS[key],
+      line:{color:c,width:2},
+      marker:{size:path.map((_,i)=>i===0?14:8),
+              color:path.map((_,i)=>i===0?'#fff':c),
+              symbol:path.map((_,i)=>i===0?'star':'circle')},
+      text:path.map(p=>`Step ${p.s}<br>Az:${p.az}°`),hoverinfo:'text'});
+  });
+  // origin marker
+  traces.push({x:[0],y:[0],mode:'markers',name:'Origin (타겟)',
+    marker:{size:16,color:'#ff4444',symbol:'x'},showlegend:true});
+
+  Plotly.newPlot('ptd',traces,{
+    paper_bgcolor:'#16213e',plot_bgcolor:'#16213e',
+    xaxis:{title:'X (m)',color:'#555',gridcolor:'#2a2a4a',scaleanchor:'y',range:[-22,22]},
+    yaxis:{title:'Y (m)',color:'#555',gridcolor:'#2a2a4a',range:[-22,22]},
+    legend:{font:{color:'#ccc'},bgcolor:'#1a2a4a'},
+    margin:{l:50,r:20,t:10,b:50}
+  },{responsive:true});
+}
+
+// ── 탭 5: 상세 ──────────────────────────────────────────────────
+function buildDetail(){
+  if(plotted.det) return; plotted.det=true;
+  const el=document.getElementById('tab-detail');
+  el.innerHTML=`
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title"><span class="tag tag-g">Greedy</span> 단계별 결과</div>
+      <table>
+        <tr><th>Step</th><th>Az(°)</th><th>+Gain</th><th>Coverage</th></tr>
+        ${greedy.map(p=>`<tr><td>${p.s}</td><td>${p.az}</td><td style="color:#2a9d8f">+${p.gain}</td><td>${p.cov.toFixed(1)}%</td></tr>`).join('')}
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="tag tag-p">PB-NBV (Python)</span> 단계별 결과</div>
+      <table>
+        <tr><th>Step</th><th>Az(°)</th><th>+Gain</th><th>Coverage</th></tr>
+        ${pbnbv_py.map(p=>`<tr><td>${p.s}</td><td>${p.az}</td><td style="color:#f4a261">+${p.gain}</td><td>${p.cov.toFixed(1)}%</td></tr>`).join('')}
+      </table>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <div class="card-title"><span class="tag tag-c">C++ PB-NBV (논문 코드)</span> 단계별 경로</div>
+    <table>
+      <tr><th>Step</th><th>X</th><th>Y</th><th>Z(고도)</th><th>Az(°)</th><th>비고</th></tr>
+      ${pbnbv_cpp.map(p=>`<tr><td>${p.s}</td><td>${p.x}</td><td>${p.y}</td><td style="color:#c77dff">${p.z.toFixed(1)}m</td><td>${p.az}</td><td style="color:#888;font-size:11px">${p.s===1?'고정 시작점':'occupied 기반 선택'}</td></tr>`).join('')}
+    </table>
+    <p style="font-size:11px;color:#888;margin-top:8px">* frontier=0 → occupied ellipsoid만으로 동작 / coverage 미측정</p>
+  </div>`;
+}
+
+// ── 탭 컨텐츠 레이아웃 ────────────────────────────────────────────
+function buildLayouts(){
+  document.getElementById('tab-coverage').innerHTML=`
+    <div class="card" style="margin-bottom:12px"><div class="card-title">Coverage 누적 곡선</div><div id="cov-chart" style="height:320px"></div></div>
+    <div class="card"><div class="card-title">Step별 신규 관측 voxel</div><div id="gain-chart" style="height:260px"></div></div>`;
+  document.getElementById('tab-path3d').innerHTML=`
+    <div class="card"><div class="card-title">3D 경로 비교</div><div id="p3d" style="height:520px"></div></div>`;
+  document.getElementById('tab-topdown').innerHTML=`
+    <div class="card"><div class="card-title">Top-down XY 경로</div><div id="ptd" style="height:520px"></div></div>`;
+}
+
+buildTabs();
+buildLayouts();
+buildSummary();
+window.addEventListener('load',()=>{});
+
+// fix tab button onclick
+document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+  const ids=['summary','coverage','path3d','topdown','detail'];
+  b.onclick=()=>switchTab(ids[i]);
+});
+</script>
+</body>
+</html>
