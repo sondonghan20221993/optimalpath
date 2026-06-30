@@ -14,37 +14,37 @@ NBV 반복 루프:
 데이터: real_test GT 점군(2438점)을 오라클로 사용.
         "관측" = 후보 시점 frustum 안 + front-facing GT 점의 voxel을 observed로 마킹.
 """
+import sys, types
+sys.modules.setdefault("open3d", types.ModuleType("open3d"))
 import json
 import math
 import numpy as np
 from pathlib import Path
 from sklearn.mixture import GaussianMixture
 
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+import pbnbv_path as _A
+
 # ── 설정 ─────────────────────────────────────────────────────────────────────
-TARGET   = np.array([-33.67, -50.83, 0.18])
-VOXEL    = 0.15      # voxel 크기 (m)
+NPZ      = HERE.parent / "real_test" / "airsim_gt_pts.npz"  # FBX 메시 GT (카메라 독립)
+_pts_raw = np.load(NPZ)["points"].astype(float)
+TARGET   = _pts_raw.mean(axis=0)   # 공동 통제: 포인트클라우드 centroid
+VOXEL    = 0.05      # 포인트 간격(~0.035m)에 맞춤 (기존 0.15m는 과대뭉침)
 FOV_DEG  = 89.9
 IMG_W, IMG_H = 1920, 1080
-MIN_DIST = 4.0
-MAX_DIST = 13.0
-N_STEPS  = 12        # NBV 반복 횟수
-MAX_ELLIPSOIDS = 8   # 클러스터당 최대 ellipsoid (BIC로 자동 결정)
+MIN_DIST = 0.1
+MAX_DIST = 8.0        # 공동 통제: pbnbv_path 와 동일
+N_STEPS  = 20
+MAX_ELLIPSOIDS = 8
 SEED     = 0
 np.random.seed(SEED)
 
-# ── 후보 시점: 편향 줄이려 반구+측면 조밀 격자 (논문은 반구 800개) ───────────
+# ── 후보 시점: tilt=45° 고정, 공동 통제조건 ───────────────────────────────────
 def make_candidates():
-    cands = []
-    # 고도 1m~9m, 0.5m 간격 / 반경 4.5~9m
-    for alt in np.arange(1.0, 9.5, 1.0):
-        z = TARGET[2] - alt
-        for rad in [4.5, 6.0, 7.5, 9.0]:
-            n_az = max(6, int(2*math.pi*rad / 1.5))  # 둘레 비례 방위 분배
-            for i in range(n_az):
-                th = 2*math.pi*i/n_az
-                cands.append([TARGET[0]+rad*math.cos(th),
-                              TARGET[1]+rad*math.sin(th), z])
-    return np.array(cands)
+    obj_z_top = _pts_raw[:,2].min()
+    z_levels  = [round(obj_z_top - dz, 2) for dz in [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]]
+    return _A.gen_candidates_tilt45(TARGET, z_levels, n_az=36, max_dist=MAX_DIST)
 
 # ── 카메라 intrinsic ─────────────────────────────────────────────────────────
 def make_K():
@@ -65,7 +65,7 @@ def look_at_R(cam_pos, target):
     return R
 
 # ── GT 점군 로드 & voxel화 ───────────────────────────────────────────────────
-d = np.load('real_test/real_test_pts_normals.npz')
+d = np.load(str(NPZ))  # airsim_gt_pts.npz
 PTS, NRM = d['points'], d['normals']
 ORIGIN = PTS.min(0) - VOXEL
 
@@ -169,8 +169,13 @@ def ellipsoid_visible(center, cam_pos, mean_normal):
     if mean_normal is None: return True
     return float((mean_normal*(cam_pos-center)).sum()) > 0
 
-# ── 후보 시점 평가: F = Σ(frontier proj·W) − Σ(occupied proj·W) ─────────────
-def evaluate(cam_pos, occ_ell, fro_ell):
+# ── 후보 시점 평가 ───────────────────────────────────────────────────────────
+# frontier_only=False (논문 baseline): F = Σ(frontier·W) − Σ(occupied·W)
+#   → 상대 argmax 용도. 거리로 나누지 말 것(음수 가능).
+# frontier_only=True  (드론 거리가중치 용): F = Σ(frontier·W) ≥ 0
+#   → occupied 타원체는 depth rank를 차지해 가림은 모델링하되 면적을 빼지 않음.
+#     Bircher utility U=F/dist 가 성립하도록 분자를 비음수로 유지.
+def evaluate(cam_pos, occ_ell, fro_ell, frontier_only=False):
     R = look_at_R(cam_pos, TARGET)
     items=[]  # (depth, area, is_frontier)
     for c,cov,nrm in fro_ell:
@@ -185,8 +190,12 @@ def evaluate(cam_pos, occ_ell, fro_ell):
     items.sort(key=lambda t:t[0])   # depth 오름차순(가까운 것 먼저)
     F=0.0
     for r,(z,a,is_f) in enumerate(items):
-        W = 0.5**r                  # observability weight (가림 모델)
-        F += (a*W) if is_f else -(a*W)
+        W = 0.5**r                  # observability weight (가림 모델: rank=가림)
+        if is_f:
+            F += a*W                # frontier 면적만 가산 (항상 ≥0)
+        elif not frontier_only:
+            F -= a*W                # 논문 baseline: occupied 감산
+        # frontier_only=True: occupied는 rank 슬롯만 소비(가림) → 면적 미반영
     return F
 
 # ── NBV 반복 루프 ────────────────────────────────────────────────────────────
@@ -215,10 +224,14 @@ def run_nbv():
         scores=np.array([(-1e18 if used[i] else evaluate(c, occ_ell, fro_ell))
                          for i,c in enumerate(cands)])
         best=int(np.argmax(scores))
-        used[best]=True
         chosen=cands[best]
         newobs = observed_by(chosen)
         gained = (~observed[newobs]).sum()
+        # 종료조건: 최고 후보가 새 voxel을 하나도 못 보면 중단 (헛스텝 방지)
+        if gained == 0:
+            print(f"  step{step+1}: 최고 후보 gain=0 → 종료")
+            break
+        used[best]=True
         observed[newobs]=True
         cov=observed.sum()/N_SURF
         cov_curve.append(cov)
@@ -235,14 +248,42 @@ def run_nbv():
         if cov>0.999: print("  (완전 커버)"); break
     return path, cov_curve, cands
 
+def eval_on_points(wps):
+    """공동 통제: 실제 포인트 2438개 + raycast 기준 커버리지."""
+    _A.RAYCAST_OCCLUSION = True
+    live = np.ones(len(_pts_raw), dtype=bool)
+    curve = []
+    for wp in wps:
+        _, vis = _A.information_gain(np.array(wp), TARGET, _pts_raw, live,
+                                     FOV_DEG, MAX_DIST)
+        live &= ~vis
+        curve.append(int(len(_pts_raw) - live.sum()))
+    return curve, int(live.sum())
+
+
 if __name__=='__main__':
     path, curve, cands = run_nbv()
+
+    # 공동 통제 평가: 실제 포인트 기준 (voxel 100%여도 포인트는 다를 수 있음)
+    wps = [p['pos'] for p in path]
+    pt_curve, pt_left = eval_on_points(wps)
+    pt_total = len(_pts_raw)
+    pt_cov   = (pt_total - pt_left) / pt_total
+    print(f"\n[공동통제] 실제 포인트 기준 커버리지:")
+    for i, c in enumerate(pt_curve):
+        print(f"  WP{i+1}: {c}/{pt_total} ({100*c/pt_total:.1f}%)")
+
     out=Path('results/pbnbv_paper'); out.mkdir(parents=True,exist_ok=True)
     json.dump({'algorithm':'PB-NBV (paper: voxel+ellipsoid projection)',
                'voxel_size':VOXEL,'n_surface_voxels':N_SURF,
-               'final_coverage':curve[-1],'path':path},
+               'final_coverage_voxel':curve[-1],
+               'final_coverage_points':round(pt_cov,4),
+               'points_covered':pt_total-pt_left,'points_total':pt_total,
+               'path':path},
               open(out/'pbnbv_paper.json','w'), indent=2)
-    print(f"\n최종 coverage: {curve[-1]*100:.1f}%")
+    print(f"\n최종 voxel coverage : {curve[-1]*100:.1f}%")
+    print(f"최종 point coverage : {pt_cov*100:.1f}%  ({pt_total-pt_left}/{pt_total})")
+    print(f"WP 수: {len(path)}개")
     print(f"고도 분포: ", end='')
     alts=[round(p['alt']) for p in path]
     for a in sorted(set(alts)): print(f"{a}m×{alts.count(a)} ",end='')

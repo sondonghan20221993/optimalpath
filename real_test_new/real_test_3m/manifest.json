@@ -1,0 +1,24 @@
+{
+  "mode": "orbit_only",
+  "recommended_json": null,
+  "target_region_center": null,
+  "straight_prefix_target": [
+    -33.67,
+    -50.83,
+    -0.18
+  ],
+  "target_actor_name": null,
+  "recommended_altitude_m": 8.0,
+  "preserve_recommended_altitude": false,
+  "recommended_max_step_m": 9999.0,
+  "recommended_turn_threshold_deg": 20.0,
+  "recommended_turn_step_m": 9999.0,
+  "auto_select_entry": false,
+  "recommended_xy_mode": "shape_preserving_center_aligned",
+  "recommended_center_offset_x_m": 0.0,
+  "recommended_center_offset_y_m": 0.0,
+  "waypoints": [],
+  "reanchored_from_relative_offsets": false,
+  "coordinate_mode": "raw_json",
+  "source_meta": {}
+}

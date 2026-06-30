@@ -1,0 +1,21 @@
+{
+  "name": "pbnbv_projection_uniform",
+  "method": "PROJECTION-based PB-NBV (ellipsoid projection, 2D occlusion) — NO raycasting",
+  "n_ellipsoids": 90,
+  "observable_points": 4804,
+  "observable_pct_of_full": 60.05,
+  "uniform": {
+    "cov_3m": 100.0,
+    "cov_7m": 100.0,
+    "cov_combined": 100.0,
+    "pbnbv_additional": 0,
+    "final": 100.0
+  },
+  "nonuniform": {
+    "cov_combined": 100.0,
+    "pbnbv_additional": 0,
+    "final": 100.0
+  },
+  "uniform_additional_az": [],
+  "nonuniform_additional_az": []
+}

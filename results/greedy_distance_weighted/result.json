@@ -1,0 +1,446 @@
+{
+  "alpha_0.0": {
+    "alpha": 0.0,
+    "path": [
+      {
+        "step": 1,
+        "pos": [
+          -12.0,
+          1.4695761589768238e-15,
+          5.0
+        ],
+        "azimuth": 180.0,
+        "gained": 1759,
+        "coverage": 0.7966,
+        "step_dist": 0.0,
+        "cum_dist": 0.0
+      },
+      {
+        "step": 2,
+        "pos": [
+          12.0,
+          0.0,
+          5.0
+        ],
+        "azimuth": 0.0,
+        "gained": 368,
+        "coverage": 0.9633,
+        "step_dist": 24.0,
+        "cum_dist": 24.0
+      },
+      {
+        "step": 3,
+        "pos": [
+          -17.38666487320323,
+          -4.658742811845374,
+          5.0
+        ],
+        "azimuth": 195.0,
+        "gained": 59,
+        "coverage": 0.99,
+        "step_dist": 29.75,
+        "cum_dist": 53.75
+      },
+      {
+        "step": 4,
+        "pos": [
+          9.18485099360515e-16,
+          15.0,
+          5.0
+        ],
+        "azimuth": 90.0,
+        "gained": 13,
+        "coverage": 0.9959,
+        "step_dist": 26.24,
+        "cum_dist": 80.0
+      },
+      {
+        "step": 5,
+        "pos": [
+          -9.000000000000007,
+          -15.58845726811989,
+          5.0
+        ],
+        "azimuth": 240.0,
+        "gained": 8,
+        "coverage": 0.9995,
+        "step_dist": 31.89,
+        "cum_dist": 111.88
+      },
+      {
+        "step": 6,
+        "pos": [
+          14.488887394336025,
+          3.882285676537811,
+          5.0
+        ],
+        "azimuth": 15.0,
+        "gained": 1,
+        "coverage": 1.0,
+        "step_dist": 30.51,
+        "cum_dist": 142.39
+      },
+      {
+        "step": 7,
+        "pos": [
+          15.0,
+          0.0,
+          5.0
+        ],
+        "azimuth": 0.0,
+        "gained": 0,
+        "coverage": 1.0,
+        "step_dist": 3.92,
+        "cum_dist": 146.31
+      },
+      {
+        "step": 8,
+        "pos": [
+          12.99038105676658,
+          7.499999999999999,
+          5.0
+        ],
+        "azimuth": 30.0,
+        "gained": 0,
+        "coverage": 1.0,
+        "step_dist": 7.76,
+        "cum_dist": 154.07
+      }
+    ],
+    "final_coverage": 1.0,
+    "total_travel": 154.07
+  },
+  "alpha_0.5": {
+    "alpha": 0.5,
+    "path": [
+      {
+        "step": 1,
+        "pos": [
+          -12.0,
+          1.4695761589768238e-15,
+          5.0
+        ],
+        "azimuth": 180.0,
+        "gained": 1759,
+        "coverage": 0.7966,
+        "step_dist": 0.0,
+        "cum_dist": 0.0
+      },
+      {
+        "step": 2,
+        "pos": [
+          12.0,
+          0.0,
+          5.0
+        ],
+        "azimuth": 0.0,
+        "gained": 368,
+        "coverage": 0.9633,
+        "step_dist": 24.0,
+        "cum_dist": 24.0
+      },
+      {
+        "step": 3,
+        "pos": [
+          -10.606601717798219,
+          -10.606601717798206,
+          5.0
+        ],
+        "azimuth": 225.0,
+        "gained": 58,
+        "coverage": 0.9896,
+        "step_dist": 24.97,
+        "cum_dist": 48.97
+      },
+      {
+        "step": 4,
+        "pos": [
+          -12.99038105676658,
+          7.499999999999999,
+          5.0
+        ],
+        "azimuth": 150.0,
+        "gained": 15,
+        "coverage": 0.9964,
+        "step_dist": 18.26,
+        "cum_dist": 67.23
+      },
+      {
+        "step": 5,
+        "pos": [
+          -10.392304845413264,
+          5.999999999999999,
+          5.0
+        ],
+        "azimuth": 150.0,
+        "gained": 2,
+        "coverage": 0.9973,
+        "step_dist": 3.0,
+        "cum_dist": 70.23
+      },
+      {
+        "step": 6,
+        "pos": [
+          -9.000000000000007,
+          -15.58845726811989,
+          5.0
+        ],
+        "azimuth": 240.0,
+        "gained": 4,
+        "coverage": 0.9991,
+        "step_dist": 21.63,
+        "cum_dist": 91.87
+      },
+      {
+        "step": 7,
+        "pos": [
+          3.105828541230249,
+          11.59110991546882,
+          5.0
+        ],
+        "azimuth": 75.0,
+        "gained": 2,
+        "coverage": 1.0,
+        "step_dist": 29.75,
+        "cum_dist": 121.62
+      },
+      {
+        "step": 8,
+        "pos": [
+          15.0,
+          0.0,
+          5.0
+        ],
+        "azimuth": 0.0,
+        "gained": 0,
+        "coverage": 1.0,
+        "step_dist": 16.61,
+        "cum_dist": 138.23
+      }
+    ],
+    "final_coverage": 1.0,
+    "total_travel": 138.23
+  },
+  "alpha_1.0": {
+    "alpha": 1.0,
+    "path": [
+      {
+        "step": 1,
+        "pos": [
+          -12.0,
+          1.4695761589768238e-15,
+          5.0
+        ],
+        "azimuth": 180.0,
+        "gained": 1759,
+        "coverage": 0.7966,
+        "step_dist": 0.0,
+        "cum_dist": 0.0
+      },
+      {
+        "step": 2,
+        "pos": [
+          -15.0,
+          1.83697019872103e-15,
+          5.0
+        ],
+        "azimuth": 180.0,
+        "gained": 66,
+        "coverage": 0.8265,
+        "step_dist": 3.0,
+        "cum_dist": 3.0
+      },
+      {
+        "step": 3,
+        "pos": [
+          10.39230484541326,
+          -6.000000000000005,
+          5.0
+        ],
+        "azimuth": 330.0,
+        "gained": 348,
+        "coverage": 0.9841,
+        "step_dist": 26.09,
+        "cum_dist": 29.09
+      },
+      {
+        "step": 4,
+        "pos": [
+          11.591109915468817,
+          -3.1058285412302586,
+          5.0
+        ],
+        "azimuth": 345.0,
+        "gained": 12,
+        "coverage": 0.9896,
+        "step_dist": 3.13,
+        "cum_dist": 32.22
+      },
+      {
+        "step": 5,
+        "pos": [
+          12.0,
+          0.0,
+          5.0
+        ],
+        "azimuth": 0.0,
+        "gained": 10,
+        "coverage": 0.9941,
+        "step_dist": 3.13,
+        "cum_dist": 35.36
+      },
+      {
+        "step": 6,
+        "pos": [
+          15.0,
+          0.0,
+          5.0
+        ],
+        "azimuth": 0.0,
+        "gained": 4,
+        "coverage": 0.9959,
+        "step_dist": 3.0,
+        "cum_dist": 38.36
+      },
+      {
+        "step": 7,
+        "pos": [
+          12.727922061357852,
+          -12.727922061357859,
+          5.0
+        ],
+        "azimuth": 315.0,
+        "gained": 5,
+        "coverage": 0.9982,
+        "step_dist": 12.93,
+        "cum_dist": 51.29
+      },
+      {
+        "step": 8,
+        "pos": [
+          -3.1058285412302475,
+          11.59110991546882,
+          5.0
+        ],
+        "azimuth": 105.0,
+        "gained": 3,
+        "coverage": 0.9995,
+        "step_dist": 29.02,
+        "cum_dist": 80.31
+      }
+    ],
+    "final_coverage": 0.9995,
+    "total_travel": 80.31
+  },
+  "alpha_2.0": {
+    "alpha": 2.0,
+    "path": [
+      {
+        "step": 1,
+        "pos": [
+          -12.0,
+          1.4695761589768238e-15,
+          5.0
+        ],
+        "azimuth": 180.0,
+        "gained": 1759,
+        "coverage": 0.7966,
+        "step_dist": 0.0,
+        "cum_dist": 0.0
+      },
+      {
+        "step": 2,
+        "pos": [
+          -15.0,
+          1.83697019872103e-15,
+          5.0
+        ],
+        "azimuth": 180.0,
+        "gained": 66,
+        "coverage": 0.8265,
+        "step_dist": 3.0,
+        "cum_dist": 3.0
+      },
+      {
+        "step": 3,
+        "pos": [
+          -14.488887394336025,
+          -3.882285676537812,
+          5.0
+        ],
+        "azimuth": 195.0,
+        "gained": 33,
+        "coverage": 0.8415,
+        "step_dist": 3.92,
+        "cum_dist": 6.92
+      },
+      {
+        "step": 4,
+        "pos": [
+          -12.990381056766582,
+          -7.499999999999996,
+          5.0
+        ],
+        "azimuth": 210.0,
+        "gained": 41,
+        "coverage": 0.8601,
+        "step_dist": 3.92,
+        "cum_dist": 10.83
+      },
+      {
+        "step": 5,
+        "pos": [
+          -10.606601717798219,
+          -10.606601717798206,
+          5.0
+        ],
+        "azimuth": 225.0,
+        "gained": 42,
+        "coverage": 0.8791,
+        "step_dist": 3.92,
+        "cum_dist": 14.75
+      },
+      {
+        "step": 6,
+        "pos": [
+          -7.500000000000007,
+          -12.990381056766577,
+          5.0
+        ],
+        "azimuth": 240.0,
+        "gained": 35,
+        "coverage": 0.8949,
+        "step_dist": 3.92,
+        "cum_dist": 18.66
+      },
+      {
+        "step": 7,
+        "pos": [
+          -3.1058285412302475,
+          -11.59110991546882,
+          5.0
+        ],
+        "azimuth": 255.0,
+        "gained": 49,
+        "coverage": 0.9171,
+        "step_dist": 4.61,
+        "cum_dist": 23.27
+      },
+      {
+        "step": 8,
+        "pos": [
+          -2.204364238465236e-15,
+          -12.0,
+          5.0
+        ],
+        "azimuth": 270.0,
+        "gained": 39,
+        "coverage": 0.9348,
+        "step_dist": 3.13,
+        "cum_dist": 26.41
+      }
+    ],
+    "final_coverage": 0.9348,
+    "total_travel": 26.41
+  }
+}

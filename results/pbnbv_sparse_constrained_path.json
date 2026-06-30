@@ -1,0 +1,45 @@
+{
+  "algorithm": "Sparse tilt45 Orbit (demonstrates NBV value) (4) + Constrained PB-NBV (overlap>=0.3)",
+  "note": "orbit regenerated at tilt=45, standoff ~4.5m -> all in-range, no handoff needed",
+  "orbit_n_az": 4,
+  "tau_overlap": 0.3,
+  "fix_z": -3.36,
+  "tilt_deg": 45,
+  "orbit_dist_min": 4.5,
+  "orbit_dist_max": 4.5,
+  "orbit_flight_m": 13.492,
+  "soft_cov_orbit": 0.8923,
+  "soft_cov_final": 0.8923,
+  "real_cov_orbit": 1.0,
+  "real_cov_final": 1.0,
+  "az_distribution": [],
+  "max_adjacent_daz_deg": 0,
+  "overlap_min": 1.0,
+  "overlap_mean": 1.0,
+  "n_waypoints": 0,
+  "supp_path_m": 0.0,
+  "total_flight_m": 13.492,
+  "orbit_positions": [
+    [
+      -30.47400015320097,
+      -50.56600009373256,
+      -3.36
+    ],
+    [
+      -33.65400014604841,
+      -47.38600010088512,
+      -3.36
+    ],
+    [
+      -36.83400013889585,
+      -50.56600009373256,
+      -3.36
+    ],
+    [
+      -33.65400014604841,
+      -53.746000086580004,
+      -3.36
+    ]
+  ],
+  "waypoints": []
+}

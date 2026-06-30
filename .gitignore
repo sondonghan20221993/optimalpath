@@ -1,5 +1,6 @@
-# 데이터셋 이미지 (용량 큼)
+# 데이터셋 이미지 (용량 큼) — 모든 rgb 디렉토리 제외
 real_test/rgb/
+**/rgb/
 
 # Python
 __pycache__/

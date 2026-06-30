@@ -1,0 +1,22 @@
+{
+  "algorithm": "Orbit + PB-NBV fixed-alt 3.0m + U=F/dist + theta<70",
+  "fix_z": -3.38,
+  "fix_alt_m": 3.0,
+  "inc_max_deg": 70,
+  "orbit_real_cov": 0.991,
+  "final_real_cov": 0.9959,
+  "n_waypoints": 1,
+  "path_length_m": 8.241,
+  "waypoints": [
+    {
+      "idx": 1,
+      "pos": [
+        -34.191145118957856,
+        -53.59104537769748,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 260.0
+    }
+  ]
+}

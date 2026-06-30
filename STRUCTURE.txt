@@ -1,0 +1,86 @@
+optimalpath/
+├── README.md                          (프로젝트 개요)
+├── .gitignore
+│
+├── docs/                              📚 문서 (7개)
+│   ├── FINAL_CONCLUSION.md           (최종 결론 - 실험 결과 요약)
+│   ├── FINAL_EXPERIMENTAL_DESIGN.md  (최종 실험 설계)
+│   ├── GREEDY_EXPLANATION.md         (Greedy 알고리즘 설명)
+│   ├── INITIAL_PATH_DERIVATION.md    (초기 경로 유도)
+│   ├── EXPERIMENT_WALKTHROUGH.md
+│   ├── EXPERIMENTAL_DESIGN.md
+│   └── README.md
+│
+├── src/                               🔧 핵심 알고리즘 (4개)
+│   ├── pbnbv_paper.py                (논문 PB-NBV 구현 - 추천!)
+│   ├── coverage_greedy.py            (Greedy Coverage 알고리즘)
+│   ├── pbnbv_path.py                 (단순 NBV + Greedy)
+│   └── pbnbv_path_azimuth_variants.py
+│
+├── scripts/                           🚀 실행 스크립트 (13개)
+│   ├── run_greedy_vs_pbnbv.py       (★ Greedy vs PB-NBV 비교 - 메인!)
+│   ├── run_ground_first_comparison.py
+│   ├── run_fair_comparison.py
+│   ├── run_step2_*.py                (Step 2 분석)
+│   ├── run_mast3r_pathcomparison.py
+│   ├── compare_*.py                  (방법 비교)
+│   ├── eval_compare.py               (평가)
+│   ├── generate_*.py                 (데이터 생성)
+│   └── meta_to_rgb_poses.py          (메타데이터 처리)
+│
+├── analysis/                          📊 분석/시각화 (17개)
+│   ├── visualize_*.py                (시각화 스크립트)
+│   ├── realtest_*.py                 (실제 테스트)
+│   ├── analyze_*.py                  (분석)
+│   ├── simulate_*.py                 (시뮬레이션)
+│   ├── view_*.py                     (뷰)
+│   └── test_*.py, unknown_*.py
+│
+├── config/                            ⚙️ 설정 (3개)
+│   ├── airsim_settings.json          (AirSim 설정)
+│   ├── airsim_orbit_two_altitudes.py
+│   └── airsim_building_simulation.py
+│
+├── data/                              💾 데이터셋 (기존)
+│   └── test_objects/                 (테스트 객체)
+│
+├── real_test/                         🎥 실제 테스트 데이터 (기존)
+│   ├── ground_first_pts_normals.npz  (메인 데이터셋)
+│   ├── real_test_pts_normals.npz
+│   ├── real_test_pts_vis.npz
+│   ├── meta/ (메타데이터)
+│   ├── rgb/ (RGB 이미지)
+│   └── manifest.json
+│
+├── results/                           📈 실행 결과 (기존)
+│   ├── greedy_vs_pbnbv_comparison.png (최신 비교 이미지 ★)
+│   ├── all_methods_comparison.png     (모든 방법 비교)
+│   ├── greedy_vs_pbnbv_final.html    (인터랙티브 시각화)
+│   ├── greedy_vs_pbnbv/              (Python 비교 결과)
+│   ├── 01_initial_paths/ ~ 06_building_sim/
+│   └── README.md
+│
+└── archive/                           🗂️ 구버전 (2개)
+    ├── simple.py
+    └── note.txt
+
+====================================================================
+⭐ 주요 파일 / 실행 순서
+====================================================================
+
+1️⃣  논문 알고리즘 이해
+    - docs/FINAL_CONCLUSION.md (결과)
+    - docs/GREEDY_EXPLANATION.md (Greedy)
+    - src/pbnbv_paper.py (코드)
+
+2️⃣  비교 실험 실행 (★ 추천)
+    - scripts/run_greedy_vs_pbnbv.py  (Python Greedy vs PB-NBV)
+    - python3 src/coverage_greedy.py  (단일 Greedy 실행)
+    - python3 src/pbnbv_paper.py      (단일 PB-NBV 실행)
+
+3️⃣  결과 확인
+    - results/greedy_vs_pbnbv_comparison.png   (비교 이미지)
+    - results/greedy_vs_pbnbv_final.html       (인터랙티브)
+    - results/greedy_vs_pbnbv/result.json      (정량 데이터)
+
+====================================================================

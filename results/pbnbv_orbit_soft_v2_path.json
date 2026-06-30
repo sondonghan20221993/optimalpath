@@ -1,0 +1,97 @@
+{
+  "algorithm": "Orbit + Soft PB-NBV v2 (gain/dist^1.0, Lambert cos1, TAU=cos70)",
+  "selection": "real new soft-coverage gain / distance (no F-score artifact)",
+  "fix_z": -3.38,
+  "tilt_deg": 45,
+  "alpha": 1.0,
+  "tau": 0.342,
+  "soft_cov_orbit": 0.9782,
+  "soft_cov_final": 1.0,
+  "hard_cov_orbit": 0.9499,
+  "real_cov_orbit": 0.991,
+  "real_cov_final": 1.0,
+  "az_distribution": [
+    300,
+    290,
+    250,
+    240,
+    230,
+    220,
+    210
+  ],
+  "az_spread_deg": 90,
+  "n_waypoints": 7,
+  "path_length_m": 11.231,
+  "waypoints": [
+    {
+      "idx": 1,
+      "pos": [
+        -32.06429857919687,
+        -53.21602494891118,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 300.0
+    },
+    {
+      "idx": 2,
+      "pos": [
+        -32.563073641104424,
+        -53.44860757997541,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 290.0
+    },
+    {
+      "idx": 3,
+      "pos": [
+        -34.722730216974846,
+        -53.44860757997541,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 250.0
+    },
+    {
+      "idx": 4,
+      "pos": [
+        -35.22150527888241,
+        -53.21602494891118,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 240.0
+    },
+    {
+      "idx": 5,
+      "pos": [
+        -35.67231527681683,
+        -52.90036439005719,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 230.0
+    },
+    {
+      "idx": 6,
+      "pos": [
+        -36.061462577111755,
+        -52.51121708976227,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 220.0
+    },
+    {
+      "idx": 7,
+      "pos": [
+        -36.377123135965746,
+        -52.06040709182785,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 210.0
+    }
+  ]
+}

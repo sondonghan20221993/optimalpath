@@ -1,0 +1,71 @@
+{
+  "algorithm": "PB-NBV(2) Soft-0.5^r + Greedy Path (no-camera)",
+  "mode": "no_camera_softrank",
+  "scoring": "soft_depth_rank_0.5^r",
+  "n_points": 2436,
+  "fov_deg": 89.9,
+  "target": [
+    -33.64290192903964,
+    -50.481803741985075,
+    -0.22279330031445843
+  ],
+  "total_points": 2436,
+  "covered_points": 2436,
+  "coverage_ratio": 1.0,
+  "path_length_m": 9.935,
+  "pbnbv_count": 4,
+  "salvage_count": 0,
+  "selected_scores_soft": [
+    2435.5,
+    99.0,
+    10.0,
+    4.0
+  ],
+  "salvage_igs": [],
+  "waypoints": [
+    {
+      "idx": 1,
+      "pos": [
+        -33.64290192903964,
+        -49.32459704229954,
+        -1.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 90.0,
+      "phase": "softrank"
+    },
+    {
+      "idx": 2,
+      "pos": [
+        -32.55548333262112,
+        -50.0860157407012,
+        -1.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 20.0,
+      "phase": "softrank"
+    },
+    {
+      "idx": 3,
+      "pos": [
+        -32.50327579935165,
+        -50.28085690740072,
+        -1.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 10.0,
+      "phase": "softrank"
+    },
+    {
+      "idx": 4,
+      "pos": [
+        -32.4856952293541,
+        -50.481803741985075,
+        -1.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 0.0,
+      "phase": "softrank"
+    }
+  ]
+}

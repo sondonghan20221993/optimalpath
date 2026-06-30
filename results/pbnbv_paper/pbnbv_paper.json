@@ -1,0 +1,67 @@
+{
+  "algorithm": "PB-NBV (paper: voxel+ellipsoid projection)",
+  "voxel_size": 0.05,
+  "n_surface_voxels": 1695,
+  "final_coverage_voxel": 1.0,
+  "final_coverage_points": 1.0,
+  "points_covered": 2436,
+  "points_total": 2436,
+  "path": [
+    {
+      "step": 1,
+      "pos": [
+        -34.80010862872518,
+        -50.481803741985075,
+        -1.38
+      ],
+      "alt": 1.16,
+      "azimuth": 180.0,
+      "score": 80948.0,
+      "gained": 1336,
+      "coverage": 0.7882,
+      "n_frontier": 0
+    },
+    {
+      "step": 2,
+      "pos": [
+        -32.55548333262112,
+        -50.0860157407012,
+        -1.38
+      ],
+      "alt": 1.16,
+      "azimuth": 20.0,
+      "score": 18765.2,
+      "gained": 229,
+      "coverage": 0.9233,
+      "n_frontier": 276
+    },
+    {
+      "step": 3,
+      "pos": [
+        -33.24711392775576,
+        -51.56922233840359,
+        -1.38
+      ],
+      "alt": 1.16,
+      "azimuth": -70.0,
+      "score": 274.7,
+      "gained": 128,
+      "coverage": 0.9988,
+      "n_frontier": 82
+    },
+    {
+      "step": 4,
+      "pos": [
+        -32.74736238378756,
+        -45.40294660024825,
+        -5.38
+      ],
+      "alt": 5.16,
+      "azimuth": 80.0,
+      "score": -834.1,
+      "gained": 2,
+      "coverage": 1.0,
+      "n_frontier": 2
+    }
+  ]
+}

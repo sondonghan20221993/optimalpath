@@ -1,0 +1,45 @@
+{
+  "algorithm": "PB-NBV(2) + Greedy Path (no-camera / full-coverage)",
+  "mode": "no_camera",
+  "n_points": 2436,
+  "fov_deg": 89.9,
+  "target": [
+    -33.64290192903964,
+    -50.481803741985075,
+    -0.22279330031445843
+  ],
+  "total_points": 2436,
+  "covered_points": 2436,
+  "coverage_ratio": 1.0,
+  "pbnbv_count": 2,
+  "salvage_count": 0,
+  "selected_scores": [
+    2404.5,
+    62.0
+  ],
+  "salvage_igs": [],
+  "waypoints": [
+    {
+      "idx": 1,
+      "pos": [
+        -34.5293736908738,
+        -49.737965613580954,
+        -1.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 140.0,
+      "phase": "pbnbv"
+    },
+    {
+      "idx": 2,
+      "pos": [
+        -32.50327579935165,
+        -50.28085690740072,
+        -1.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 10.0,
+      "phase": "pbnbv"
+    }
+  ]
+}

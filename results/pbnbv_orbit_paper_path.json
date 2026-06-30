@@ -1,0 +1,14 @@
+{
+  "algorithm": "Orbit + supplementary PB-NBV (paper: ellipsoid 0.5^r, NO raycast) + Greedy",
+  "scenario": "circular_orbit_then_paper_nbv",
+  "occlusion_model": "paper_0.5^r_projection (no raycast)",
+  "n_orbit_cameras": 34,
+  "voxel_coverage_orbit": 1.0,
+  "voxel_coverage_final": 1.0,
+  "realpoint_coverage_orbit": 0.991,
+  "realpoint_coverage_final": 0.991,
+  "supplementary_count": 0,
+  "supplementary_path_length_m": 0.0,
+  "path": [],
+  "waypoints": []
+}

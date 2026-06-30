@@ -1,0 +1,51 @@
+{
+  "algorithm": "no-camera + Soft PB-NBV v2 (gain/dist^1.0, Lambert cos1, TAU=cos70)",
+  "mode": "no_camera_soft_v2",
+  "selection": "real new soft-coverage gain / distance",
+  "n_points": 840,
+  "tilt_deg": 45,
+  "alpha": 1.0,
+  "tau": 0.342,
+  "soft_cov_final": 0.8923,
+  "real_cov_final": 1.0,
+  "az_distribution": [
+    0,
+    250,
+    120
+  ],
+  "az_spread_deg": 250,
+  "n_waypoints": 3,
+  "path_length_m": 11.794,
+  "waypoints": [
+    {
+      "idx": 1,
+      "pos": [
+        -28.47400015320097,
+        -50.56600009373256,
+        -5.36
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 0.0
+    },
+    {
+      "idx": 2,
+      "pos": [
+        -34.39960405605205,
+        -52.614530000324635,
+        -2.36
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 250.0
+    },
+    {
+      "idx": 3,
+      "pos": [
+        -34.24400014247213,
+        -49.54409012346122,
+        -1.36
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 120.0
+    }
+  ]
+}

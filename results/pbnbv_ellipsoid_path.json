@@ -1,0 +1,58 @@
+{
+  "algorithm": "PB-NBV(2) Ellipsoid-0.5^r + Greedy (no-camera)",
+  "scoring": "ellipsoid_cluster_depth_rank_0.5^r_with_hard_raycast",
+  "n_clusters_max": 8,
+  "n_points": 2436,
+  "total_points": 2436,
+  "covered_points": 2436,
+  "coverage_ratio": 1.0,
+  "path_length_m": 22.812,
+  "pbnbv_count": 4,
+  "salvage_count": 0,
+  "waypoints": [
+    {
+      "idx": 1,
+      "pos": [
+        -35.511097732181305,
+        -49.4032003921423,
+        -2.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 150.0,
+      "phase": "ellipsoid"
+    },
+    {
+      "idx": 2,
+      "pos": [
+        -32.50327579935165,
+        -50.28085690740072,
+        -1.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 10.0,
+      "phase": "ellipsoid"
+    },
+    {
+      "idx": 3,
+      "pos": [
+        -31.224341280967522,
+        -52.511217089762276,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 320.0,
+      "phase": "ellipsoid"
+    },
+    {
+      "idx": 4,
+      "pos": [
+        -34.36479329662479,
+        -46.38775435326046,
+        -4.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 100.0,
+      "phase": "ellipsoid"
+    }
+  ]
+}

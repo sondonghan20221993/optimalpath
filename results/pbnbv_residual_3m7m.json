@@ -1,0 +1,222 @@
+{
+  "name": "pbnbv_residual_3m7m",
+  "question": "After the real 3m+7m flight, does PB-NBV propose ADDITIONAL viewpoints?",
+  "observable_surface_points": 6393,
+  "real_coverage_pct": 96.23,
+  "residual_unseen_points": 241,
+  "pbnbv_additional_viewpoints": 19,
+  "coverage_after_additions_pct": 100.0,
+  "gain_pp": 3.77,
+  "residual_points_closed": 241,
+  "additional_viewpoints": [
+    {
+      "rank": 1,
+      "altitude_m": 3.0,
+      "azimuth_deg": 230.0,
+      "gain_points": 69,
+      "position": [
+        -35.696,
+        -53.0035,
+        -3.36
+      ]
+    },
+    {
+      "rank": 2,
+      "altitude_m": 3.0,
+      "azimuth_deg": 235.0,
+      "gain_points": 16,
+      "position": [
+        -35.4758,
+        -53.1725,
+        -3.36
+      ]
+    },
+    {
+      "rank": 3,
+      "altitude_m": 3.0,
+      "azimuth_deg": 240.0,
+      "gain_points": 10,
+      "position": [
+        -35.2418,
+        -53.3215,
+        -3.36
+      ]
+    },
+    {
+      "rank": 4,
+      "altitude_m": 3.0,
+      "azimuth_deg": 245.0,
+      "gain_points": 6,
+      "position": [
+        -34.9957,
+        -53.4497,
+        -3.36
+      ]
+    },
+    {
+      "rank": 5,
+      "altitude_m": 3.0,
+      "azimuth_deg": 215.0,
+      "gain_points": 24,
+      "position": [
+        -36.2569,
+        -52.3914,
+        -3.36
+      ]
+    },
+    {
+      "rank": 6,
+      "altitude_m": 3.0,
+      "azimuth_deg": 210.0,
+      "gain_points": 8,
+      "position": [
+        -36.406,
+        -52.1574,
+        -3.36
+      ]
+    },
+    {
+      "rank": 7,
+      "altitude_m": 3.0,
+      "azimuth_deg": 205.0,
+      "gain_points": 3,
+      "position": [
+        -36.5341,
+        -51.9112,
+        -3.36
+      ]
+    },
+    {
+      "rank": 8,
+      "altitude_m": 3.0,
+      "azimuth_deg": 190.0,
+      "gain_points": 6,
+      "position": [
+        -36.7838,
+        -51.1193,
+        -3.36
+      ]
+    },
+    {
+      "rank": 9,
+      "altitude_m": 3.0,
+      "azimuth_deg": 115.0,
+      "gain_points": 27,
+      "position": [
+        -34.9957,
+        -47.6844,
+        -3.36
+      ]
+    },
+    {
+      "rank": 10,
+      "altitude_m": 3.0,
+      "azimuth_deg": 120.0,
+      "gain_points": 9,
+      "position": [
+        -35.2418,
+        -47.8125,
+        -3.36
+      ]
+    },
+    {
+      "rank": 11,
+      "altitude_m": 3.0,
+      "azimuth_deg": 125.0,
+      "gain_points": 4,
+      "position": [
+        -35.4758,
+        -47.9616,
+        -3.36
+      ]
+    },
+    {
+      "rank": 12,
+      "altitude_m": 3.0,
+      "azimuth_deg": 20.0,
+      "gain_points": 29,
+      "position": [
+        -30.6627,
+        -49.4792,
+        -3.36
+      ]
+    },
+    {
+      "rank": 13,
+      "altitude_m": 3.0,
+      "azimuth_deg": 25.0,
+      "gain_points": 7,
+      "position": [
+        -30.7689,
+        -49.2228,
+        -3.36
+      ]
+    },
+    {
+      "rank": 14,
+      "altitude_m": 3.0,
+      "azimuth_deg": 30.0,
+      "gain_points": 1,
+      "position": [
+        -30.897,
+        -48.9767,
+        -3.36
+      ]
+    },
+    {
+      "rank": 15,
+      "altitude_m": 3.0,
+      "azimuth_deg": 50.0,
+      "gain_points": 4,
+      "position": [
+        -31.607,
+        -48.1305,
+        -3.36
+      ]
+    },
+    {
+      "rank": 16,
+      "altitude_m": 3.0,
+      "azimuth_deg": 55.0,
+      "gain_points": 2,
+      "position": [
+        -31.8272,
+        -47.9616,
+        -3.36
+      ]
+    },
+    {
+      "rank": 17,
+      "altitude_m": 3.0,
+      "azimuth_deg": 305.0,
+      "gain_points": 11,
+      "position": [
+        -31.8272,
+        -53.1725,
+        -3.36
+      ]
+    },
+    {
+      "rank": 18,
+      "altitude_m": 3.0,
+      "azimuth_deg": 300.0,
+      "gain_points": 4,
+      "position": [
+        -32.0612,
+        -53.3215,
+        -3.36
+      ]
+    },
+    {
+      "rank": 19,
+      "altitude_m": 3.0,
+      "azimuth_deg": 315.0,
+      "gain_points": 1,
+      "position": [
+        -31.4025,
+        -52.8161,
+        -3.36
+      ]
+    }
+  ]
+}

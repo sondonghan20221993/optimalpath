@@ -1,0 +1,62 @@
+{
+  "algorithm": "Orbit + supplementary NBV(2-step) + Greedy",
+  "scenario": "circular_orbit_then_fill_blindspots",
+  "n_orbit_cameras": 34,
+  "orbit_radius_mean": 6.6,
+  "n_points": 2436,
+  "orbit_coverage_points": 2315,
+  "orbit_coverage_ratio": 0.9503,
+  "blindspot_points": 121,
+  "blindspot_filled": 21,
+  "final_coverage_points": 2336,
+  "final_coverage_ratio": 0.9589,
+  "supplementary_path_length_m": 9.498,
+  "pbnbv_count": 2,
+  "salvage_count": 2,
+  "waypoints": [
+    {
+      "idx": 1,
+      "pos": [
+        -28.485695229354096,
+        -50.481803741985075,
+        -5.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 0.0,
+      "phase": "pbnbv"
+    },
+    {
+      "idx": 2,
+      "pos": [
+        -28.564044787302816,
+        -49.586264196733,
+        -5.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 10.0,
+      "phase": "pbnbv"
+    },
+    {
+      "idx": 3,
+      "pos": [
+        -30.676098091049305,
+        -49.40197545404987,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 20.0,
+      "phase": "salvage"
+    },
+    {
+      "idx": 4,
+      "pos": [
+        -34.22150527888241,
+        -49.47963334262785,
+        -1.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 120.0,
+      "phase": "salvage"
+    }
+  ]
+}

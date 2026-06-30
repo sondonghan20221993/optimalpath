@@ -1,0 +1,151 @@
+{
+  "algorithm": "Constrained PB-NBV (overlap>=0.3, soft Lambert cos1, gain/dist)",
+  "rationale": "overlap constraint keeps frame tracking -> low ATE; still info-gain driven",
+  "tau_overlap": 0.3,
+  "fix_z": -3.38,
+  "tilt_deg": 45,
+  "tau": 0.342,
+  "soft_cov_final": 0.9994,
+  "real_cov_final": 1.0,
+  "az_distribution": [
+    330,
+    320,
+    230,
+    220,
+    210,
+    160,
+    150,
+    140,
+    130,
+    170,
+    180
+  ],
+  "max_adjacent_daz_deg": 90,
+  "overlap_min": 0.847,
+  "overlap_mean": 0.966,
+  "n_waypoints": 11,
+  "path_length_m": 18.123,
+  "waypoints": [
+    {
+      "idx": 1,
+      "pos": [
+        -30.90868072211353,
+        -52.06040709182785,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 330.0,
+      "overlap_with_prev": 1.0
+    },
+    {
+      "idx": 2,
+      "pos": [
+        -31.224341280967522,
+        -52.511217089762276,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 320.0,
+      "overlap_with_prev": 0.994
+    },
+    {
+      "idx": 3,
+      "pos": [
+        -35.67231527681683,
+        -52.90036439005719,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 230.0,
+      "overlap_with_prev": 0.877
+    },
+    {
+      "idx": 4,
+      "pos": [
+        -36.061462577111755,
+        -52.51121708976227,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 220.0,
+      "overlap_with_prev": 0.994
+    },
+    {
+      "idx": 5,
+      "pos": [
+        -36.377123135965746,
+        -52.06040709182785,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 210.0,
+      "overlap_with_prev": 0.995
+    },
+    {
+      "idx": 6,
+      "pos": [
+        -36.60970576702997,
+        -49.40197545404986,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 160.0,
+      "overlap_with_prev": 0.847
+    },
+    {
+      "idx": 7,
+      "pos": [
+        -36.377123135965746,
+        -48.9032003921423,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 150.0,
+      "overlap_with_prev": 0.978
+    },
+    {
+      "idx": 8,
+      "pos": [
+        -36.061462577111755,
+        -48.45239039420788,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 140.0,
+      "overlap_with_prev": 0.98
+    },
+    {
+      "idx": 9,
+      "pos": [
+        -35.67231527681683,
+        -48.06324309391296,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 130.0,
+      "overlap_with_prev": 0.989
+    },
+    {
+      "idx": 10,
+      "pos": [
+        -36.752143564752046,
+        -49.93356055206686,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 170.0,
+      "overlap_with_prev": 0.973
+    },
+    {
+      "idx": 11,
+      "pos": [
+        -36.80010862872518,
+        -50.481803741985075,
+        -3.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 180.0,
+      "overlap_with_prev": 0.997
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "name": "pbnbv_residual_actual",
+  "method": "ACTUAL PB-NBV ellipsoid 0.5^r gain (information_gain_ellipsoid_rank), argmax selection",
+  "vs_previous": "pbnbv_residual_3m7m used plain point-count U=gain/dist",
+  "observable_surface_points": 6393,
+  "real_coverage_pct": 96.23,
+  "residual_unseen_points": 241,
+  "pbnbv_additional_viewpoints": 22,
+  "coverage_after_additions_pct": 100.0,
+  "gain_pp": 3.77,
+  "residual_points_closed": 241,
+  "additional_viewpoints": [
+    {
+      "rank": 1,
+      "altitude_m": 3.0,
+      "azimuth_deg": 200.0,
+      "pbnbv_score": 26.9,
+      "recon_gain_points": 31,
+      "position": [
+        -36.6403,
+        -51.6549,
+        -3.36
+      ]
+    },
+    {
+      "rank": 2,
+      "altitude_m": 3.0,
+      "azimuth_deg": 195.0,
+      "pbnbv_score": 24.02,
+      "recon_gain_points": 10,
+      "position": [
+        -36.7238,
+        -51.3902,
+        -3.36
+      ]
+    },
+    {
+      "rank": 3,
+      "altitude_m": 3.0,
+      "azimuth_deg": 345.0,
+      "pbnbv_score": 22.89,
+      "recon_gain_points": 24,
+      "position": [
+        -30.5792,
+        -51.3902,
+        -3.36
+      ]
+    },
+    {
+      "rank": 4,
+      "altitude_m": 3.0,
+      "azimuth_deg": 340.0,
+      "pbnbv_score": 22.09,
+      "recon_gain_points": 4,
+      "position": [
+        -30.6627,
+        -51.6549,
+        -3.36
+      ]
+    },
+    {
+      "rank": 5,
+      "altitude_m": 3.0,
+      "azimuth_deg": 205.0,
+      "pbnbv_score": 20.67,
+      "recon_gain_points": 3,
+      "position": [
+        -36.5341,
+        -51.9112,
+        -3.36
+      ]
+    },
+    {
+      "rank": 6,
+      "altitude_m": 3.0,
+      "azimuth_deg": 190.0,
+      "pbnbv_score": 22.03,
+      "recon_gain_points": 7,
+      "position": [
+        -36.7838,
+        -51.1193,
+        -3.36
+      ]
+    },
+    {
+      "rank": 7,
+      "altitude_m": 3.0,
+      "azimuth_deg": 235.0,
+      "pbnbv_score": 19.66,
+      "recon_gain_points": 53,
+      "position": [
+        -35.4758,
+        -53.1725,
+        -3.36
+      ]
+    },
+    {
+      "rank": 8,
+      "altitude_m": 3.0,
+      "azimuth_deg": 75.0,
+      "pbnbv_score": 18.62,
+      "recon_gain_points": 19,
+      "position": [
+        -32.8283,
+        -47.4948,
+        -3.36
+      ]
+    },
+    {
+      "rank": 9,
+      "altitude_m": 3.0,
+      "azimuth_deg": 355.0,
+      "pbnbv_score": 15.38,
+      "recon_gain_points": 5,
+      "position": [
+        -30.483,
+        -50.8442,
+        -3.36
+      ]
+    },
+    {
+      "rank": 10,
+      "altitude_m": 3.0,
+      "azimuth_deg": 225.0,
+      "pbnbv_score": 13.75,
+      "recon_gain_points": 10,
+      "position": [
+        -35.9006,
+        -52.8161,
+        -3.36
+      ]
+    },
+    {
+      "rank": 11,
+      "altitude_m": 3.0,
+      "azimuth_deg": 55.0,
+      "pbnbv_score": 12.5,
+      "recon_gain_points": 15,
+      "position": [
+        -31.8272,
+        -47.9616,
+        -3.36
+      ]
+    },
+    {
+      "rank": 12,
+      "altitude_m": 5.0,
+      "azimuth_deg": 270.0,
+      "pbnbv_score": 12.25,
+      "recon_gain_points": 15,
+      "position": [
+        -33.6515,
+        -55.7477,
+        -5.36
+      ]
+    },
+    {
+      "rank": 13,
+      "altitude_m": 3.0,
+      "azimuth_deg": 270.0,
+      "pbnbv_score": 12.5,
+      "recon_gain_points": 13,
+      "position": [
+        -33.6515,
+        -53.7477,
+        -3.36
+      ]
+    },
+    {
+      "rank": 14,
+      "altitude_m": 3.0,
+      "azimuth_deg": 325.0,
+      "pbnbv_score": 13.0,
+      "recon_gain_points": 5,
+      "position": [
+        -31.0461,
+        -52.3914,
+        -3.36
+      ]
+    },
+    {
+      "rank": 15,
+      "altitude_m": 3.0,
+      "azimuth_deg": 280.0,
+      "pbnbv_score": 9.5,
+      "recon_gain_points": 10,
+      "position": [
+        -33.0992,
+        -53.6994,
+        -3.36
+      ]
+    },
+    {
+      "rank": 16,
+      "altitude_m": 3.0,
+      "azimuth_deg": 45.0,
+      "pbnbv_score": 8.0,
+      "recon_gain_points": 3,
+      "position": [
+        -31.4025,
+        -48.318,
+        -3.36
+      ]
+    },
+    {
+      "rank": 17,
+      "altitude_m": 3.0,
+      "azimuth_deg": 145.0,
+      "pbnbv_score": 8.0,
+      "recon_gain_points": 1,
+      "position": [
+        -36.2569,
+        -48.7427,
+        -3.36
+      ]
+    },
+    {
+      "rank": 18,
+      "altitude_m": 3.0,
+      "azimuth_deg": 50.0,
+      "pbnbv_score": 6.0,
+      "recon_gain_points": 4,
+      "position": [
+        -31.607,
+        -48.1305,
+        -3.36
+      ]
+    },
+    {
+      "rank": 19,
+      "altitude_m": 3.0,
+      "azimuth_deg": 65.0,
+      "pbnbv_score": 3.0,
+      "recon_gain_points": 3,
+      "position": [
+        -32.3073,
+        -47.6844,
+        -3.36
+      ]
+    },
+    {
+      "rank": 20,
+      "altitude_m": 3.0,
+      "azimuth_deg": 245.0,
+      "pbnbv_score": 3.0,
+      "recon_gain_points": 3,
+      "position": [
+        -34.9957,
+        -53.4497,
+        -3.36
+      ]
+    },
+    {
+      "rank": 21,
+      "altitude_m": 3.0,
+      "azimuth_deg": 70.0,
+      "pbnbv_score": 2.0,
+      "recon_gain_points": 2,
+      "position": [
+        -32.5637,
+        -47.5782,
+        -3.36
+      ]
+    },
+    {
+      "rank": 22,
+      "altitude_m": 3.0,
+      "azimuth_deg": 260.0,
+      "pbnbv_score": 1.0,
+      "recon_gain_points": 1,
+      "position": [
+        -34.2038,
+        -53.6994,
+        -3.36
+      ]
+    }
+  ]
+}

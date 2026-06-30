@@ -1,0 +1,384 @@
+{
+  "schema_version": 1,
+  "name": "pbnbv_path_3m7m",
+  "algorithm": "PB-NBV (info-gain greedy) on real-GT object, 3m+7m candidates",
+  "coordinate_system": "AirSim NED (z down +, up=-z)",
+  "metric": "raycast visibility ∩ incidence<60deg",
+  "target": [
+    -33.65150843429566,
+    -50.56703383731842,
+    -0.1793595705091243
+  ],
+  "n_candidates": 72,
+  "n_waypoints": 28,
+  "observable_surface_points": 6393,
+  "observable_coverage_pct": 99.97,
+  "flight_order": "7m ring (survey) -> 3m ring (inspect), azimuth-sorted",
+  "path_length_m": 27.13,
+  "waypoints": [
+    {
+      "index": 1,
+      "position": [
+        -32.4046,
+        -57.6386,
+        -7.36
+      ],
+      "altitude_m": 7.36,
+      "tier_m": 7.0,
+      "azimuth_deg": 280.0,
+      "standoff_m": 10.15,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 2,
+      "position": [
+        -30.4709,
+        -50.567,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 0.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 3,
+      "position": [
+        -30.5192,
+        -50.0147,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 10.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 4,
+      "position": [
+        -31.607,
+        -48.1305,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 50.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 5,
+      "position": [
+        -32.0612,
+        -47.8125,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 60.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 6,
+      "position": [
+        -33.0992,
+        -47.4347,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 80.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 7,
+      "position": [
+        -33.6515,
+        -47.3864,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 90.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 8,
+      "position": [
+        -34.2038,
+        -47.4347,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 100.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 9,
+      "position": [
+        -34.7394,
+        -47.5782,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 110.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 10,
+      "position": [
+        -36.088,
+        -48.5226,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 140.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 11,
+      "position": [
+        -36.406,
+        -48.9767,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 150.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 12,
+      "position": [
+        -36.6403,
+        -49.4792,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 160.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 13,
+      "position": [
+        -36.7838,
+        -50.0147,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 170.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 14,
+      "position": [
+        -36.8321,
+        -50.567,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 180.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 15,
+      "position": [
+        -36.6403,
+        -51.6549,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 200.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 16,
+      "position": [
+        -36.406,
+        -52.1574,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 210.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 17,
+      "position": [
+        -36.088,
+        -52.6115,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 220.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 18,
+      "position": [
+        -35.696,
+        -53.0035,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 230.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 19,
+      "position": [
+        -35.2418,
+        -53.3215,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 240.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 20,
+      "position": [
+        -34.7394,
+        -53.5559,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 250.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 21,
+      "position": [
+        -34.2038,
+        -53.6994,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 260.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 22,
+      "position": [
+        -33.6515,
+        -53.7477,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 270.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 23,
+      "position": [
+        -33.0992,
+        -53.6994,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 280.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 24,
+      "position": [
+        -32.0612,
+        -53.3215,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 300.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 25,
+      "position": [
+        -31.607,
+        -53.0035,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 310.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 26,
+      "position": [
+        -31.215,
+        -52.6115,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 320.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 27,
+      "position": [
+        -30.897,
+        -52.1574,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 330.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    },
+    {
+      "index": 28,
+      "position": [
+        -30.6627,
+        -51.6549,
+        -3.36
+      ],
+      "altitude_m": 3.36,
+      "tier_m": 3.0,
+      "azimuth_deg": 340.0,
+      "standoff_m": 4.5,
+      "tilt_deg": 45.0
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "name": "pbnbv_uniform_check",
+  "metric": "raycast∩incidence<60, denom=observable surface",
+  "pbnbv": "information_gain_ellipsoid_rank (0.5^r), argmax",
+  "observable_surface_points": 6393,
+  "uniform": {
+    "cov_3m_pct": 96.46,
+    "cov_7m_pct": 78.18,
+    "cov_combined_pct": 96.62,
+    "residual_pts": 216,
+    "pbnbv_additional_viewpoints": 20,
+    "coverage_after_additions_pct": 100.0,
+    "additional": [
+      {
+        "rank": 1,
+        "altitude_m": 3.0,
+        "azimuth_deg": 290.0,
+        "gain_pts": 41
+      },
+      {
+        "rank": 2,
+        "altitude_m": 3.0,
+        "azimuth_deg": 300.0,
+        "gain_pts": 16
+      },
+      {
+        "rank": 3,
+        "altitude_m": 3.0,
+        "azimuth_deg": 320.0,
+        "gain_pts": 40
+      },
+      {
+        "rank": 4,
+        "altitude_m": 3.0,
+        "azimuth_deg": 10.0,
+        "gain_pts": 16
+      },
+      {
+        "rank": 5,
+        "altitude_m": 3.0,
+        "azimuth_deg": 25.0,
+        "gain_pts": 4
+      },
+      {
+        "rank": 6,
+        "altitude_m": 3.0,
+        "azimuth_deg": 20.0,
+        "gain_pts": 2
+      },
+      {
+        "rank": 7,
+        "altitude_m": 3.0,
+        "azimuth_deg": 35.0,
+        "gain_pts": 3
+      },
+      {
+        "rank": 8,
+        "altitude_m": 3.0,
+        "azimuth_deg": 50.0,
+        "gain_pts": 15
+      },
+      {
+        "rank": 9,
+        "altitude_m": 3.0,
+        "azimuth_deg": 235.0,
+        "gain_pts": 9
+      },
+      {
+        "rank": 10,
+        "altitude_m": 3.0,
+        "azimuth_deg": 265.0,
+        "gain_pts": 5
+      },
+      {
+        "rank": 11,
+        "altitude_m": 5.0,
+        "azimuth_deg": 165.0,
+        "gain_pts": 10
+      },
+      {
+        "rank": 12,
+        "altitude_m": 3.0,
+        "azimuth_deg": 170.0,
+        "gain_pts": 18
+      },
+      {
+        "rank": 13,
+        "altitude_m": 3.0,
+        "azimuth_deg": 115.0,
+        "gain_pts": 12
+      },
+      {
+        "rank": 14,
+        "altitude_m": 3.0,
+        "azimuth_deg": 215.0,
+        "gain_pts": 10
+      },
+      {
+        "rank": 15,
+        "altitude_m": 3.0,
+        "azimuth_deg": 0.0,
+        "gain_pts": 2
+      },
+      {
+        "rank": 16,
+        "altitude_m": 3.0,
+        "azimuth_deg": 135.0,
+        "gain_pts": 5
+      },
+      {
+        "rank": 17,
+        "altitude_m": 3.0,
+        "azimuth_deg": 225.0,
+        "gain_pts": 5
+      },
+      {
+        "rank": 18,
+        "altitude_m": 3.0,
+        "azimuth_deg": 280.0,
+        "gain_pts": 1
+      },
+      {
+        "rank": 19,
+        "altitude_m": 3.0,
+        "azimuth_deg": 80.0,
+        "gain_pts": 1
+      },
+      {
+        "rank": 20,
+        "altitude_m": 3.0,
+        "azimuth_deg": 240.0,
+        "gain_pts": 1
+      }
+    ]
+  },
+  "nonuniform_for_comparison": {
+    "cov_combined_pct": 96.23,
+    "residual_pts": 241,
+    "pbnbv_additional_viewpoints": 22
+  }
+}

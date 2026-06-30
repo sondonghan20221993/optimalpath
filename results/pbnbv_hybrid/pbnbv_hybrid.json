@@ -1,0 +1,52 @@
+{
+  "algorithm": "Case2 Hybrid (paper-F selection + Greedy NN ordering)",
+  "n_waypoints": 4,
+  "path_length_nbv_order": 20.364,
+  "path_length_greedy_order": 17.592,
+  "path_improvement_m": 2.773,
+  "coverage_points": 1.0,
+  "points_covered": 2436,
+  "points_total": 2436,
+  "waypoints": [
+    {
+      "idx": 1,
+      "pos": [
+        -32.55548333262112,
+        -50.0860157407012,
+        -1.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 20.0
+    },
+    {
+      "idx": 2,
+      "pos": [
+        -33.24711392775576,
+        -51.56922233840359,
+        -1.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 290.0
+    },
+    {
+      "idx": 3,
+      "pos": [
+        -34.80010862872518,
+        -50.481803741985075,
+        -1.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 180.0
+    },
+    {
+      "idx": 4,
+      "pos": [
+        -32.74736238378756,
+        -45.40294660024825,
+        -5.38
+      ],
+      "tilt_deg": 45.0,
+      "azimuth_deg": 80.0
+    }
+  ]
+}
